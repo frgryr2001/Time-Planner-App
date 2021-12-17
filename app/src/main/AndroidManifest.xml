@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:label="Nhắc nhở mới"
             android:name=".AddReminder"
             android:exported="true" />
         <activity

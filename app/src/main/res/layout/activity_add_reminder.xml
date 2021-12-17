@@ -80,6 +80,32 @@
             />
 
     </TableRow>
+    <TableRow
+        android:id="@+id/rowDate"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="?attr/selectableItemBackground"
+
+        >
+
+        <ImageView
+            android:id="@+id/ivIcon3"
+            android:layout_width="76dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:text=""
+            android:gravity="center_vertical"
+            android:paddingLeft="10sp"
+            android:textSize="20sp"
+            android:layout_height="45dp"
+
+            />
+
+    </TableRow>
 
 
 </TableLayout>
