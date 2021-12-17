@@ -57,7 +57,7 @@
         android:id="@+id/rowTime"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/bottom_line"
         
         >
 
@@ -84,7 +84,7 @@
         android:id="@+id/rowDate"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/bottom_line"
 
         >
 

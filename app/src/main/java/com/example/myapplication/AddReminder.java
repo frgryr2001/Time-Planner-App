@@ -35,7 +35,7 @@ public class AddReminder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
-
+        init();
         // Tạo nút Back về Home
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -44,8 +44,7 @@ public class AddReminder extends AppCompatActivity {
         // end
 
         // Click lay gia tri cua Time Picker
-        tvTime = findViewById(R.id.tvTime);
-        rowTime = findViewById(R.id.rowTime);
+
         rowTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +65,7 @@ public class AddReminder extends AppCompatActivity {
         // end
 
         // add value spinner
-        spinner = findViewById(R.id.spinner);
+
         String[] solanlap = new String[]{
                 "Một Lần",
                 "Lặp Lại",
@@ -82,8 +81,7 @@ public class AddReminder extends AppCompatActivity {
         // end
 
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        tvDate = findViewById(R.id.tvDate);
-        rowDate = findViewById(R.id.rowDate);
+
         tvDate.setText(currentDate);
         rowDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +90,13 @@ public class AddReminder extends AppCompatActivity {
             }
         });
 
+    }
+    private void init(){
+        tvTime = findViewById(R.id.tvTime);
+        rowTime = findViewById(R.id.rowTime);
+        tvDate = findViewById(R.id.tvDate);
+        rowDate = findViewById(R.id.rowDate);
+        spinner = findViewById(R.id.spinner);
     }
 
 
