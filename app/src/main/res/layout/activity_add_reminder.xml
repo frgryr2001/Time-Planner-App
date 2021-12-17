@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:stretchColumns="1"
+
+    tools:context=".AddReminder">
+    />
+    <TableRow
+        android:paddingBottom="10dp"
+
+        android:background="@drawable/bottom_line"
+        >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="76dp"
+
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        <EditText
+            android:id="@+id/etNhacNho"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint=" Nhắc nhở về"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </TableRow>
+    <TableRow
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/bottom_line"
+        >
+
+        <ImageView
+            android:id="@+id/ivIcon1"
+            android:layout_width="76dp"
+
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/rowTime"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="?attr/selectableItemBackground"
+        
+        >
+
+        <ImageView
+            android:id="@+id/ivIcon2"
+            android:layout_width="76dp"
+
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="match_parent"
+            android:text=""
+            android:gravity="center_vertical"
+            android:paddingLeft="10sp"
+            android:textSize="20sp"
+            android:layout_height="45dp"
+
+            />
+
+    </TableRow>
+
+
+</TableLayout>
