@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/drawable/bottom_line.xml" value="0.21388888888888888" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/drawable/facebook_drawable.xml" value="0.21388888888888888" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/drawable/google_drawable.xml" value="0.21388888888888888" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.21388888888888888" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/drawable/rounded.xml" value="0.21388888888888888" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/layout/activity_add_reminder.xml" value="0.209375" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/layout/login.xml" value="0.209375" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/layout/spinner_value.xml" value="0.209375" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/menu/save.xml" value="0.209375" />
         <entry key="..\:/Android/Final/TimePlanner/app/src/main/res/drawable/facebook_drawable.xml" value="0.21944444444444444" />
         <entry key="..\:/Android/Final/TimePlanner/app/src/main/res/drawable/google_drawable.xml" value="0.21944444444444444" />
         <entry key="..\:/Android/Final/TimePlanner/app/src/main/res/drawable/rounded.xml" value="0.21944444444444444" />

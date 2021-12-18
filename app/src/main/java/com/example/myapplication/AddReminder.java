@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -36,15 +37,15 @@ public class AddReminder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
         init();
+
         // Tạo nút Back về Home
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        // end
+        // End
 
-        // Click lay gia tri cua Time Picker
-
+        // Xử lý sự kiện click Time Picker -> chọn thời gian
         rowTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,19 +66,21 @@ public class AddReminder extends AppCompatActivity {
         // end
 
         // add value spinner
+//        String[] loopTypes = new String[]{
+//                "Một Lần",
+//                "Lặp Lại",
+//                "Lặp lại theo vòng",
+//                "Lặp theo chu kì trong khoảng thời gian",
+//                "Ngẫu Nhiên"
+//                };
+//        Log.d("" + loopTypes, "onCreate: ");
+//        final List<String> plantsList = new ArrayList<>(Arrays.asList(loopTypes));
+//        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, plantsList);
+//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_value);
+//        spinner.setAdapter(spinnerArrayAdapter);
 
-        String[] solanlap = new String[]{
-                "Một Lần",
-                "Lặp Lại",
-                "Lặp lại theo vòng",
-                "Lặp theo chu kì trong khoảng thời gian",
-                "Ngẫu Nhiên"
-                };
-        Log.d(""+solanlap, "onCreate: ");
-        final List<String> plantsList = new ArrayList<>(Arrays.asList(solanlap));
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, plantsList);
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_value);
-        spinner.setAdapter(spinnerArrayAdapter);
+        SpinnerAdapter customAdapter = new SpinnerAdapter(this, R.layout.spinner_value, ReminderType.initList());
+        spinner.setAdapter(customAdapter);
         // end
 
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
@@ -86,7 +89,7 @@ public class AddReminder extends AppCompatActivity {
         rowDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chonNgay();
+                selectDate();
             }
         });
 
@@ -99,12 +102,8 @@ public class AddReminder extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
     }
 
-
-
-
-
     // function chon ngày
-    private void chonNgay(){
+    private void selectDate(){
         final Calendar calendar = Calendar.getInstance();
         int ngay = calendar.get(Calendar.DATE);
         int thang = calendar.get(Calendar.MONTH);
@@ -119,7 +118,7 @@ public class AddReminder extends AppCompatActivity {
         },nam,thang,ngay);
         datePickerDialog.show();
     }
-//   // end
+    // end
 
     // Tạo nút Back về Home
     public boolean onOptionsItemSelected(MenuItem item){
@@ -128,7 +127,7 @@ public class AddReminder extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.menuSave:
-                // Something code
+                // Code to save
         }
         return super.onOptionsItemSelected(item);
     }
