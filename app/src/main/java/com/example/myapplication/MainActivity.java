@@ -18,4 +18,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddReminder.class);
         startActivity(intent);
     }
+    public void openActivity1(View view) {
+        Intent intent = new Intent(this, Category.class);
+        startActivity(intent);
+    }
 }
