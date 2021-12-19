@@ -19,7 +19,7 @@
                 android:id="@+id/addReminderToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
+                android:minHeight="48dp"
                 android:background="@color/white"
                 android:theme="?attr/actionBarTheme"
                 app:titleTextColor="@color/text_dark"
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Nhan nho moi"
+                android:text="Nhắc nhở mới"
                 android:textColor="@color/text_dark"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +87,7 @@
             android:inputType="textPersonName"
             android:text=""
             android:textColor="@color/text_dark"
-            android:hint=" Nhắc nhở về"
+            android:hint="Nhắc nhở về"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </TableRow>
@@ -201,15 +201,17 @@
             android:layout_marginRight="12dp"
             app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
-        <TextView
+        <EditText
+            android:id="@+id/etNote"
             android:layout_width="match_parent"
-            android:text="Ghi chú"
-            android:gravity="center_vertical"
-            android:paddingLeft="10sp"
+            android:layout_height="60dp"
+            android:ems="10"
             android:textSize="18sp"
-            android:background="?android:attr/selectableItemBackground"
+            android:inputType="textPersonName"
+            android:text=""
             android:textColor="@color/text_dark"
-            android:layout_height="60dp" />
+            android:hint="Ghi chú"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </TableRow>
 </TableLayout>

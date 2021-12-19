@@ -6,8 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Adapter.CategoryAdapter;
+import com.example.myapplication.Object.CategoryClass;
 import com.example.myapplication.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +30,9 @@ public class CategoryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView rvCategory;
+    private CategoryAdapter adapter;
+    private List<CategoryClass> Lstcategory;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -60,6 +69,11 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category, container, false);
+        rvCategory = view.findViewById(R.id.rvCategory);
+        Lstcategory = CategoryClass.initList();
+        rvCategory.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        adapter = new CategoryAdapter(view.getContext(), Lstcategory);
+        rvCategory.setAdapter(adapter);
         return view;
     }
 }

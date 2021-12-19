@@ -14,10 +14,6 @@
             android:name=".Activity.AddReminderActivity"
             android:exported="true" />
         <activity
-            android:label="Nhắc nhở mới"
-            android:name=".Activity.CategoryActivity"
-            android:exported="true" />
-        <activity
             android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>

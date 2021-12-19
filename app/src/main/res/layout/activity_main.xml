@@ -7,35 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
-    <Button
-        android:id="@+id/buttonOpen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Open Other Activity"
-        android:layout_centerInParent="true"
-        android:onClick="openActivity"/>
-
-    <Button
-        android:id="@+id/buttonOpen1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Open Category"
-        android:layout_below="@+id/buttonOpen"
-        android:layout_centerHorizontal="true"
-        android:onClick="openActivity1"/>
-
     <com.example.myapplication.ViewPager.CustomViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNav"/>
+        android:layout_above="@+id/bottomNav" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

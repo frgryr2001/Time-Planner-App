@@ -1,5 +1,7 @@
 package com.example.myapplication.Fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
+import com.example.myapplication.Activity.AddReminderActivity;
+import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.R;
 
 /**
@@ -25,6 +30,7 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ImageButton ibAdd;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -61,6 +67,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ibAdd = view.findViewById(R.id.ibAdd);
+        ibAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(view.getContext(), AddReminderActivity.class);
+                startActivity(i);
+            }
+        });
         return view;
     }
 }

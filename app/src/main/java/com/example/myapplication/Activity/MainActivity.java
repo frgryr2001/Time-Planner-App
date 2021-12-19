@@ -80,15 +80,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    // Transfer to AddReminder activity
-    public void openActivity(View view) {
-        Intent intent = new Intent(this, AddReminderActivity.class);
-        startActivity(intent);
-    }
-
-    public void openActivity1(View view) {
-        Intent intent = new Intent(this, CategoryActivity.class);
-        startActivity(intent);
-    }
 }
