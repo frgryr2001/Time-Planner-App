@@ -47,7 +47,8 @@ public class AddReminderActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+        tvTime.setText(currentTime);
         // Xử lý sự kiện click Time Picker -> chọn thời gian
         rowTime.setOnClickListener(new View.OnClickListener() {
             @Override
