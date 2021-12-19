@@ -1,13 +1,15 @@
-package com.example.myapplication;
+package com.example.myapplication.Object;
+
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReminderType {
+public class ReminderTypeClass {
     String name;
     int icon;
 
-    public ReminderType(String name, int icon) {
+    public ReminderTypeClass(String name, int icon) {
         this.name = name;
         this.icon = icon;
     }
@@ -28,8 +30,8 @@ public class ReminderType {
         this.icon = icon;
     }
 
-    public static List<ReminderType> initList() {
-        List<ReminderType> types = new ArrayList<ReminderType>();
+    public static List<ReminderTypeClass> initList() {
+        List<ReminderTypeClass> types = new ArrayList<ReminderTypeClass>();
         String[] names = {
                 "Một Lần",
                 "Lặp Lại",
@@ -38,7 +40,7 @@ public class ReminderType {
                 "Ngẫu Nhiên"};
         int[] icons = {R.drawable.only_once, R.drawable.loop, R.drawable.loop_inf, R.drawable.loop_time_period, R.drawable.random};
         for (int i = 0; i < names.length; i++) {
-            ReminderType type = new ReminderType(names[i], icons[i]);
+            ReminderTypeClass type = new ReminderTypeClass(names[i], icons[i]);
             types.add(type);
         }
         return types;

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,13 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.myapplication.Object.ReminderTypeClass;
+import com.example.myapplication.R;
+
 import java.util.List;
 
-public class SpinnerAdapter extends ArrayAdapter<ReminderType> {
+public class SpinnerAdapter extends ArrayAdapter<ReminderTypeClass> {
     LayoutInflater layoutInflater;
-    ImageView ivReminderType;
 
-    public SpinnerAdapter(@NonNull Context context, int resource, @NonNull List<ReminderType> users)
+    public SpinnerAdapter(@NonNull Context context, int resource, @NonNull List<ReminderTypeClass> users)
     {
         super(context, resource, users);
         layoutInflater = LayoutInflater.from(context);
@@ -28,7 +30,7 @@ public class SpinnerAdapter extends ArrayAdapter<ReminderType> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
         View rowView = layoutInflater.inflate(R.layout.spinner_value, null,true);
-        ReminderType type = getItem(position);
+        ReminderTypeClass type = getItem(position);
         TextView textView = (TextView)rowView.findViewById(R.id.tvSpinner);
         ImageView imageView = (ImageView)rowView.findViewById(R.id.ivSpinner);
         textView.setText(type.getName());
@@ -43,7 +45,7 @@ public class SpinnerAdapter extends ArrayAdapter<ReminderType> {
         if(convertView == null)
             convertView = layoutInflater.inflate(R.layout.spinner_value, parent,false);
 
-        ReminderType type = getItem(position);
+        ReminderTypeClass type = getItem(position);
         TextView textView = (TextView)convertView.findViewById(R.id.tvSpinner);
         ImageView imageView = (ImageView)convertView.findViewById(R.id.ivSpinner);
         textView.setText(type.getName());

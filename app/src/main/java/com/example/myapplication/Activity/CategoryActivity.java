@@ -1,15 +1,18 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.myapplication.Adapter.CategoryAdapter;
+import com.example.myapplication.Object.CategoryClass;
+import com.example.myapplication.R;
+
 import java.util.List;
 
-public class Category extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity {
     RecyclerView rvCategory;
     CategoryAdapter adapter;
     List<CategoryClass> Lstcategory;

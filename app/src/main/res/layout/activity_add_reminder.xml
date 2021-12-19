@@ -6,7 +6,64 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:stretchColumns="1"
-    tools:context=".AddReminder">
+    tools:context=".Activity.AddReminderActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/addReminderToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:background="@color/white"
+                android:theme="?attr/actionBarTheme"
+                app:titleTextColor="@color/text_dark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageButton
+                android:id="@+id/ibBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:minHeight="48dp"
+                android:src="@drawable/back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/addReminderToolbar"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Nhan nho moi"
+                android:textColor="@color/text_dark"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ibBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ibSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/check" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <TableRow
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -96,6 +153,54 @@
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
             android:text=""
+            android:gravity="center_vertical"
+            android:paddingLeft="10sp"
+            android:textSize="18sp"
+            android:textColor="@color/text_dark"
+            android:layout_height="60dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:background="@drawable/bottom_line">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="12dp"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Chọn danh mục"
+            android:gravity="center_vertical"
+            android:paddingLeft="10sp"
+            android:textSize="18sp"
+            android:textColor="@color/text_dark"
+            android:layout_height="60dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:background="@drawable/bottom_line">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="12dp"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Ghi chú"
             android:gravity="center_vertical"
             android:paddingLeft="10sp"
             android:textSize="18sp"

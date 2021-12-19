@@ -1,37 +1,32 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.myapplication.R;
+import com.example.myapplication.Object.ReminderTypeClass;
+import com.example.myapplication.Adapter.SpinnerAdapter;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-public class AddReminder extends AppCompatActivity {
+public class AddReminderActivity extends AppCompatActivity {
     TextView tvTime,tvDate;
     Spinner spinner;
     TableRow rowTime,rowDate;
+    ImageButton ibBack, ibSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +34,20 @@ public class AddReminder extends AppCompatActivity {
         init();
 
         // Tạo nút Back về Home
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//        }
         // End
-        String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
-        tvTime.setText(currentTime);
+
+        // Click back and save image button
+        ibBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         // Xử lý sự kiện click Time Picker -> chọn thời gian
         rowTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +56,7 @@ public class AddReminder extends AppCompatActivity {
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(AddReminderActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         tvTime.setText( selectedHour + ":" + selectedMinute);
@@ -66,21 +68,7 @@ public class AddReminder extends AppCompatActivity {
         });
         // end
 
-        // add value spinner
-//        String[] loopTypes = new String[]{
-//                "Một Lần",
-//                "Lặp Lại",
-//                "Lặp lại theo vòng",
-//                "Lặp theo chu kì trong khoảng thời gian",
-//                "Ngẫu Nhiên"
-//                };
-//        Log.d("" + loopTypes, "onCreate: ");
-//        final List<String> plantsList = new ArrayList<>(Arrays.asList(loopTypes));
-//        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, plantsList);
-//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_value);
-//        spinner.setAdapter(spinnerArrayAdapter);
-
-        SpinnerAdapter customAdapter = new SpinnerAdapter(this, R.layout.spinner_value, ReminderType.initList());
+        SpinnerAdapter customAdapter = new SpinnerAdapter(this, R.layout.spinner_value, ReminderTypeClass.initList());
         spinner.setAdapter(customAdapter);
         // end
 
@@ -101,6 +89,8 @@ public class AddReminder extends AppCompatActivity {
         tvDate = findViewById(R.id.tvDate);
         rowDate = findViewById(R.id.rowDate);
         spinner = findViewById(R.id.spinner);
+        ibBack = findViewById(R.id.ibBack);
+        ibSave = findViewById(R.id.ibSave);
     }
 
     // function chon ngày
@@ -122,20 +112,20 @@ public class AddReminder extends AppCompatActivity {
     // end
 
     // Tạo nút Back về Home
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.menuSave:
-                // Code to save
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                finish();
+//                return true;
+//            case R.id.menuSave:
+//                // Code to save
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.save, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.save, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
     // end
 }

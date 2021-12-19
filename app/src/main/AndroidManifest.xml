@@ -10,14 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Category"
+            android:label="Nhắc nhở mới"
+            android:name=".Activity.AddReminderActivity"
             android:exported="true" />
         <activity
-            android:name=".AddReminder"
-            android:exported="true"
-            android:label="Nhắc nhở mới" />
+            android:label="Nhắc nhở mới"
+            android:name=".Activity.CategoryActivity"
+            android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
