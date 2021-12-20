@@ -13,13 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.Object.CategoryClass;
 import com.example.myapplication.R;
+import com.example.myapplication.ViewPager.CategoryViewPagerAdapter;
+import com.example.myapplication.ViewPager.ScheduleViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
@@ -39,11 +43,10 @@ public class CategoryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private RecyclerView rvCategory;
-    private CategoryAdapter adapter;
-    private List<CategoryClass> Lstcategory;
+
     Toolbar CategoryToolbar;
     TabLayout TablayoutCategory;
+    ViewPager CategoryViewPagerCa;
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -91,16 +94,12 @@ public class CategoryFragment extends Fragment {
 //            ((AppCompatActivity)getActivity()).setTitle("Main Page");
 //        }
         TablayoutCategory = view.findViewById(R.id.TablayoutCategory);
-        TablayoutCategory.addTab(TablayoutCategory.newTab().setText("Các danh mục"), true);
-        TablayoutCategory.addTab(TablayoutCategory.newTab().setText("Các thẻ "));
-        TablayoutCategory.addTab(TablayoutCategory.newTab().setText("Bộ Lọc"));
+        CategoryViewPagerCa = view.findViewById(R.id.CategoryViewPagerCa);
+        CategoryViewPagerAdapter adapterPage = new CategoryViewPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        CategoryViewPagerCa.setAdapter(adapterPage);
 
+        TablayoutCategory.setupWithViewPager(CategoryViewPagerCa);
 
-        rvCategory = view.findViewById(R.id.rvCategory);
-        Lstcategory = CategoryClass.initList();
-        rvCategory.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        adapter = new CategoryAdapter(view.getContext(), Lstcategory);
-        rvCategory.setAdapter(adapter);
         return view;
     }
 

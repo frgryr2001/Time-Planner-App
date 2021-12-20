@@ -26,18 +26,20 @@ tools:context=".Fragment.CategoryFragment">
                 android:layout_height="wrap_content"
                 app:tabGravity="fill"
                 app:tabMode="auto">
+                />
 
             </com.google.android.material.tabs.TabLayout>
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/CategoryViewPagerCa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbarlayout"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_below="@+id/appbarlayout"
-    android:id="@+id/rvCategory"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
 
 
 </RelativeLayout>
