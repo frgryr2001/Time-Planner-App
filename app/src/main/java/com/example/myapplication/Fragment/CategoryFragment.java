@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
@@ -106,6 +107,8 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.save, menu);
+        SearchView menuSearch = (SearchView)menu.findItem(R.id.menuSearch).getActionView();
+        menuSearch.setMaxWidth(Integer.MAX_VALUE);
         super.onCreateOptionsMenu(menu, inflater);
 
     }

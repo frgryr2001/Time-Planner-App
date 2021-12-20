@@ -4,6 +4,7 @@
     <item android:title="Save"
         android:id="@+id/menuSearch"
         app:showAsAction="always"
+
         app:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/ic_baseline_search_24"
         ></item>
