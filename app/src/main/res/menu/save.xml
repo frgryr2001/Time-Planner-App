@@ -2,8 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="Save"
-        android:id="@+id/menuSave"
+        android:id="@+id/menuSearch"
         app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_check_24"
+        app:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_baseline_search_24"
+        ></item>
+    <item android:title="Mo rong tat ca"
+        android:id="@+id/option"
+        ></item>
+    <item android:title="Thu gon tat ca"
+        android:id="@+id/option1"
         ></item>
 </menu>

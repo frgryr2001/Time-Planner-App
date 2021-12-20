@@ -2,9 +2,12 @@ package com.example.myapplication.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -69,7 +72,6 @@ public class ScheduleFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_schedule, container, false);
         scheduleTabLayout = mView.findViewById(R.id.scheduleTabLayout);
         scheduleViewPager = mView.findViewById(R.id.scheduleViewPager);
-
         ScheduleViewPagerAdapter adapter = new ScheduleViewPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         scheduleViewPager.setAdapter(adapter);
 

@@ -6,6 +6,7 @@
     android:padding="5dp"
     android:id="@+id/layout_item"
     android:layout_marginTop="5dp"
+    android:background="?android:attr/selectableItemBackground"
     android:outlineSpotShadowColor="#123456"
     android:layout_height="wrap_content">
 
