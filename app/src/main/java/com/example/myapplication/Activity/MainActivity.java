@@ -9,17 +9,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.myapplication.R;
 import com.example.myapplication.ViewPager.CustomViewPager;
 import com.example.myapplication.ViewPager.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     private CustomViewPager mViewPager;
 
+    Button btnLogOut;
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottomNav);
         mViewPager = findViewById(R.id.viewPager);
         mViewPager.setPagingEnable(false);
+        btnLogOut = findViewById(R.id.btnLogOut);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager.setAdapter(viewPagerAdapter);
@@ -78,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
 
             }
+        });
+
+        //Đăng xuất
+        btnLogOut.setOnClickListener(view -> {
+            mAuth.getInstance().signOut();
+            finish();
         });
     }
 }

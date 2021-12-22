@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "967459738742",
+    "project_id": "time-planner-8ef5c",
+    "storage_bucket": "time-planner-8ef5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967459738742:android:17fee4a05ac87a6cee7b57",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967459738742-0oqq212bctsg79sgttmpba1gaoovpq72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "164b9e3e124be4133522ac267d92ac7c39b1a53e"
+          }
+        },
+        {
+          "client_id": "967459738742-sv081hogabm7aj7s6c4t28q2gjh81k9f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZJ3LEOEzMZD_8EuxEcm0eRgr8CDO4GDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967459738742-sv081hogabm7aj7s6c4t28q2gjh81k9f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
