@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="Save"
+    <item android:title="Search"
         android:id="@+id/menuSearch"
         app:showAsAction="always"
-
-        app:actionViewClass="android.widget.SearchView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:icon="@drawable/ic_baseline_search_24"
         ></item>
-    <item android:title="Mo rong tat ca"
+    <item android:title="Mở rộng tất cả"
         android:id="@+id/option"
         ></item>
-    <item android:title="Thu gon tat ca"
+    <item android:title="Thu gọn tất cả"
         android:id="@+id/option1"
         ></item>
 </menu>

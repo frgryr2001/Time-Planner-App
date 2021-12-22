@@ -44,9 +44,9 @@ public class CategoryFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Toolbar CategoryToolbar;
-    TabLayout TablayoutCategory;
-    ViewPager CategoryViewPagerCa;
+    private View mView;
+    private TabLayout tabLayoutCategory;
+    private ViewPager viewPagerCategory;
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -86,27 +86,23 @@ public class CategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_category, container, false);
+        mView = inflater.inflate(R.layout.fragment_category, container, false);
 
-        CategoryToolbar = (Toolbar) view.findViewById(R.id.CategoryToolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(CategoryToolbar);
-//        if (((AppCompatActivity)getActivity()).getSupportActionBar() != null) {
-//            ((AppCompatActivity)getActivity()).setTitle("Main Page");
-//        }
-        TablayoutCategory = view.findViewById(R.id.TablayoutCategory);
-        CategoryViewPagerCa = view.findViewById(R.id.CategoryViewPagerCa);
-        CategoryViewPagerAdapter adapterPage = new CategoryViewPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        CategoryViewPagerCa.setAdapter(adapterPage);
+        tabLayoutCategory = mView.findViewById(R.id.tablayoutCategory);
+        viewPagerCategory = mView.findViewById(R.id.categoryViewPager);
+        CategoryViewPagerAdapter adapter = new CategoryViewPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPagerCategory.setAdapter(adapter);
 
-        TablayoutCategory.setupWithViewPager(CategoryViewPagerCa);
 
-        return view;
+        tabLayoutCategory.setupWithViewPager(viewPagerCategory);
+        return mView;
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.save, menu);
-        SearchView menuSearch = (SearchView)menu.findItem(R.id.menuSearch).getActionView();
+        androidx.appcompat.widget.SearchView menuSearch = (androidx.appcompat.widget.SearchView) menu.findItem(R.id.menuSearch).getActionView();
+        menuSearch.setQueryHint("Tìm kiếm");
         menuSearch.setMaxWidth(Integer.MAX_VALUE);
         super.onCreateOptionsMenu(menu, inflater);
 

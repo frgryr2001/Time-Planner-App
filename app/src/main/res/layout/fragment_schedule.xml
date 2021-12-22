@@ -7,7 +7,7 @@
     tools:context=".Fragment.ScheduleFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appbarSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff">
@@ -15,6 +15,11 @@
                 android:id="@+id/scheduleTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:tabSelectedTextColor="@color/primary"
+                app:itemIconTint="@color/custom_color_bottom_nav"
+                app:itemTextColor="@color/custom_color_bottom_nav"
+                app:tabIndicatorColor="@color/primary"
+                android:minHeight="48dp"
                 app:tabGravity="fill"
                 app:tabMode="auto"
                 tools:ignore="SpeakableTextPresentCheck"/>
@@ -25,7 +30,7 @@
         android:id="@+id/scheduleViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbar"
+        android:layout_below="@+id/appbarSchedule"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>
