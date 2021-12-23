@@ -14,6 +14,9 @@ import android.widget.Button;
 import com.example.myapplication.R;
 import com.example.myapplication.ViewPager.CustomViewPager;
 import com.example.myapplication.ViewPager.ViewPagerAdapter;
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -112,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
         btnLogOut.setOnClickListener(view -> {
             mGoogleSignInClient.signOut();
             mAuth.signOut();
+            FacebookSdk.sdkInitialize(MainActivity.this);
+            LoginManager.getInstance().logOut();
+            AccessToken.setCurrentAccessToken(null);
+
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
         });
