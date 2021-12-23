@@ -14,6 +14,11 @@ import android.widget.Button;
 import com.example.myapplication.R;
 import com.example.myapplication.ViewPager.CustomViewPager;
 import com.example.myapplication.ViewPager.ViewPagerAdapter;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -22,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNav;
     private CustomViewPager mViewPager;
 
+
     Button btnLogOut;
 
+    private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = findViewById(R.id.viewPager);
         mViewPager.setPagingEnable(false);
         btnLogOut = findViewById(R.id.btnLogOut);
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mAuth = FirebaseAuth.getInstance();
+        mGoogleSignInClient = GoogleSignIn.getClient(MainActivity.this , gso);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager.setAdapter(viewPagerAdapter);
@@ -88,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Đăng xuất
         btnLogOut.setOnClickListener(view -> {
-            mAuth.getInstance().signOut();
+            mGoogleSignInClient.signOut();
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
         });
     }

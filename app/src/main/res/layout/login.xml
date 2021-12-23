@@ -45,4 +45,5 @@
         app:layout_constraintTop_toBottomOf="@+id/btnLoginGg"
         app:strokeColor="@color/primary"
         app:strokeWidth="2dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
