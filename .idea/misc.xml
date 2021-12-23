@@ -15,10 +15,16 @@
         <entry key="..\:/Android/Final/TimePlanner/Time-Planer-App/app/src/main/res/menu/save.xml" value="0.209375" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/activity_add_reminder.xml" value="0.1648148148148148" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/activity_main.xml" value="0.1648148148148148" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/day_cell.xml" value="0.209375" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/event_cell.xml" value="0.209375" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/fragment_categories.xml" value="0.209375" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/fragment_category.xml" value="0.1648148148148148" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/fragment_daily_schedule.xml" value="0.17592592592592593" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/fragment_filter.xml" value="0.209375" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/fragment_month_schedule.xml" value="0.209375" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/fragment_option.xml" value="0.209375" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/fragment_schedule.xml" value="0.1648148148148148" />
+        <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/layout/hour_event_cell.xml" value="0.1" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/menu/bottom_navigation.xml" value="0.209375" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/menu/navigation_drawer.xml" value="0.209375" />
         <entry key="..\:/Android/Final/TimePlanner/Time-Planner-App/app/src/main/res/menu/save.xml" value="0.209375" />

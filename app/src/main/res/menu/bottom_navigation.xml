@@ -16,4 +16,10 @@
         android:title="Danh mục"
         android:icon="@drawable/category"
         />
+
+    <item
+        android:id="@+id/optionBottomNav"
+        android:title="Tùy chọn"
+        android:icon="@drawable/option"
+        />
 </menu>
