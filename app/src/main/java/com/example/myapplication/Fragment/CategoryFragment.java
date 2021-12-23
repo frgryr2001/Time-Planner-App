@@ -6,15 +6,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
-import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -22,8 +18,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.Object.CategoryClass;
 import com.example.myapplication.R;
-import com.example.myapplication.ViewPager.CategoryViewPagerAdapter;
-import com.example.myapplication.ViewPager.ScheduleViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
@@ -45,8 +39,10 @@ public class CategoryFragment extends Fragment {
     private String mParam2;
 
     private View mView;
-    private TabLayout tabLayoutCategory;
-    private ViewPager viewPagerCategory;
+    private RecyclerView rvCategory;
+    private CategoryAdapter adapter;
+    private List<CategoryClass> Lstcategory;
+    private Toolbar CategoryToolbar;
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -88,13 +84,16 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_category, container, false);
 
-        tabLayoutCategory = mView.findViewById(R.id.tablayoutCategory);
-        viewPagerCategory = mView.findViewById(R.id.categoryViewPager);
-        CategoryViewPagerAdapter adapter = new CategoryViewPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPagerCategory.setAdapter(adapter);
-
-
-        tabLayoutCategory.setupWithViewPager(viewPagerCategory);
+        CategoryToolbar = (Toolbar) mView.findViewById(R.id.categoryToolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(CategoryToolbar);
+        if (((AppCompatActivity)getActivity()).getSupportActionBar() != null) {
+            ((AppCompatActivity)getActivity()).setTitle("Các danh mục");
+        }
+      rvCategory = mView.findViewById(R.id.rvCategory);
+        Lstcategory = CategoryClass.initList();
+        rvCategory.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+        adapter = new CategoryAdapter(mView.getContext(), Lstcategory);
+        rvCategory.setAdapter(adapter);
         return mView;
     }
 

@@ -28,6 +28,7 @@
             android:name=".Activity.MainActivity"
             android:exported="true">
 
+
         </activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
@@ -46,6 +47,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
+
         </activity>
 
 

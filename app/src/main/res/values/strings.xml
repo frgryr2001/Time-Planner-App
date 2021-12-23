@@ -2,6 +2,11 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="facebook_app_id">2669020640073409</string>
     <string name="fb_login_protocol_scheme">fb2669020640073409</string>
+
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
+
 </resources>

@@ -3,25 +3,19 @@ package com.example.myapplication.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.Adapter.CategoryAdapter;
-import com.example.myapplication.Object.CategoryClass;
 import com.example.myapplication.R;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CategoriesFragment#newInstance} factory method to
+ * Use the {@link OptionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CategoriesFragment extends Fragment {
+public class OptionFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,11 +25,8 @@ public class CategoriesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private RecyclerView rvCategory;
-    private CategoryAdapter adapter;
-    private List<CategoryClass> Lstcategory;
 
-    public CategoriesFragment() {
+    public OptionFragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +36,11 @@ public class CategoriesFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CategoriesFragment.
+     * @return A new instance of fragment OptionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CategoriesFragment newInstance(String param1, String param2) {
-        CategoriesFragment fragment = new CategoriesFragment();
+    public static OptionFragment newInstance(String param1, String param2) {
+        OptionFragment fragment = new OptionFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,13 +60,8 @@ public class CategoriesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_categories, container, false);
         // Inflate the layout for this fragment
-        rvCategory = view.findViewById(R.id.rvCategory);
-        Lstcategory = CategoryClass.initList();
-        rvCategory.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        adapter = new CategoryAdapter(view.getContext(), Lstcategory);
-        rvCategory.setAdapter(adapter);
+        View view = inflater.inflate(R.layout.fragment_option, container, false);
         return view;
     }
 }

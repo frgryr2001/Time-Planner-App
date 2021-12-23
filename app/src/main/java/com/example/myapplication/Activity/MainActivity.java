@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.categoryBottomNav:
                         mViewPager.setCurrentItem(2);
                         break;
+                    case R.id.optionBottomNav:
+                        mViewPager.setCurrentItem(3);
+                        break;
                 }
                 return true;
             }
@@ -92,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         bottomNav.getMenu().findItem(R.id.categoryBottomNav).setChecked(true);
+                        break;
+                    case 3:
+                        bottomNav.getMenu().findItem(R.id.optionBottomNav).setChecked(true);
                         break;
                 }
             }

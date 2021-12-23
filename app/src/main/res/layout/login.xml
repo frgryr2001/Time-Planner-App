@@ -5,22 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/topView"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:background="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/belowTopView"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topView" />
+
     <Button
         android:id="@+id/btnLoginGg"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
-        android:backgroundTint="@color/white"
+        android:layout_marginTop="324dp"
+        android:backgroundTint="@color/red"
         android:drawableLeft="@drawable/google_drawable"
         android:paddingVertical="12dp"
+
         android:text="Đăng nhập với Google"
         android:textAlignment="textStart"
-        android:textColor="#333333"
+        android:textColor="#fee"
         android:textIsSelectable="false"
         android:textSize="16sp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/primary"
@@ -30,13 +50,13 @@
         android:id="@+id/btnLoginFb"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:backgroundTint="@color/white"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/blue"
         android:drawableLeft="@drawable/facebook_drawable"
         android:paddingVertical="12dp"
         android:text="Đăng nhập với Facebook"
         android:textAlignment="textStart"
-        android:textColor="#333333"
+        android:textColor="#fff"
         android:textSize="16sp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,5 +65,22 @@
         app:layout_constraintTop_toBottomOf="@+id/btnLoginGg"
         app:strokeColor="@color/primary"
         app:strokeWidth="2dp" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:fontFamily="cursive"
+        android:text="LOGIN"
+        android:textColor="@color/white"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
