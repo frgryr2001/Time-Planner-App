@@ -71,11 +71,7 @@ public class CategoriesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
         // Inflate the layout for this fragment
-        rvCategory = view.findViewById(R.id.rvCategory);
-        Lstcategory = CategoryClass.initList();
-        rvCategory.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        adapter = new CategoryAdapter(view.getContext(), Lstcategory);
-        rvCategory.setAdapter(adapter);
+
         return view;
     }
 }

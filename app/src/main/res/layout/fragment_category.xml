@@ -20,28 +20,16 @@
             android:minHeight="48dp"
             android:theme="?attr/actionBarTheme">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tablayoutCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabSelectedTextColor="@color/primary"
-                app:itemIconTint="@color/custom_color_bottom_nav"
-                app:itemTextColor="@color/custom_color_bottom_nav"
-                app:tabIndicatorColor="@color/primary"
-                android:minHeight="48dp"
-                app:tabGravity="fill"
-                app:tabMode="scrollable"
-                tools:ignore="SpeakableTextPresentCheck"/>
+
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/categoryViewPager"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbarCategory"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_below="@+id/appbarCategory"/>
 
 </RelativeLayout>
