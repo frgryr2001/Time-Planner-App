@@ -1,15 +1,22 @@
 package com.example.myapplication.Fragment;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +27,8 @@ import com.example.myapplication.Object.CategoryClass;
 import com.example.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -39,10 +48,15 @@ public class CategoryFragment extends Fragment {
     private String mParam2;
 
     private View mView;
-    private RecyclerView rvCategory;
-    private CategoryAdapter adapter;
-    private List<CategoryClass> Lstcategory;
+
     private Toolbar CategoryToolbar;
+    DrawerLayout drawerLayout;
+    CategoryAdapter adapter;
+    private ExpandableListView exListview;
+    private List<String> parentList;
+    private HashMap<String,List<String>> childList;
+
+
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -89,11 +103,16 @@ public class CategoryFragment extends Fragment {
         if (((AppCompatActivity)getActivity()).getSupportActionBar() != null) {
             ((AppCompatActivity)getActivity()).setTitle("Các danh mục");
         }
-      rvCategory = mView.findViewById(R.id.rvCategory);
-        Lstcategory = CategoryClass.initList();
-        rvCategory.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-        adapter = new CategoryAdapter(mView.getContext(), Lstcategory);
-        rvCategory.setAdapter(adapter);
+        exListview = mView.findViewById(R.id.exListview);
+        showList();
+
+        adapter = new CategoryAdapter(getContext(),parentList,childList);
+        exListview.setAdapter(adapter);
+
+        for(int i=0; i < adapter.getGroupCount(); i++)
+            exListview.expandGroup(i);
+        adapter.notifyDataSetChanged();
+
         return mView;
     }
 
@@ -105,6 +124,25 @@ public class CategoryFragment extends Fragment {
         menuSearch.setMaxWidth(Integer.MAX_VALUE);
         super.onCreateOptionsMenu(menu, inflater);
 
+    }
+    private void showList() {
+        parentList = new ArrayList<>();
+        childList = new HashMap<String,List<String>>();
+        parentList.add("Hoc van 1");
+        parentList.add("Hoc van 2");
+
+
+        List<String> child = new ArrayList<>();
+        child.add("123");
+        child.add("456");
+        child.add("678");
+        List<String> child1 = new ArrayList<>();
+        child1.add("123");
+        child1.add("4256");
+        child1.add("678");
+
+        childList.put(parentList.get(0),child);
+        childList.put(parentList.get(1),child1);
     }
 
 
