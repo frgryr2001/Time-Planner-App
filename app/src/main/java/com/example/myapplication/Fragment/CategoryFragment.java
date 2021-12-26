@@ -1,6 +1,7 @@
 package com.example.myapplication.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -112,8 +113,32 @@ public class CategoryFragment extends Fragment {
         for(int i=0; i < adapter.getGroupCount(); i++)
             exListview.expandGroup(i);
         adapter.notifyDataSetChanged();
+        drawerLayout = mView.findViewById(R.id.drawerLayout);
+        openNavClickParent();
+        openNavClickChild();
+
 
         return mView;
+    }
+
+    private void openNavClickChild() {
+        exListview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+                drawerLayout.openDrawer(GravityCompat.END);
+                return true;
+            }
+        });
+    }
+
+    private void openNavClickParent() {
+        exListview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+                drawerLayout.openDrawer(GravityCompat.END);
+                return true;
+            }
+        });
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,11 +75,13 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         String title =(String) getGroup(i);
+
         if (view == null){
             LayoutInflater inflater = (LayoutInflater)this.mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.category_row,null);
         }
+
         // Tắt sự kiện click focus row của image button
         ImageButton ibtnVert = view.findViewById(R.id.ibtnVert);
         ibtnVert.setFocusable(false);
@@ -92,11 +95,13 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
                 else ((ExpandableListView) viewGroup).expandGroup(i, true);
             }
         });
+        ivGroupIndicator.setFocusable(false);
         // Hiệu ứng select lên xuống của arrow
         ivGroupIndicator.setSelected(b);
         // View nameCategory cha
         TextView tvNameCategory = view.findViewById(R.id.tvNameCategory);
         tvNameCategory.setText(title);
+
         return view;
     }
 
@@ -109,6 +114,8 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 
             view = inflater.inflate(R.layout.category_row_child,null);
         }
+        ImageButton ibtnVertChild = view.findViewById(R.id.ibtnVertChild);
+        ibtnVertChild.setFocusable(false);
 
         TextView tvNameCategoryChild = view.findViewById(R.id.tvNameCategoryChild);
         tvNameCategoryChild.setText(title);
