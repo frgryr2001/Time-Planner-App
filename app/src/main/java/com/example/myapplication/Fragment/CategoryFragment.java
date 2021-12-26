@@ -126,7 +126,7 @@ public class CategoryFragment extends Fragment {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
                 drawerLayout.openDrawer(GravityCompat.END);
-                return true;
+                return false;
             }
         });
     }

@@ -7,16 +7,17 @@
     android:padding="5dp"
     android:id="@+id/layout_item"
     android:layout_marginTop="5dp"
+    android:background="#EFECEC"
+
     android:outlineSpotShadowColor="#123456"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="center_vertical"
-
         android:paddingLeft="25dp"
-
         android:background="?android:attr/selectableItemBackground"
+
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/ivIconChild"
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:id="@+id/ibtnVertChild"
-            android:backgroundTint="#fff"
+            android:backgroundTint="#EFECEC"
             android:src="@drawable/ic_baseline_more_vert_24">
 
         </ImageButton>
