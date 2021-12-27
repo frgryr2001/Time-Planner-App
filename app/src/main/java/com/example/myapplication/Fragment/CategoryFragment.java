@@ -9,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -116,7 +118,13 @@ public class CategoryFragment extends Fragment {
         drawerLayout = mView.findViewById(R.id.drawerLayout);
         openNavClickParent();
         openNavClickChild();
-
+        LinearLayout lnIconText = mView.findViewById(R.id.lnIconText);
+        lnIconText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "123", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return mView;
     }
@@ -169,7 +177,4 @@ public class CategoryFragment extends Fragment {
         childList.put(parentList.get(0),child);
         childList.put(parentList.get(1),child1);
     }
-
-
-
 }
