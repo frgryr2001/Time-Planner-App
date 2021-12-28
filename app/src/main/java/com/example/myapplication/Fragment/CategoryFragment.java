@@ -8,9 +8,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,8 +65,9 @@ public class CategoryFragment extends Fragment {
     private List<String> parentList;
     private HashMap<String,List<String>> childList;
     LinearLayout lnIconText;
-    private ListView lvMission;
-    private List<MissionClass> listMission;
+    static ListView lvMission;
+    static List<MissionClass> listMission;
+    static MissionAdapter adapterMission;
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -135,10 +139,17 @@ public class CategoryFragment extends Fragment {
         // Lấy dữ liệu class Mission
         getDataMission();
         // Adapter của Listview
-        MissionAdapter adapter = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
-        lvMission.setAdapter(adapter);
+        adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
+        lvMission.setAdapter(adapterMission);
+
         return mView;
     }
+
+    public static void removeMission(int position) {
+        listMission.remove(position);
+        adapterMission.notifyDataSetChanged();
+    }
+
     private void init(){
         CategoryToolbar = (Toolbar) mView.findViewById(R.id.categoryToolbar);
         exListview = mView.findViewById(R.id.exListview);

@@ -50,8 +50,9 @@ public class MissionClass {
             MissionClass mission = new MissionClass();
             mission.setId(id[i]);
             mission.setName(name[i]);
-            mission.setCheck(false);
-            list.add(mission);
+            if(!mission.isCheck()){
+                list.add(mission);
+            }
         }
         return  list;
     }
