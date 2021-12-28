@@ -31,6 +31,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.Adapter.MissionAdapter;
+import com.example.myapplication.Adapter.MissionFinishedAdapter;
 import com.example.myapplication.Object.CategoryClass;
 import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.R;
@@ -68,6 +69,12 @@ public class CategoryFragment extends Fragment {
     static ListView lvMission;
     static List<MissionClass> listMission;
     static MissionAdapter adapterMission;
+
+    MissionFinishedAdapter adapterMissonFinished;
+    private List<String> MissionParentList;
+    private HashMap<String,List<String>> MissionChildList;
+    private ExpandableListView elvMissionFinish;
+
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -142,8 +149,19 @@ public class CategoryFragment extends Fragment {
         adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
         lvMission.setAdapter(adapterMission);
 
+        //Danh sách nhiệm vụ hoàn thành
+        showListMission();
+        adapterMissonFinished = new MissionFinishedAdapter(getContext(),MissionParentList,MissionChildList);
+        elvMissionFinish.setAdapter(adapterMissonFinished);
+        //Mặc định sổ ra cái list
+
+        elvMissionFinish.expandGroup(0);
+        adapterMissonFinished.notifyDataSetChanged();
+        // end
         return mView;
     }
+
+
 
     public static void removeMission(int position) {
         listMission.remove(position);
@@ -156,7 +174,9 @@ public class CategoryFragment extends Fragment {
         drawerLayout = mView.findViewById(R.id.drawerLayout);
         lnIconText = mView.findViewById(R.id.lnIconText);
         lvMission = mView.findViewById(R.id.lvMission);
+        elvMissionFinish= mView.findViewById(R.id.elvMissionFinish);
     }
+    // ListView nhiệm vụ get data
     private void getDataMission(){
         listMission = MissionClass.init();
     }
@@ -207,5 +227,19 @@ public class CategoryFragment extends Fragment {
 
         childList.put(parentList.get(0),child);
         childList.put(parentList.get(1),child1);
+    }
+    private void showListMission() {
+
+        MissionParentList = new ArrayList<>();
+        MissionChildList = new HashMap<String,List<String>>();
+
+        MissionParentList.add("Đã hoàn thành");
+        List<String> child = new ArrayList<>();
+        child.add("Đi học");
+        child.add("Đi chơi");
+        child.add("Đi đá banh");
+
+        MissionChildList.put(MissionParentList.get(0),child);
+
     }
 }

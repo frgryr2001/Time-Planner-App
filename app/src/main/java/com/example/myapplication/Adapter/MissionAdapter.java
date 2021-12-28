@@ -50,6 +50,7 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
             @Override
             public void onClick(View view) {
                 CategoryFragment.removeMission(position);
+                m.setCheck(!m.isCheck());
             }
         });
         return convertView;
