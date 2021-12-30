@@ -1,16 +1,19 @@
 package com.example.myapplication.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.Object.ReminderClass;
 import com.example.myapplication.R;
 import com.example.myapplication.ViewPager.CustomViewPager;
 import com.example.myapplication.ViewPager.ViewPagerAdapter;
@@ -24,17 +27,28 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     private CustomViewPager mViewPager;
-
-
-    Button btnLogOut;
-
+    private Button btnLogOut;
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference userRef;
+    private DatabaseReference reminderRef;
+    private List<ReminderClass> reminderList;
+    List<String> mKeys = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +69,23 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mGoogleSignInClient = GoogleSignIn.getClient(MainActivity.this , gso);
 
+        // Thực hiện thêm user id vào firebase -> xử lý thêm nhắc nhở mới
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = "";
+        if (user != null) {
+            uid = user.getUid();
+        }
+        if(!uid.isEmpty()) {
+            userRef = database.getReference(uid);
+            reminderRef = userRef.child("Reminders");
+//            userRef.child("Categories").setValue("Hello category");
+            ReminderClass r = new ReminderClass("0", "r1", "9:30", "1/1/2020", false, 1, 1, false);
+            String id = reminderRef.push().getKey();
+            r.setId(id);
+            reminderRef.child(id).setValue(r);
+//            userRef.child("Reminders").child(r.getId()).setValue(r);
+        }
+
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager.setAdapter(viewPagerAdapter);
 
@@ -66,14 +97,17 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.homeBottomMenu:
                         mViewPager.setCurrentItem(0);
                         break;
-                    case R.id.scheduleBottomNav:
+                    case R.id.reminderBottomNav:
                         mViewPager.setCurrentItem(1);
                         break;
-                    case R.id.categoryBottomNav:
+                    case R.id.scheduleBottomNav:
                         mViewPager.setCurrentItem(2);
                         break;
-                    case R.id.optionBottomNav:
+                    case R.id.categoryBottomNav:
                         mViewPager.setCurrentItem(3);
+                        break;
+                    case R.id.optionBottomNav:
+                        mViewPager.setCurrentItem(4);
                         break;
                 }
                 return true;
@@ -94,12 +128,15 @@ public class MainActivity extends AppCompatActivity {
                         bottomNav.getMenu().findItem(R.id.homeBottomMenu).setChecked(true);
                         break;
                     case 1:
-                        bottomNav.getMenu().findItem(R.id.scheduleBottomNav).setChecked(true);
+                        bottomNav.getMenu().findItem(R.id.reminderBottomNav).setChecked(true);
                         break;
                     case 2:
-                        bottomNav.getMenu().findItem(R.id.categoryBottomNav).setChecked(true);
+                        bottomNav.getMenu().findItem(R.id.scheduleBottomNav).setChecked(true);
                         break;
                     case 3:
+                        bottomNav.getMenu().findItem(R.id.categoryBottomNav).setChecked(true);
+                        break;
+                    case 4:
                         bottomNav.getMenu().findItem(R.id.optionBottomNav).setChecked(true);
                         break;
                 }
@@ -123,4 +160,62 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
     }
+
+    // Lấy dữ liệu
+//    public void getData(String keyword) {
+//        reminderList = new ArrayList<ReminderClass>();
+//        reminderRef = database.getReference("Reminders");
+//
+//        reminderRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                ReminderClass reminder = snapshot.getValue(ReminderClass.class);
+//                if (reminder != null) {
+//                    reminderList.add(reminder);
+//                    String key = snapshot.getKey();
+//                    mKeys.add(key);
+//                    laptopAdapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                Laptop laptop = snapshot.getValue(Laptop.class);
+//                if (laptop == null || listLaptop == null || listLaptop.isEmpty()) {
+//                    return;
+//                }
+//
+//                String key = snapshot.getKey();
+//                int index = mKeys.indexOf(key);
+//                listLaptop.set(index, laptop);
+//                laptopAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//                Laptop laptop = snapshot.getValue(Laptop.class);
+//                if (laptop == null || listLaptop == null || listLaptop.isEmpty()) {
+//                    return;
+//                }
+//
+//                String key = snapshot.getKey();
+//                int index = mKeys.indexOf(key);
+//                if (index != -1) {
+//                    listLaptop.remove(index);
+//                    mKeys.remove(index);
+//                }
+//                laptopAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 }

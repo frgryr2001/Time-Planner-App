@@ -5,24 +5,34 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryClass {
+public class ParentCategoryClass {
     private String id;
     private String name;
     private int icon;
     private String color;
-    private ArrayList<CategoryClass> childCategories;
+    private ArrayList<ChildCategoryClass> childCategories;
     private ArrayList<MissionClass> missions;
+    private ArrayList<ActivityClass> activities;
 
-    public CategoryClass() {
+    public ParentCategoryClass() {
     }
 
-    public CategoryClass(String id, String name, int icon, String color, ArrayList<CategoryClass> childCategories, ArrayList<MissionClass> missions) {
+    public ParentCategoryClass(String id, String name, int icon, String color, ArrayList<ChildCategoryClass> childCategories, ArrayList<MissionClass> missions, ArrayList<ActivityClass> activities) {
         this.id = id;
         this.name = name;
         this.icon = icon;
         this.color = color;
         this.childCategories = childCategories;
         this.missions = missions;
+        this.activities = activities;
+    }
+
+    public ArrayList<ActivityClass> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(ArrayList<ActivityClass> activities) {
+        this.activities = activities;
     }
 
     public String getId() {
@@ -57,11 +67,11 @@ public class CategoryClass {
         this.color = color;
     }
 
-    public ArrayList<CategoryClass> getChildCategories() {
+    public ArrayList<ChildCategoryClass> getChildCategories() {
         return childCategories;
     }
 
-    public void setChildCategories(ArrayList<CategoryClass> childCategories) {
+    public void setChildCategories(ArrayList<ChildCategoryClass> childCategories) {
         this.childCategories = childCategories;
     }
 
@@ -75,13 +85,13 @@ public class CategoryClass {
 
     @Override
     public String toString() {
-        return "CategoryClass{" +
+        return "ParentCategoryClass{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }
-    public static List<CategoryClass> initList() {
-        List<CategoryClass> category = new ArrayList<CategoryClass>();
+    public static List<ParentCategoryClass> initList() {
+        List<ParentCategoryClass> category = new ArrayList<ParentCategoryClass>();
         String[] id = {
                 "C1",
                 "C2"
@@ -91,7 +101,7 @@ public class CategoryClass {
                 "Công Việc"};
         int[] icons = {R.drawable.ic_baseline_school_24, R.drawable.ic_baseline_school_24};
         for (int i = 0; i < names.length; i++) {
-            CategoryClass ca = new CategoryClass();
+            ParentCategoryClass ca = new ParentCategoryClass();
             ca.setId(id[i]);
             ca.setName(names[i]);
             ca.setIcon(icons[i]);
