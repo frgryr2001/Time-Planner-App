@@ -31,7 +31,7 @@ public class CalendarUtils
 
     public static String monthYearFromDate(LocalDate date)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM, yyyy");
         return date.format(formatter);
     }
 
@@ -44,6 +44,12 @@ public class CalendarUtils
     public static String monthDayYearFromDate(LocalDate date)
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+        return date.format(formatter);
+    }
+
+    public static String dayMonthYearFromDate(LocalDate date)
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM, yyyy");
         return date.format(formatter);
     }
 
