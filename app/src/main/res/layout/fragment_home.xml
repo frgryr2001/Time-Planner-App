@@ -18,32 +18,33 @@
     <com.github.clans.fab.FloatingActionMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:menu_labels_position="right"
-        app:menu_labels_showAnimation="@anim/fab_slide_in_from_left"
-        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_left"
-        app:menu_labels_textSize="14sp"
-        app:menu_labels_cornerRadius="3dp"
-        app:menu_colorNormal="@color/primary"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:background="@null"
-        >
+        app:menu_colorNormal="@color/primary"
+        app:menu_labels_cornerRadius="3dp"
+        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_left"
+        app:menu_labels_position="right"
+        app:menu_labels_showAnimation="@anim/fab_slide_in_from_left"
+        app:menu_labels_textSize="14sp">
+
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/ibAdd"
-            app:fab_label="Thêm nhắc nhở"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
             app:fab_colorNormal="@color/white"
-            android:src="@drawable/ic_baseline_search_24"/>
+            app:fab_label="Thêm nhắc nhở" />
+
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/ibGhichu"
-            app:fab_label="Thêm hoạt động lịch trình"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_event_note_24"
             app:fab_colorNormal="@color/white"
-            android:src="@drawable/ic_baseline_event_note_24"/>
+            app:fab_label="Thêm hoạt động lịch trình" />
 
     </com.github.clans.fab.FloatingActionMenu>
 

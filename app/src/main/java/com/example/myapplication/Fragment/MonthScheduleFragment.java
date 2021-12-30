@@ -16,9 +16,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.Activity.AddReminderActivity;
 import com.example.myapplication.Adapter.CalendarAdapter;
 import com.example.myapplication.Object.CalendarUtils;
 import com.example.myapplication.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class MonthScheduleFragment extends Fragment implements CalendarAdapter.O
     private RecyclerView calendarRecyclerView;
     private View view;
     private Button btnMonthBack, btnMonthNext;
+    private FloatingActionButton btnMoveToAddScheduleActivityMonth;
 
     public MonthScheduleFragment() {
         // Required empty public constructor
@@ -95,6 +98,14 @@ public class MonthScheduleFragment extends Fragment implements CalendarAdapter.O
                 nextMonthAction(v);
             }
         });
+
+        // Nhấn dấu cộng -> chuyển đến trang thêm hoạt động lịch trình
+        btnMoveToAddScheduleActivityMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(view.getContext(), AddReminderActivity.class));
+            }
+        });
         return view;
     }
 
@@ -104,6 +115,7 @@ public class MonthScheduleFragment extends Fragment implements CalendarAdapter.O
         monthYearText = view.findViewById(R.id.monthYearTV);
         btnMonthBack = view.findViewById(R.id.btnMonthBack);
         btnMonthNext = view.findViewById(R.id.btnMonthNext);
+        btnMoveToAddScheduleActivityMonth = view.findViewById(R.id.btnMoveToAddScheduleActivityMonth);
     }
 
     private void setMonthView()

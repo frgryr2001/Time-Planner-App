@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.Activity.AddReminderActivity;
 import com.example.myapplication.Adapter.HourEventAdapter;
 import com.example.myapplication.Object.CalendarUtils;
 import com.example.myapplication.Object.Event;
 import com.example.myapplication.Object.HourEvent;
 import com.example.myapplication.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -43,7 +46,8 @@ public class DailyScheduleFragment extends Fragment {
     private TextView dayOfWeekTV;
     private ListView hourListView;
     private View view;
-    private Button btnDailyBack, btnDailyNext, btnAddNewDailyEvent;
+    private Button btnDailyBack, btnDailyNext;
+    private FloatingActionButton btnMoveToAddScheduleActivityDaily;
 
     public DailyScheduleFragment() {
         // Required empty public constructor
@@ -101,11 +105,11 @@ public class DailyScheduleFragment extends Fragment {
             }
         });
 
-        //Nhấn nút thêm lịch trình
-        btnAddNewDailyEvent.setOnClickListener(new View.OnClickListener() {
+        // Nhấn dấu cộng -> chuyển đến trang thêm hoạt động lịch trình
+        btnMoveToAddScheduleActivityDaily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(view.getContext(), AddReminderActivity.class));
             }
         });
         return view;
@@ -118,7 +122,7 @@ public class DailyScheduleFragment extends Fragment {
         hourListView = view.findViewById(R.id.hourListView);
         btnDailyBack = view.findViewById(R.id.btnDailyBack);
         btnDailyNext = view.findViewById(R.id.btnDailyNext);
-        btnAddNewDailyEvent = view.findViewById(R.id.btnAddNewDailyEvent);
+        btnMoveToAddScheduleActivityDaily = view.findViewById(R.id.btnMoveToAddScheduleActivityDaily);
     }
 
     @Override
