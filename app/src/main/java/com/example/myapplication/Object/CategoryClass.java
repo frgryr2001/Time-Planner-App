@@ -8,24 +8,21 @@ import java.util.List;
 public class CategoryClass {
     private String id;
     private String name;
-
-    public int getIcon() {
-        return icon;
-    }
-
-    public void setIcon(int icon) {
-        this.icon = icon;
-    }
-
     private int icon;
-    public CategoryClass(){
+    private String color;
+    private ArrayList<CategoryClass> childCategories;
+    private ArrayList<MissionClass> missions;
 
+    public CategoryClass() {
     }
 
-    public CategoryClass(String id, String name,int icon) {
+    public CategoryClass(String id, String name, int icon, String color, ArrayList<CategoryClass> childCategories, ArrayList<MissionClass> missions) {
         this.id = id;
         this.name = name;
         this.icon = icon;
+        this.color = color;
+        this.childCategories = childCategories;
+        this.missions = missions;
     }
 
     public String getId() {
@@ -42,6 +39,38 @@ public class CategoryClass {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public ArrayList<CategoryClass> getChildCategories() {
+        return childCategories;
+    }
+
+    public void setChildCategories(ArrayList<CategoryClass> childCategories) {
+        this.childCategories = childCategories;
+    }
+
+    public ArrayList<MissionClass> getMissions() {
+        return missions;
+    }
+
+    public void setMissions(ArrayList<MissionClass> missions) {
+        this.missions = missions;
     }
 
     @Override
@@ -62,7 +91,10 @@ public class CategoryClass {
                 "Công Việc"};
         int[] icons = {R.drawable.ic_baseline_school_24, R.drawable.ic_baseline_school_24};
         for (int i = 0; i < names.length; i++) {
-            CategoryClass ca = new CategoryClass(id[i], names[i],icons[i]);
+            CategoryClass ca = new CategoryClass();
+            ca.setId(id[i]);
+            ca.setName(names[i]);
+            ca.setIcon(icons[i]);
             category.add(ca);
         }
         return category;
