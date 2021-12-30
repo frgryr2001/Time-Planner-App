@@ -33,7 +33,7 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        MissionClass m = getItem(position);
+        MissionClass m =  getItem(position);
         ViewHolder viewHolder;
         if (convertView == null){
             viewHolder = new ViewHolder();
@@ -49,8 +49,8 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
         viewHolder.rbtnMission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CategoryFragment.removeMission(position);
                 m.setCheck(!m.isCheck());
+                CategoryFragment.removeMission(position);
             }
         });
         return convertView;
