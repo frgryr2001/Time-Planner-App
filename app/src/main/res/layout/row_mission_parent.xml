@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:id="@+id/layout_item"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/layoutMisChild"
+        android:gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:backgroundTint="#fff"
+            android:id="@+id/ivGroupIndicatorMission"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/group_indicator">
+
+        </ImageButton>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:paddingLeft="10dp"
+                android:id="@+id/tvMissionParent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+                android:text="fullName"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+

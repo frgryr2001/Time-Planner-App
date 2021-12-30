@@ -1,25 +1,44 @@
 package com.example.myapplication.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
+import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.Adapter.CategoryAdapter;
+import com.example.myapplication.Adapter.MissionAdapter;
+import com.example.myapplication.Adapter.MissionFinishedAdapter;
 import com.example.myapplication.Object.CategoryClass;
+import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -39,10 +58,23 @@ public class CategoryFragment extends Fragment {
     private String mParam2;
 
     private View mView;
-    private RecyclerView rvCategory;
-    private CategoryAdapter adapter;
-    private List<CategoryClass> Lstcategory;
+
     private Toolbar CategoryToolbar;
+    DrawerLayout drawerLayout;
+    CategoryAdapter adapter;
+    private ExpandableListView exListview;
+    private List<String> parentList;
+    private HashMap<String,List<String>> childList;
+    LinearLayout lnIconText;
+    static ListView lvMission;
+    static List<MissionClass> listMission;
+    static MissionAdapter adapterMission;
+
+    MissionFinishedAdapter adapterMissonFinished;
+    private List<String> MissionParentList;
+    private HashMap<String,List<String>> MissionChildList;
+    private ExpandableListView elvMissionFinish;
+
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -83,18 +115,89 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_category, container, false);
+        init();
 
-        CategoryToolbar = (Toolbar) mView.findViewById(R.id.categoryToolbar);
+        // Tạo ra toolbar
         ((AppCompatActivity)getActivity()).setSupportActionBar(CategoryToolbar);
         if (((AppCompatActivity)getActivity()).getSupportActionBar() != null) {
             ((AppCompatActivity)getActivity()).setTitle("Các danh mục");
         }
-      rvCategory = mView.findViewById(R.id.rvCategory);
-        Lstcategory = CategoryClass.initList();
-        rvCategory.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-        adapter = new CategoryAdapter(mView.getContext(), Lstcategory);
-        rvCategory.setAdapter(adapter);
+       // Data ExpandableListView
+        showList();
+
+        adapter = new CategoryAdapter(getContext(),parentList,childList);
+        exListview.setAdapter(adapter);
+
+       //Mặc định sổ ra cái list
+        for(int i=0; i < adapter.getGroupCount(); i++)
+            exListview.expandGroup(i);
+        adapter.notifyDataSetChanged();
+
+       // Mở slide bar khi click
+        openNavClickParent();
+        openNavClickChild();
+
+        lnIconText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "123", Toast.LENGTH_SHORT).show();
+            }
+        });
+        // Lấy dữ liệu class Mission
+        getDataMission();
+        // Adapter của Listview
+        adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
+        lvMission.setAdapter(adapterMission);
+
+        //Danh sách nhiệm vụ hoàn thành
+        showListMission();
+        adapterMissonFinished = new MissionFinishedAdapter(getContext(),MissionParentList,MissionChildList);
+        elvMissionFinish.setAdapter(adapterMissonFinished);
+        //Mặc định sổ ra cái list
+
+        elvMissionFinish.expandGroup(0);
+        adapterMissonFinished.notifyDataSetChanged();
+        // end
         return mView;
+    }
+
+
+
+    public static void removeMission(int position) {
+        listMission.remove(position);
+        adapterMission.notifyDataSetChanged();
+    }
+
+    private void init(){
+        CategoryToolbar = (Toolbar) mView.findViewById(R.id.categoryToolbar);
+        exListview = mView.findViewById(R.id.exListview);
+        drawerLayout = mView.findViewById(R.id.drawerLayout);
+        lnIconText = mView.findViewById(R.id.lnIconText);
+        lvMission = mView.findViewById(R.id.lvMission);
+        elvMissionFinish= mView.findViewById(R.id.elvMissionFinish);
+    }
+    // ListView nhiệm vụ get data
+    private void getDataMission(){
+        listMission = MissionClass.init();
+    }
+    private void openNavClickChild() {
+        exListview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+                drawerLayout.openDrawer(GravityCompat.END);
+                return false;
+            }
+        });
+    }
+
+    private void openNavClickParent() {
+        exListview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+                drawerLayout.openDrawer(GravityCompat.END);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -106,7 +209,37 @@ public class CategoryFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
 
     }
+    private void showList() {
+        parentList = new ArrayList<>();
+        childList = new HashMap<String,List<String>>();
+        parentList.add("Hoc van 1");
+        parentList.add("Hoc van 2");
 
 
+        List<String> child = new ArrayList<>();
+        child.add("123");
+        child.add("456");
+        child.add("678");
+        List<String> child1 = new ArrayList<>();
+        child1.add("123");
+        child1.add("4256");
+        child1.add("678");
 
+        childList.put(parentList.get(0),child);
+        childList.put(parentList.get(1),child1);
+    }
+    private void showListMission() {
+
+        MissionParentList = new ArrayList<>();
+        MissionChildList = new HashMap<String,List<String>>();
+
+        MissionParentList.add("Đã hoàn thành");
+        List<String> child = new ArrayList<>();
+        child.add("Đi học");
+        child.add("Đi chơi");
+        child.add("Đi đá banh");
+
+        MissionChildList.put(MissionParentList.get(0),child);
+
+    }
 }

@@ -1,70 +1,130 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Object.CategoryClass;
 import com.example.myapplication.R;
+import com.google.android.material.navigation.NavigationView;
 
+import java.util.HashMap;
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
-    private List<CategoryClass> lstCategory;
-    private Context mContxet;
-    public CategoryAdapter( Context contxet,List<CategoryClass> lstCategory) {
-        this.mContxet = contxet;
-        this.lstCategory = lstCategory;
-    }
-    @NonNull
-    @Override
-    public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_row,
-                parent,false);
-        ViewHolder holder = new ViewHolder(v);
-        return holder;
+public class CategoryAdapter extends BaseExpandableListAdapter {
+    private Context mContext;
+    private List<String> listCategory;
+    private HashMap<String,List<String>> listChildCategory;
+    public CategoryAdapter(Context mContext, List<String> listCategory, HashMap<String, List<String>> listChildCategory) {
+        this.mContext = mContext;
+        this.listCategory = listCategory;
+        this.listChildCategory = listChildCategory;
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-        CategoryClass ca = lstCategory.get(position);
-        if(ca==null)
-            return;
-        holder.ivIcon.setImageResource(ca.getIcon());
-        holder.tvNameCategory.setText(ca.getName());
+    public int getGroupCount() {
+        return this.listCategory.size();
+    }
 
+    @Override
+    public int getChildrenCount(int i) {
+        return this.listChildCategory.get(this.listCategory.get(i)).size();
+    }
 
-        holder.layout_item.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public Object getGroup(int i) {
+        return this.listCategory.get(i);
+    }
+
+    @Override
+    public Object getChild(int i, int i1) {
+        return this.listChildCategory.get(this.listCategory.get(i)).get(i1);
+    }
+
+    @Override
+    public long getGroupId(int i) {
+        return i;
+    }
+
+    @Override
+    public long getChildId(int i, int i1) {
+        return i1;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
+        String title =(String) getGroup(i);
+
+        if (view == null){
+            LayoutInflater inflater = (LayoutInflater)this.mContext
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.category_row,null);
+        }
+
+        // Tắt sự kiện click focus row của image button
+        ImageButton ibtnVert = view.findViewById(R.id.ibtnVert);
+        ibtnVert.setFocusable(false);
+//
+        ImageButton ivGroupIndicator = view.findViewById(R.id.ivGroupIndicator);
+//       Sự kiện Click mở rộng danh mục
+        ivGroupIndicator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // code
-
+                if(b) ((ExpandableListView) viewGroup).collapseGroup(i);
+                else ((ExpandableListView) viewGroup).expandGroup(i, true);
             }
         });
+        ivGroupIndicator.setFocusable(false);
+        // Hiệu ứng select lên xuống của arrow
+        ivGroupIndicator.setSelected(b);
+        // View nameCategory cha
+        TextView tvNameCategory = view.findViewById(R.id.tvNameCategory);
+        tvNameCategory.setText(title);
+
+        return view;
     }
 
     @Override
-    public int getItemCount() {
-        return lstCategory.size();
+    public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
+        String title =(String) getChild(i,i1);
+        if (view == null){
+            LayoutInflater inflater = (LayoutInflater)this.mContext
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            view = inflater.inflate(R.layout.category_row_child,null);
+        }
+        ImageButton ibtnVertChild = view.findViewById(R.id.ibtnVertChild);
+        ibtnVertChild.setFocusable(false);
+
+        TextView tvNameCategoryChild = view.findViewById(R.id.tvNameCategoryChild);
+        tvNameCategoryChild.setText(title);
+
+        return view;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivIcon;
-        TextView tvNameCategory;
-        CardView layout_item;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ivIcon = itemView.findViewById(R.id.ivIcon);
-            tvNameCategory = itemView.findViewById(R.id.tvNameCategory);
-            layout_item = itemView.findViewById(R.id.layout_item);
-        }
+    @Override
+    public boolean isChildSelectable(int i, int i1) {
+        return true;
     }
 }

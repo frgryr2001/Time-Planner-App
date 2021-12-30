@@ -4,15 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
     android:id="@+id/layout_item"
-    android:layout_height="wrap_content">
+    android:background="#EFECEC"
+    android:outlineSpotShadowColor="#123456"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="center_vertical"
+        android:paddingLeft="25dp"
         android:background="?android:attr/selectableItemBackground"
+
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/ivIcon"
+            android:id="@+id/ivIconChild"
             android:src="@drawable/ic_baseline_school_24"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
@@ -24,7 +28,7 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tvNameCategory"
+                android:id="@+id/tvNameCategoryChild"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
@@ -37,18 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:backgroundTint="#fff"
-            android:id="@+id/ivGroupIndicator"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/group_indicator">
-
-        </ImageButton>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:id="@+id/ibtnVert"
-            android:backgroundTint="#fff"
+            android:id="@+id/ibtnVertChild"
+            android:backgroundTint="#EFECEC"
             android:src="@drawable/ic_baseline_more_vert_24">
 
         </ImageButton>
