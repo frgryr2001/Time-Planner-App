@@ -14,6 +14,7 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +59,6 @@ public class CategoryFragment extends Fragment {
     private String mParam2;
 
     private View mView;
-
     private Toolbar CategoryToolbar;
     DrawerLayout drawerLayout;
     CategoryAdapter adapter;

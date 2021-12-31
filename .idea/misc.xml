@@ -37,29 +37,42 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/border_bottom.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/bottom_line.xml" value="0.11666666666666667" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/check.xml" value="0.18871794871794872" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/check1.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/custom_checkbox.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/facebook_drawable.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/google_drawable.xml" value="0.18871794871794872" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/home.xml" value="0.18871794871794872" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1675925925925926" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1675925925925926" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_edit_note_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_event_note_24.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_flag_24.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_folder_24.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_priority_high_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/ic_wave.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/test.xml" value="0.16018518518518518" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/drawable/uncheck1.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/activity_add_reminder.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/activity_category.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/activity_misstion_new.xml" value="0.18143459915611815" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/activity_notes.xml" value="0.1431159420289855" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/category_row.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/category_row_child.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/day_cell.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_categories.xml" value="0.14447463768115942" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_category.xml" value="0.1408514492753623" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_daily_schedule.xml" value="0.1408514492753623" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_filter.xml" value="0.14447463768115942" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_month_schedule.xml" value="0.1453804347826087" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_option.xml" value="0.1431159420289855" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/fragment_schedule.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/list_item_addreminder.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/notes_layout.xml" value="0.1431159420289855" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/recycle_view_category.xml" value="0.1082427536231884" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/layout/spinner_value.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Time-Planner-App/app/src/main/res/menu/bottom_navigation.xml" value="0.17552083333333332" />
