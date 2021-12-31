@@ -4,18 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MissionClass {
-
     private String id;
     private String name;
-    private boolean check = false;
+    private boolean status = false; // Trạng thái
+    private int priority;   // Độ ưu tiên: 1(xanh), 2(vàng), 3(đỏ)
 
     public MissionClass() {
     }
 
-    public MissionClass(String id, String name, boolean check) {
+    public MissionClass(String id, String name, boolean status, int priority) {
         this.id = id;
         this.name = name;
-        this.check = check;
+        this.status = status;
+        this.priority = priority;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public String getId() {
@@ -26,12 +35,12 @@ public class MissionClass {
         this.id = id;
     }
 
-    public boolean isCheck() {
-        return check;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setCheck(boolean check) {
-        this.check = check;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getName() {
@@ -50,7 +59,7 @@ public class MissionClass {
             MissionClass mission = new MissionClass();
             mission.setId(id[i]);
             mission.setName(name[i]);
-            if(!mission.isCheck()){
+            if(!mission.isStatus()){
                 list.add(mission);
             }
         }

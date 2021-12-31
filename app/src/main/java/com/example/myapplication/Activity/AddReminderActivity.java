@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -18,8 +20,11 @@ import com.example.myapplication.Object.ReminderTypeClass;
 import com.example.myapplication.Adapter.SpinnerAdapter;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AddReminderActivity extends AppCompatActivity {
@@ -33,13 +38,6 @@ public class AddReminderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_reminder);
         init();
 
-        // Tạo nút Back về Home
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//        }
-        // End
-
         // Click back and save image button
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +45,10 @@ public class AddReminderActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
         tvTime.setText(currentTime);
+
         // Xử lý sự kiện click Time Picker -> chọn thời gian
         rowTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +68,20 @@ public class AddReminderActivity extends AppCompatActivity {
             }
         });
         // end
+
+        // Đổ dữ liệu cho spinner
+//        String[] solanlap = new String[]{
+//                "Một Lần",
+//                "Lặp Lại",
+//                "Lặp lại theo vòng",
+//                "Lặp theo chu kì trong khoảng thời gian",
+//                "Ngẫu Nhiên"
+//        };
+//        Log.d(""+solanlap, "onCreate: ");
+//        final List<String> plantsList = new ArrayList<>(Arrays.asList(solanlap));
+//        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, plantsList);
+//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_value);
+//        spinner.setAdapter(spinnerArrayAdapter);
 
         SpinnerAdapter customAdapter = new SpinnerAdapter(this, R.layout.spinner_value, ReminderTypeClass.initList());
         spinner.setAdapter(customAdapter);

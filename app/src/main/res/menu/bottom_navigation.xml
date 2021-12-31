@@ -6,6 +6,12 @@
         android:title="Theo dõi"/>
 
     <item
+        android:id="@+id/reminderBottomNav"
+        android:title="Nhắc nhở"
+        android:icon="@drawable/reminder_icon"
+        />
+
+    <item
         android:id="@+id/scheduleBottomNav"
         android:title="Lịch trình"
         android:icon="@drawable/schedule"

@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void requestGoogleSignIn(){
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)) // cái này nó đỏ thì kệ mẹ nó nhé
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -189,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this,"Bạn đã đăng nhập thành công",Toast.LENGTH_LONG).show();
             startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
-        }else {
+        } else {
             Toast.makeText(this,"Bạn chưa đăng nhập",Toast.LENGTH_LONG).show();
         }
 

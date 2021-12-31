@@ -92,23 +92,6 @@
 
     </TableRow>
     <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:background="@drawable/bottom_line">
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_span="2"
-            android:dropDownWidth="wrap_content"
-            android:spinnerMode="dropdown"
-            android:paddingEnd="0dp"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    </TableRow>
-    <TableRow
         android:id="@+id/rowTime"
         android:layout_height="wrap_content"
         android:paddingHorizontal="12dp"
@@ -160,58 +143,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:textColor="@color/text_dark"
             android:layout_height="60dp" />
-
     </TableRow>
 
-    <TableRow
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="12dp"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:background="@drawable/bottom_line">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginRight="12dp"
-            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="Chọn danh mục"
-            android:gravity="center_vertical"
-            android:paddingLeft="10sp"
-            android:textSize="18sp"
-            android:background="?android:attr/selectableItemBackground"
-            android:textColor="@color/text_dark"
-            android:layout_height="60dp" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="12dp"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:background="@drawable/bottom_line">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginRight="12dp"
-            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
-
-        <EditText
-            android:id="@+id/etNote"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:ems="10"
-            android:textSize="18sp"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/text_dark"
-            android:hint="Ghi chú"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    </TableRow>
+    
 </TableLayout>
