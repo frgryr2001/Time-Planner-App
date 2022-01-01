@@ -9,12 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-<<<<<<< HEAD
 import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
-=======
->>>>>>> 83767af90e3a57a34208d3a74b83a21d395f8261
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -225,11 +222,11 @@ public class CategoryFragment extends Fragment {
         MissionParentList = new ArrayList<>();
         MissionChildList = new HashMap<String,List<String>>();
 
-        MissionParentList.add("Đã hoàn thành");
+        MissionParentList.add("Đã hoàn thành1");
         List<String> child = new ArrayList<>();
-        child.add("Đi học");
-        child.add("Đi chơi");
-        child.add("Đi đá banh");
+        child.add("Đi học1");
+        child.add("Đi chơi1");
+        child.add("Đi đá banh1");
 
         MissionChildList.put(MissionParentList.get(0),child);
 

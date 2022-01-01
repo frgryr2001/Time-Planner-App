@@ -12,20 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-<<<<<<< HEAD
             android:name=".Activity.MisstionNewActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-=======
-            android:name=".Activity.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
->>>>>>> 83767af90e3a57a34208d3a74b83a21d395f8261
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.NotesActivity"
@@ -40,10 +29,10 @@
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true">
-<<<<<<< HEAD
-
-=======
->>>>>>> 83767af90e3a57a34208d3a74b83a21d395f8261
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
@@ -59,10 +48,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
