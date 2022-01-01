@@ -9,6 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+<<<<<<< HEAD
+import android.widget.RadioButton;
+import android.widget.SearchView;
+import android.widget.TextView;
+=======
+>>>>>>> 83767af90e3a57a34208d3a74b83a21d395f8261
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,7 +51,6 @@ public class CategoryFragment extends Fragment {
     private String mParam2;
 
     private View mView;
-
     private Toolbar CategoryToolbar;
     DrawerLayout drawerLayout;
     CategoryAdapter adapter;
