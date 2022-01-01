@@ -1,14 +1,25 @@
 package com.example.myapplication.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.example.myapplication.Activity.AddReminderActivity;
+import com.example.myapplication.Adapter.ReminderAdapter;
+import com.example.myapplication.Object.ReminderClass;
 import com.example.myapplication.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +36,9 @@ public class ReminderFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private View view;
+    private RecyclerView rvListReminders;
+    private FloatingActionButton btnMoveToAddScheduleActivityDaily;
 
     public ReminderFragment() {
         // Required empty public constructor
@@ -61,6 +75,27 @@ public class ReminderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reminder, container, false);
+        view = inflater.inflate(R.layout.fragment_reminder, container, false);
+        ArrayList<ReminderClass> listReminders = ReminderClass.getRemindersList();
+        ReminderAdapter adapter = new ReminderAdapter(listReminders, view.getContext());
+        initWidgets();
+
+        // Adapter
+        rvListReminders.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvListReminders.setAdapter(adapter);
+
+        // Click icon add -> chuyển đến trang thêm nhắc nhở
+        btnMoveToAddScheduleActivityDaily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(view.getContext(), AddReminderActivity.class));
+            }
+        });
+        return view;
+    }
+
+    public void initWidgets() {
+        rvListReminders = view.findViewById(R.id.rvListReminders);
+        btnMoveToAddScheduleActivityDaily = view.findViewById(R.id.btnMoveToAddScheduleActivityDaily);
     }
 }

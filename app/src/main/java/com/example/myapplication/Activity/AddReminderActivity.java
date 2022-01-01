@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -15,21 +13,22 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.myapplication.Adapter.ReminderDurationSpinnerAdapter;
+import com.example.myapplication.Adapter.ReminderLoopSpinnerAdapter;
+import com.example.myapplication.Object.ReminderDurationClass;
+import com.example.myapplication.Object.ReminderLoopClass;
 import com.example.myapplication.R;
 import com.example.myapplication.Object.ReminderTypeClass;
-import com.example.myapplication.Adapter.SpinnerAdapter;
+import com.example.myapplication.Adapter.ReminderTypeSpinnerAdapter;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class AddReminderActivity extends AppCompatActivity {
     TextView tvTime,tvDate;
-    Spinner spinner;
+    Spinner spinnerTypereminder, spinnerDurationReminder, spinnerLoopReminder;
     TableRow rowTime,rowDate;
     ImageButton ibBack, ibSave;
     @Override
@@ -83,8 +82,17 @@ public class AddReminderActivity extends AppCompatActivity {
 //        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_value);
 //        spinner.setAdapter(spinnerArrayAdapter);
 
-        SpinnerAdapter customAdapter = new SpinnerAdapter(this, R.layout.spinner_value, ReminderTypeClass.initList());
-        spinner.setAdapter(customAdapter);
+        // Loại nhắc nhở -> type
+        ReminderTypeSpinnerAdapter reminderTypeAdapter = new ReminderTypeSpinnerAdapter(this, R.layout.spinner_value, ReminderTypeClass.initList());
+        spinnerTypereminder.setAdapter(reminderTypeAdapter);
+
+        // Thời lượng -> duration
+        ReminderDurationSpinnerAdapter reminderDurationAdapter = new ReminderDurationSpinnerAdapter(this, R.layout.spinner_value, ReminderDurationClass.initList());
+        spinnerDurationReminder.setAdapter(reminderDurationAdapter);
+
+        // Số lần lặp -> loop
+        ReminderLoopSpinnerAdapter reminderLoopAdapter = new ReminderLoopSpinnerAdapter(this, R.layout.spinner_value, ReminderLoopClass.initList());
+        spinnerLoopReminder.setAdapter(reminderLoopAdapter);
         // end
 
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
@@ -103,7 +111,9 @@ public class AddReminderActivity extends AppCompatActivity {
         rowTime = findViewById(R.id.rowTime);
         tvDate = findViewById(R.id.tvDate);
         rowDate = findViewById(R.id.rowDate);
-        spinner = findViewById(R.id.spinner);
+        spinnerTypereminder = findViewById(R.id.spinnerTypereminder);
+        spinnerDurationReminder = findViewById(R.id.spinnerDurationReminder);
+        spinnerLoopReminder = findViewById(R.id.spinnerLoopReminder);
         ibBack = findViewById(R.id.ibBack);
         ibSave = findViewById(R.id.ibSave);
     }

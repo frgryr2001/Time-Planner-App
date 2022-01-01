@@ -79,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
             userRef = database.getReference(uid);
             reminderRef = userRef.child("Reminders");
 //            userRef.child("Categories").setValue("Hello category");
-            ReminderClass r = new ReminderClass("0", "r1", "9:30", "1/1/2020", false, 1, 1, false);
-            String id = reminderRef.push().getKey();
-            r.setId(id);
-            reminderRef.child(id).setValue(r);
+//            ReminderClass r = new ReminderClass("0", "r1", "9:30", "1/1/2020", false, 1, 1, false);
+//            String id = reminderRef.push().getKey();
+//            r.setId(id);
+//            reminderRef.child(id).setValue(r);
 //            userRef.child("Reminders").child(r.getId()).setValue(r);
         }
 

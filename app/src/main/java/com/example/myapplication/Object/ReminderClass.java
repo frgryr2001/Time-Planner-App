@@ -1,5 +1,7 @@
 package com.example.myapplication.Object;
 
+import java.util.ArrayList;
+
 public class ReminderClass {
     private String id, name, time, date;
     private boolean type;   // kiểu nhắc nhở: 0 -> một lần, 1 -> lặp lại
@@ -83,5 +85,17 @@ public class ReminderClass {
 
     public void setCapcha(boolean capcha) {
         this.capcha = capcha;
+    }
+
+    public static ArrayList<ReminderClass> getRemindersList() {
+        ArrayList<ReminderClass> list = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            ReminderClass r = new ReminderClass();
+            r.setName("Kiểm tra");
+            r.setTime("09:00");
+            r.setDate("T7, 1 Th1, 2022");
+            list.add(r);
+        }
+        return list;
     }
 }

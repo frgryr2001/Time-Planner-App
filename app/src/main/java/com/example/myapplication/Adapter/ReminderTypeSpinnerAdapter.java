@@ -11,15 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.myapplication.Object.ReminderDurationClass;
 import com.example.myapplication.Object.ReminderTypeClass;
 import com.example.myapplication.R;
 
 import java.util.List;
 
-public class SpinnerAdapter extends ArrayAdapter<ReminderTypeClass> {
+public class ReminderTypeSpinnerAdapter extends ArrayAdapter<ReminderTypeClass> {
     LayoutInflater layoutInflater;
 
-    public SpinnerAdapter(@NonNull Context context, int resource, @NonNull List<ReminderTypeClass> users)
+    public ReminderTypeSpinnerAdapter(@NonNull Context context, int resource, @NonNull List<ReminderTypeClass> users)
     {
         super(context, resource, users);
         layoutInflater = LayoutInflater.from(context);

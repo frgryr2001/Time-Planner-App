@@ -3,13 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.ReminderFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListReminders"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Reminder Fragment"
-        android:textSize="40sp"/>
+        android:layout_height="match_parent"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnMoveToAddScheduleActivityDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/add_white_icon"
+        app:backgroundTint="@color/primary"
+        app:tint="@color/white"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|left"/>
 </FrameLayout>

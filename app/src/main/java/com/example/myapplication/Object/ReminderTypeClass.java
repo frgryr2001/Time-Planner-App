@@ -38,7 +38,7 @@ public class ReminderTypeClass {
                 "Lặp lại theo vòng",
                 "Lặp theo chu kì trong khoảng thời gian",
                 "Ngẫu Nhiên"};
-        int[] icons = {R.drawable.only_once, R.drawable.loop, R.drawable.loop_inf, R.drawable.loop_time_period, R.drawable.random};
+        int[] icons = {R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp};
         for (int i = 0; i < names.length; i++) {
             ReminderTypeClass type = new ReminderTypeClass(names[i], icons[i]);
             types.add(type);

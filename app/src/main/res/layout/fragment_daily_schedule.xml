@@ -79,7 +79,6 @@
         app:backgroundTint="@color/primary"
         app:tint="@color/white"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom|right"/>
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
