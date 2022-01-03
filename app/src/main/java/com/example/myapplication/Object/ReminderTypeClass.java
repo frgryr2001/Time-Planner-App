@@ -34,11 +34,8 @@ public class ReminderTypeClass {
         List<ReminderTypeClass> types = new ArrayList<ReminderTypeClass>();
         String[] names = {
                 "Một Lần",
-                "Lặp Lại",
-                "Lặp lại theo vòng",
-                "Lặp theo chu kì trong khoảng thời gian",
-                "Ngẫu Nhiên"};
-        int[] icons = {R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp};
+                "Lặp Lại"};
+        int[] icons = {R.drawable.pending_actions_black_24dp, R.drawable.pending_actions_black_24dp};
         for (int i = 0; i < names.length; i++) {
             ReminderTypeClass type = new ReminderTypeClass(names[i], icons[i]);
             types.add(type);

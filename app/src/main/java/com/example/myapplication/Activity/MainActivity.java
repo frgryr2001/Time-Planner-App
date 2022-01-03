@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static String userId = "";
     private BottomNavigationView bottomNav;
     private CustomViewPager mViewPager;
     private Button btnLogOut;
@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Thực hiện thêm user id vào firebase -> xử lý thêm nhắc nhở mới
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = "";
+//        String uid = "";
         if (user != null) {
-            uid = user.getUid();
+            userId = user.getUid();
         }
 //        Log.d("TAG" + uid, "onCreate: ");
-        if(!uid.isEmpty()) {
-            userRef = database.getReference(uid);
+        if(!userId.isEmpty()) {
+            userRef = database.getReference(userId);
             reminderRef = userRef.child("Reminders");
 //            userRef.child("Categories").setValue("Hello category");
 //            ReminderClass r = new ReminderClass("0", "r1", "9:30", "1/1/2020", false, 1, 1, false);

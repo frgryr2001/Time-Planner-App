@@ -11,6 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -19,48 +20,37 @@
                 android:id="@+id/addReminderToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
                 android:background="@color/white"
+                android:minHeight="48dp"
                 android:theme="?attr/actionBarTheme"
-                app:titleTextColor="@color/text_dark"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <ImageButton
-                android:id="@+id/ibBack"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/addReminderToolbar"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                app:titleTextColor="@color/text_dark" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Nhắc nhở mới"
-                android:textColor="@color/text_dark"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ibBack"
+            <Button
+                android:id="@+id/btnReminderDetailBack"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="204dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/button_background_color"
+                android:text="THOÁT"
+                android:textColor="@color/button_text_color"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/addReminderToolbar"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/ibAddReminderSave"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/check"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            <Button
+                android:id="@+id/btnReminderDetailSave"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="204dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/button_background_color"
+                android:text="LƯU"
+                android:textColor="@color/button_text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/addReminderToolbar"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -78,7 +68,7 @@
             app:srcCompat="@drawable/alarm_black_24dp" />
 
         <EditText
-            android:id="@+id/etAddReminderName"
+            android:id="@+id/etReminderDetailName"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
@@ -92,7 +82,7 @@
 
     </TableRow>
     <TableRow
-        android:id="@+id/rowTime"
+        android:id="@+id/trReminderDetailTime"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
@@ -106,7 +96,7 @@
             app:srcCompat="@drawable/schedule_black_24dp"/>
 
         <TextView
-            android:id="@+id/tvAddReminderTime"
+            android:id="@+id/tvReminderDetailTime"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_vertical"
@@ -119,7 +109,7 @@
 
     </TableRow>
     <TableRow
-        android:id="@+id/rowDate"
+        android:id="@+id/trReminderDetailDate"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
@@ -133,7 +123,7 @@
             app:srcCompat="@drawable/calendar_today_black_24dp" />
 
         <TextView
-            android:id="@+id/tvAddReminderDate"
+            android:id="@+id/tvReminderDetailDate"
             android:layout_width="match_parent"
             android:text=""
             android:layout_span="3"
@@ -151,7 +141,7 @@
         android:gravity="center_vertical"
         android:background="@drawable/bottom_line">
         <Spinner
-            android:id="@+id/spinnerTypereminder"
+            android:id="@+id/spnReminderDetailType"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_span="3"
@@ -167,7 +157,7 @@
         android:gravity="center_vertical"
         android:background="@drawable/bottom_line">
         <Spinner
-            android:id="@+id/spinnerDurationReminder"
+            android:id="@+id/spnReminderDetailDuration"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_span="3"
@@ -182,15 +172,14 @@
         android:layout_width="match_parent"
         android:gravity="center_vertical"
         android:background="@drawable/bottom_line">
-
         <Spinner
-            android:id="@+id/spinnerLoopReminder"
+            android:id="@+id/spnReminderDetailLoop"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_span="3"
             android:dropDownWidth="wrap_content"
-            android:paddingEnd="0dp"
             android:spinnerMode="dropdown"
+            android:paddingEnd="0dp"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </TableRow>
 
@@ -214,11 +203,21 @@
             android:text="Sử dụng capcha"/>
 
         <Switch
-            android:id="@+id/swAddReminderCapcha"
+            android:id="@+id/swReminderDetailCapcha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:minWidth="48dp"
             android:minHeight="48dp" />
     </TableRow>
+
+    <Button
+        android:id="@+id/btnReminderDetailDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xoa"
+        android:textSize="16sp"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/white"/>
+
 </TableLayout>

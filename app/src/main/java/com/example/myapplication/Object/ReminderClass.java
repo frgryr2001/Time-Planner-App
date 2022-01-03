@@ -1,10 +1,13 @@
 package com.example.myapplication.Object;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ReminderClass {
+public class ReminderClass implements Serializable {
     private String id, name, time, date;
-    private boolean type;   // kiểu nhắc nhở: 0 -> một lần, 1 -> lặp lại
+    private int type;   // kiểu nhắc nhở: 0 -> một lần, 1 -> lặp lại
     private int duration;   // thời lượng: 1, 3, 5 (phút)
     private int loopTime;   // số lần lặp: 1, 3, 5 (nếu 0 -> liên tục)
     private boolean capcha; // sử dụng capcha: true, false
@@ -12,7 +15,7 @@ public class ReminderClass {
     public ReminderClass() {
     }
 
-    public ReminderClass(String id, String name, String time, String date, boolean type, int duration, int loopTime, boolean capcha) {
+    public ReminderClass(String id, String name, String time, String date, int type, int duration, int loopTime, boolean capcha) {
         this.id = id;
         this.name = name;
         this.time = time;
@@ -55,11 +58,11 @@ public class ReminderClass {
         this.time = time;
     }
 
-    public boolean isType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(boolean type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -87,15 +90,15 @@ public class ReminderClass {
         this.capcha = capcha;
     }
 
-    public static ArrayList<ReminderClass> getRemindersList() {
-        ArrayList<ReminderClass> list = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            ReminderClass r = new ReminderClass();
-            r.setName("Kiểm tra");
-            r.setTime("09:00");
-            r.setDate("T7, 1 Th1, 2022");
-            list.add(r);
-        }
-        return list;
-    }
+//    public static ArrayList<ReminderClass> getRemindersList() {
+//        ArrayList<ReminderClass> list = new ArrayList<>();
+//        for(int i = 0; i < 10; i++) {
+//            ReminderClass r = new ReminderClass();
+//            r.setName("Kiểm tra");
+//            r.setTime("09:00");
+//            r.setDate("T7, 1 Th1, 2022");
+//            list.add(r);
+//        }
+//        return list;
+//    }
 }

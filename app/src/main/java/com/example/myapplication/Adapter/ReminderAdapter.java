@@ -1,8 +1,10 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Activity.ReminderDetailActivity;
 import com.example.myapplication.Object.ReminderClass;
 import com.example.myapplication.R;
 
@@ -53,7 +56,13 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ViewHo
         holder.reminderRowLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ReminderDetailActivity.class);
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable("reminder", r);
+
+                intent.putExtra("data", bundle);
+                context.startActivity(intent);
             }
         });
     }
