@@ -10,10 +10,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.myapplication.Object.ActivityClass;
+import com.example.myapplication.Object.ScheduleClass;
 import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.Object.ParentCategoryClass;
+
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -72,13 +73,13 @@ public class AddFatherCategoryActivity extends AppCompatActivity {
                             "test",
                             R.drawable.ic_baseline_folder_24,
                             colorPick,new ArrayList<MissionClass>(),
-                            new ArrayList<ActivityClass>());
+                            new ArrayList<ScheduleClass>());
                     ChildCategoryClass c1 = new ChildCategoryClass(
                             "2",
                             "test",
                             R.drawable.ic_baseline_folder_24,
                             colorPick,new ArrayList<MissionClass>(),
-                            new ArrayList<ActivityClass>());
+                            new ArrayList<ScheduleClass>());
                     ChildCategoryClass1.add(c);
                     ChildCategoryClass1.add(c1);
                     ParentCategoryClass p = new ParentCategoryClass("",
@@ -86,7 +87,7 @@ public class AddFatherCategoryActivity extends AppCompatActivity {
                             R.drawable.ic_baseline_folder_24,
                             colorPick,ChildCategoryClass1
                             ,new ArrayList<MissionClass>()
-                            ,new ArrayList<ActivityClass>());
+                            ,new ArrayList<ScheduleClass>());
                     CategoryRef = userRef.child("Category");
                     String id = CategoryRef.push().getKey();
                     p.setId(id);

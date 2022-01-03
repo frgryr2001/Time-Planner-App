@@ -13,7 +13,7 @@ public class ChildCategoryClass {
     public ChildCategoryClass() {
     }
 
-    public ChildCategoryClass(String id, String name, int icon, int color, ArrayList<MissionClass> missions, ArrayList<ActivityClass> activities) {
+    public ChildCategoryClass(String id, String name, int icon, int color, ArrayList<MissionClass> missions, ArrayList<ScheduleClass> activities) {
         this.id = id;
         this.name = name;
         this.icon = icon;

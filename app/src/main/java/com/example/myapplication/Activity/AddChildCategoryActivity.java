@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
-import com.example.myapplication.Object.ActivityClass;
 import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.Object.ParentCategoryClass;
@@ -84,17 +83,17 @@ public class AddChildCategoryActivity extends AppCompatActivity {
 //                            new ArrayList<ActivityClass>());
 //                    ChildCategoryClass1.add(c);
 //                    ChildCategoryClass1.add(c1);
-                    ChildCategoryClass c = new ChildCategoryClass("",
-                            etCate.getText().toString().trim(),
-                            R.drawable.ic_baseline_folder_24,
-                            colorPick, new ArrayList<MissionClass>()
-                            , new ArrayList<ActivityClass>());
+//                    ChildCategoryClass c = new ChildCategoryClass("",
+//                            etCate.getText().toString().trim(),
+//                            R.drawable.ic_baseline_folder_24,
+//                            colorPick, new ArrayList<MissionClass>()
+//                            , new ArrayList<ActivityClass>());
 
-                    CategoryChildRef = userRef.child("CategoryChild");
-                    String id = CategoryChildRef.push().getKey();
-                    c.setId(id);
-                    CategoryChildRef.child(id).setValue(c);
-                    userRef.child("CategoryChild").child(c.getId()).setValue(c);
+//                    CategoryChildRef = userRef.child("CategoryChild");
+//                    String id = CategoryChildRef.push().getKey();
+//                    c.setId(id);
+//                    CategoryChildRef.child(id).setValue(c);
+//                    userRef.child("CategoryChild").child(c.getId()).setValue(c);
                 }
             }
         });
