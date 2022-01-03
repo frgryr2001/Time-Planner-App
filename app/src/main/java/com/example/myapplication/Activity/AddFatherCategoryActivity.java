@@ -10,6 +10,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.myapplication.Object.ActivityClass;
+import com.example.myapplication.Object.ChildCategoryClass;
+import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.Object.ParentCategoryClass;
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,7 +64,29 @@ public class AddFatherCategoryActivity extends AppCompatActivity {
                 }
                 if(!(uid).isEmpty()) {
                     userRef = database.getReference(uid);
-                    ParentCategoryClass p = new ParentCategoryClass("","123",R.drawable.add_test_1,colorPick);
+                    ArrayList<ChildCategoryClass> ChildCategoryClass1
+                            = new ArrayList<ChildCategoryClass>();
+
+                    ChildCategoryClass c = new ChildCategoryClass(
+                            "1",
+                            "test",
+                            R.drawable.ic_baseline_folder_24,
+                            colorPick,new ArrayList<MissionClass>(),
+                            new ArrayList<ActivityClass>());
+                    ChildCategoryClass c1 = new ChildCategoryClass(
+                            "2",
+                            "test",
+                            R.drawable.ic_baseline_folder_24,
+                            colorPick,new ArrayList<MissionClass>(),
+                            new ArrayList<ActivityClass>());
+                    ChildCategoryClass1.add(c);
+                    ChildCategoryClass1.add(c1);
+                    ParentCategoryClass p = new ParentCategoryClass("",
+                            etCate.getText().toString().trim(),
+                            R.drawable.ic_baseline_folder_24,
+                            colorPick,ChildCategoryClass1
+                            ,new ArrayList<MissionClass>()
+                            ,new ArrayList<ActivityClass>());
                     CategoryRef = userRef.child("Category");
                     String id = CategoryRef.push().getKey();
                     p.setId(id);
