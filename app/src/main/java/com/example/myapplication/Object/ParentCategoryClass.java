@@ -12,7 +12,7 @@ public class ParentCategoryClass {
     private int color;
     private ArrayList<ChildCategoryClass> childCategories;
     private ArrayList<MissionClass> missions;
-    private ArrayList<ActivityClass> activities;
+    private ArrayList<ScheduleClass> activities;
 
     public ParentCategoryClass() {
     }
@@ -22,7 +22,7 @@ public class ParentCategoryClass {
         this.icon = icon;
         this.color = color;
     }
-    public ParentCategoryClass(String id, String name, int icon, int color, ArrayList<ChildCategoryClass> childCategories, ArrayList<MissionClass> missions, ArrayList<ActivityClass> activities) {
+    public ParentCategoryClass(String id, String name, int icon, int color, ArrayList<ChildCategoryClass> childCategories, ArrayList<MissionClass> missions, ArrayList<ScheduleClass> activities) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -32,11 +32,11 @@ public class ParentCategoryClass {
         this.activities = activities;
     }
 
-    public ArrayList<ActivityClass> getActivities() {
+    public ArrayList<ScheduleClass> getActivities() {
         return activities;
     }
 
-    public void setActivities(ArrayList<ActivityClass> activities) {
+    public void setActivities(ArrayList<ScheduleClass> activities) {
         this.activities = activities;
     }
 

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.myapplication.Activity.AddReminderActivity;
+import com.example.myapplication.Activity.AddScheduleActivity;
 import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Activity.MisstionNewActivity;
 import com.example.myapplication.R;
@@ -76,14 +77,14 @@ public class HomeFragment extends Fragment {
                 startActivity(i);
             }
         });
-//        ibMoveToAddShedulePage = view.findViewById(R.id.ibMoveToAddShedulePage);
-//        ibMoveToAddShedulePage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(view.getContext(), AddReminderActivity.class);
-//                startActivity(i);
-//            }
-//        });
+        ibMoveToAddShedulePage = view.findViewById(R.id.ibMoveToAddShedulePage);
+        ibMoveToAddShedulePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(view.getContext(), AddScheduleActivity.class);
+                startActivity(i);
+            }
+        });
         ibMoveToAddMissionPage = view.findViewById(R.id.ibMoveToAddMissionPage);
         ibMoveToAddMissionPage.setOnClickListener(new View.OnClickListener() {
             @Override

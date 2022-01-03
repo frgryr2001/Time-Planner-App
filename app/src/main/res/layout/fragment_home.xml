@@ -45,6 +45,7 @@
             android:src="@drawable/ic_baseline_event_note_24"
             app:fab_colorNormal="@color/white"
             app:fab_label="Thêm hoạt động lịch trình" />
+
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/ibMoveToAddMissionPage"
             android:layout_width="wrap_content"

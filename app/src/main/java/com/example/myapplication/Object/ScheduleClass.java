@@ -2,13 +2,13 @@ package com.example.myapplication.Object;
 
 import java.time.LocalDate;
 
-public class ActivityClass {
+public class ScheduleClass {
     private String id, name, date, timeStart, timeEnd, note;
 
-    public ActivityClass() {
+    public ScheduleClass() {
     }
 
-    public ActivityClass(String id, String name, String date, String timeStart, String timeEnd, String note) {
+    public ScheduleClass(String id, String name, String date, String timeStart, String timeEnd, String note) {
         this.id = id;
         this.name = name;
         this.date = date;

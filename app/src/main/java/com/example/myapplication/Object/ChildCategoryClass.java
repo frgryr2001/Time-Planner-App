@@ -8,12 +8,12 @@ public class ChildCategoryClass {
     private int icon;
     private String color;
     private ArrayList<MissionClass> missions;
-    private ArrayList<ActivityClass> activities;
+    private ArrayList<ScheduleClass> activities;
 
     public ChildCategoryClass() {
     }
 
-    public ChildCategoryClass(String id, String name, int icon, String color, ArrayList<MissionClass> missions, ArrayList<ActivityClass> activities) {
+    public ChildCategoryClass(String id, String name, int icon, String color, ArrayList<MissionClass> missions, ArrayList<ScheduleClass> activities) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -62,11 +62,11 @@ public class ChildCategoryClass {
         this.missions = missions;
     }
 
-    public ArrayList<ActivityClass> getActivities() {
+    public ArrayList<ScheduleClass> getActivities() {
         return activities;
     }
 
-    public void setActivities(ArrayList<ActivityClass> activities) {
+    public void setActivities(ArrayList<ScheduleClass> activities) {
         this.activities = activities;
     }
 }

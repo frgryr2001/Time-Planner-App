@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Activity.AddScheduleActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.ReminderDetailActivity"
             android:exported="true" />
         <activity
