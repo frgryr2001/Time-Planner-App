@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.example.myapplication.Activity.AddReminderActivity;
 import com.example.myapplication.Activity.MainActivity;
+import com.example.myapplication.Activity.MisstionNewActivity;
 import com.example.myapplication.R;
 
 /**
@@ -30,7 +31,7 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ImageButton ibAdd;
+    private ImageButton ibMoveToAddShedulePage,ibMoveToAddReminderPage,ibMoveToAddMissionPage;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -67,11 +68,27 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        ibAdd = view.findViewById(R.id.ibAdd);
-        ibAdd.setOnClickListener(new View.OnClickListener() {
+        ibMoveToAddReminderPage = view.findViewById(R.id.ibMoveToAddReminderPage);
+        ibMoveToAddReminderPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(view.getContext(), AddReminderActivity.class);
+                startActivity(i);
+            }
+        });
+//        ibMoveToAddShedulePage = view.findViewById(R.id.ibMoveToAddShedulePage);
+//        ibMoveToAddShedulePage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(view.getContext(), AddReminderActivity.class);
+//                startActivity(i);
+//            }
+//        });
+        ibMoveToAddMissionPage = view.findViewById(R.id.ibMoveToAddMissionPage);
+        ibMoveToAddMissionPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(view.getContext(), MisstionNewActivity.class);
                 startActivity(i);
             }
         });

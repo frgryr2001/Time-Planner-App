@@ -31,7 +31,7 @@
         app:menu_labels_textSize="14sp">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/ibAdd"
+            android:id="@+id/ibMoveToAddReminderPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_search_24"
@@ -39,13 +39,19 @@
             app:fab_label="Thêm nhắc nhở" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/ibGhichu"
+            android:id="@+id/ibMoveToAddShedulePage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_event_note_24"
             app:fab_colorNormal="@color/white"
             app:fab_label="Thêm hoạt động lịch trình" />
-
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/ibMoveToAddMissionPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_event_note_24"
+            app:fab_colorNormal="@color/white"
+            app:fab_label="Thêm nhiệm vụ mới" />
     </com.github.clans.fab.FloatingActionMenu>
 
 

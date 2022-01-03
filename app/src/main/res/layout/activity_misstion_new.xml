@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageButton
-                android:id="@+id/ibBack"
+                android:id="@+id/ibBackMission"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -48,11 +48,11 @@
                 android:textColor="@color/text_dark"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ibBack"
+                app:layout_constraintStart_toEndOf="@+id/ibBackMission"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/ibSave"
+                android:id="@+id/ibSaveMissionNew"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -79,7 +79,7 @@
             app:srcCompat="@drawable/check" />
 
         <EditText
-            android:id="@+id/etRemind"
+            android:id="@+id/etMisssion"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
@@ -109,6 +109,7 @@
 
         <LinearLayout
             android:layout_height="wrap_content"
+            android:id="@+id/lnCategoryMission"
             android:layout_width="match_parent"
             android:orientation="horizontal">
             <TextView
@@ -155,6 +156,7 @@
             android:orientation="horizontal">
 
             <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
