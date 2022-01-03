@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -23,11 +24,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.Activity.MisstionNewActivity;
+import com.example.myapplication.Activity.AddChildCategoryActivity;
+import com.example.myapplication.Activity.AddFatherCategoryActivity;
+import com.example.myapplication.Activity.AddReminderActivity;
 import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.Adapter.MissionAdapter;
 import com.example.myapplication.Adapter.MissionFinishedAdapter;
 import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +70,9 @@ public class CategoryFragment extends Fragment {
     private List<String> MissionParentList;
     private HashMap<String,List<String>> MissionChildList;
     private ExpandableListView elvMissionFinish;
+    //private FloatingActionButton btnMoveToAddScheduleActivityDaily;
+
+    private ImageButton ibAddFatherCate, ibAddChildCate;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -128,6 +136,29 @@ public class CategoryFragment extends Fragment {
         openNavClickParent();
         openNavClickChild();
 
+        // mở activity thêm danh mục
+        /*btnMoveToAddScheduleActivityDaily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mView.getContext(), AddFatherCategoryActivity.class));
+            }
+        });*/
+
+        ibAddFatherCate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mView.getContext(), AddFatherCategoryActivity.class));
+            }
+        });
+        // mở activity thêm danh mục con
+        ibAddChildCate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mView.getContext(), AddChildCategoryActivity.class));
+            }
+        });
+
+
         lnIconText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +199,12 @@ public class CategoryFragment extends Fragment {
         lnIconText = mView.findViewById(R.id.lnIconText);
         lvMission = mView.findViewById(R.id.lvMission);
         elvMissionFinish= mView.findViewById(R.id.elvMissionFinish);
+        //btnMoveToAddScheduleActivityDaily = mView.findViewById(R.id.btnMoveToAddScheduleActivityDaily);
+        ibAddChildCate= mView.findViewById(R.id.ibAddChildCate);
+        ibAddFatherCate = mView.findViewById(R.id.ibAddFatherCate);
+
+
+
     }
     // ListView nhiệm vụ get data
     private void getDataMission(){

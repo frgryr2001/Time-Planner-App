@@ -6,24 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.CategoryFragment">
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbarCategory"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff">
-
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/categoryToolbar"
-                android:minHeight="48dp"
-                android:theme="?attr/actionBarTheme">
+            android:id="@+id/categoryToolbar"
+            android:minHeight="48dp"
+            android:theme="?attr/actionBarTheme">
 
 
 
-            </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-        </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -52,15 +52,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:background="#EFECEC"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#EFECEC">
 
                     <LinearLayout
                         android:id="@+id/lnIconText"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
                         android:foreground="?attr/selectableItemBackgroundBorderless"
                         android:orientation="horizontal">
 
@@ -79,14 +77,14 @@
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
-
+                        <androidx.appcompat.widget.SearchView
+                            android:id="@+id/SearchViewMiss"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:queryBackground="@android:color/transparent"
+                            app:queryHint="Tìm kiếm" />
                     </LinearLayout>
-                    <androidx.appcompat.widget.SearchView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:queryHint="Tìm kiếm"
-                        android:id="@+id/SearchViewMiss"
-                        app:queryBackground="@android:color/transparent"/>
+
 
                 </LinearLayout>
 
@@ -96,18 +94,65 @@
                     android:background="@android:color/darker_gray" />
 
                 <ListView
+                    android:id="@+id/lvMission"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/lvMission"/>
+                    android:layout_height="wrap_content" />
+
                 <ExpandableListView
+                    android:id="@+id/elvMissionFinish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/elvMissionFinish"
-                    android:groupIndicator="@null"/>
+                    android:groupIndicator="@null" />
             </LinearLayout>
 
 
         </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnMoveToAddScheduleActivityDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/primary"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/add_white_icon"
+        app:tint="@color/white" />-->
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        app:menu_colorNormal="@color/primary"
+        app:menu_labels_cornerRadius="3dp"
+        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_left"
+        app:menu_labels_position="right"
+        app:menu_labels_showAnimation="@anim/fab_slide_in_from_left"
+        app:menu_labels_textSize="14sp">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/ibAddFatherCate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
+            app:fab_colorNormal="@color/white"
+            app:fab_label="Thêm danh mục" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/ibAddChildCate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
+            app:fab_colorNormal="@color/white"
+            app:fab_label="Thêm danh mục con" />
+
+    </com.github.clans.fab.FloatingActionMenu>
 </RelativeLayout>
