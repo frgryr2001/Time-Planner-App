@@ -53,12 +53,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:background="#EFECEC"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:id="@+id/lnIconText"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:foreground="?attr/selectableItemBackgroundBorderless"
                         android:orientation="horizontal">
 
@@ -77,14 +79,14 @@
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
-                        <androidx.appcompat.widget.SearchView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:queryHint="Tìm kiếm"
-                            android:id="@+id/SearchViewMiss"
-                            app:queryBackground="@android:color/transparent"/>
-                    </LinearLayout>
 
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SearchView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:queryHint="Tìm kiếm"
+                        android:id="@+id/SearchViewMiss"
+                        app:queryBackground="@android:color/transparent"/>
 
                 </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.myapplication.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +22,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Activity.MisstionNewActivity;
 import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.Adapter.MissionAdapter;
 import com.example.myapplication.Adapter.MissionFinishedAdapter;
@@ -54,7 +56,7 @@ public class CategoryFragment extends Fragment {
     private ExpandableListView exListview;
     private List<String> parentList;
     private HashMap<String,List<String>> childList;
-    LinearLayout lnIconText;
+    private LinearLayout lnIconText;
     static ListView lvMission;
     static List<MissionClass> listMission;
     static MissionAdapter adapterMission;
@@ -129,7 +131,9 @@ public class CategoryFragment extends Fragment {
         lnIconText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "123", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), MisstionNewActivity.class);
+                startActivity(intent);
+
             }
         });
         // Lấy dữ liệu class Mission
