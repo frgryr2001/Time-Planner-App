@@ -9,15 +9,20 @@ public class ParentCategoryClass {
     private String id;
     private String name;
     private int icon;
-    private String color;
+    private int color;
     private ArrayList<ChildCategoryClass> childCategories;
     private ArrayList<MissionClass> missions;
     private ArrayList<ActivityClass> activities;
 
     public ParentCategoryClass() {
     }
-
-    public ParentCategoryClass(String id, String name, int icon, String color, ArrayList<ChildCategoryClass> childCategories, ArrayList<MissionClass> missions, ArrayList<ActivityClass> activities) {
+    public ParentCategoryClass(String id, String name, int icon, int color){
+        this.id = id;
+        this.name = name;
+        this.icon = icon;
+        this.color = color;
+    }
+    public ParentCategoryClass(String id, String name, int icon, int color, ArrayList<ChildCategoryClass> childCategories, ArrayList<MissionClass> missions, ArrayList<ActivityClass> activities) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -59,11 +64,11 @@ public class ParentCategoryClass {
         this.icon = icon;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
