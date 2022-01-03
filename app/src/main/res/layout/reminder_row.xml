@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="T.7, 1 Th1, 2022"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_marginRight="12dp"
             android:textColor="@color/text_dark"/>
         <Switch
