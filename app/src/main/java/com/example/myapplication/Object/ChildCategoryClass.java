@@ -6,14 +6,14 @@ public class ChildCategoryClass {
     private String id;
     private String name;
     private int icon;
-    private String color;
+    private int color;
     private ArrayList<MissionClass> missions;
     private ArrayList<ScheduleClass> activities;
 
     public ChildCategoryClass() {
     }
 
-    public ChildCategoryClass(String id, String name, int icon, String color, ArrayList<MissionClass> missions, ArrayList<ScheduleClass> activities) {
+    public ChildCategoryClass(String id, String name, int icon, int color, ArrayList<MissionClass> missions, ArrayList<ActivityClass> activities) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -46,11 +46,11 @@ public class ChildCategoryClass {
         this.icon = icon;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
