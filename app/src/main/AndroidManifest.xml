@@ -12,13 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Activity.AddChildCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.AddFatherCategoryActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.MisstionNewActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Activity.NotesActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Activity.LoginActivity"
             android:exported="true" />
@@ -31,6 +35,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -48,8 +53,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
