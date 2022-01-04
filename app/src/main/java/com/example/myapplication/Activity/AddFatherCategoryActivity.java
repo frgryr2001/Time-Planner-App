@@ -88,7 +88,7 @@ public class AddFatherCategoryActivity extends AppCompatActivity {
                     ParentCategoryClass p = new ParentCategoryClass("",
                             etCate.getText().toString().trim(),
                             R.drawable.ic_baseline_folder_24,
-                            colorPick,ChildCategoryClass1
+                            colorPick, /*ChildCategoryClass1*/new ArrayList<ChildCategoryClass>()
                             ,new ArrayList<MissionClass>()
                             ,new ArrayList<ScheduleClass>());
                     CategoryRef = userRef.child("Category");
