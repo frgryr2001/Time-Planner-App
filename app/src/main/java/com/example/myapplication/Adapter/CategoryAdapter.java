@@ -9,6 +9,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.ParentCategoryClass;
 import com.example.myapplication.R;
 
@@ -17,9 +18,9 @@ import java.util.List;
 
 public class CategoryAdapter extends BaseExpandableListAdapter {
     private Context mContext;
-    private List<String> listCategory;
-    private HashMap<String,List<String>> listChildCategory;
-    public CategoryAdapter(Context mContext, List<String> listCategory, HashMap<String, List<String>> listChildCategory) {
+    private List<ParentCategoryClass> listCategory;
+    private HashMap<ParentCategoryClass,List<ChildCategoryClass>> listChildCategory;
+    public CategoryAdapter(Context mContext, List<ParentCategoryClass> listCategory, HashMap<ParentCategoryClass, List<ChildCategoryClass>> listChildCategory) {
         this.mContext = mContext;
         this.listCategory = listCategory;
         this.listChildCategory = listChildCategory;
@@ -63,7 +64,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-        String title =(String) getGroup(i);
+        ParentCategoryClass p =(ParentCategoryClass) getGroup(i);
 
         if (view == null){
             LayoutInflater inflater = (LayoutInflater)this.mContext
@@ -89,14 +90,14 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         ivGroupIndicator.setSelected(b);
         // View nameCategory cha
         TextView tvNameCategory = view.findViewById(R.id.tvNameCategory);
-        tvNameCategory.setText(title);
+        tvNameCategory.setText(p.getName());
 
         return view;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        String title =(String) getChild(i,i1);
+        ChildCategoryClass c =(ChildCategoryClass) getChild(i,i1);
         if (view == null){
             LayoutInflater inflater = (LayoutInflater)this.mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -107,7 +108,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         ibtnVertChild.setFocusable(false);
 
         TextView tvNameCategoryChild = view.findViewById(R.id.tvNameCategoryChild);
-        tvNameCategoryChild.setText(title);
+        tvNameCategoryChild.setText(c.getName());
 
         return view;
     }

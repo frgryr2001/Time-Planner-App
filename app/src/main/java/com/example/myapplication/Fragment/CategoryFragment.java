@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -30,9 +32,20 @@ import com.example.myapplication.Activity.AddReminderActivity;
 import com.example.myapplication.Adapter.CategoryAdapter;
 import com.example.myapplication.Adapter.MissionAdapter;
 import com.example.myapplication.Adapter.MissionFinishedAdapter;
+import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.MissionClass;
+import com.example.myapplication.Object.ParentCategoryClass;
+import com.example.myapplication.Object.ScheduleClass;
 import com.example.myapplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,8 +72,8 @@ public class CategoryFragment extends Fragment {
     DrawerLayout drawerLayout;
     CategoryAdapter adapter;
     private ExpandableListView exListview;
-    private List<String> parentList;
-    private HashMap<String,List<String>> childList;
+    private List<ParentCategoryClass> parentList;
+    private HashMap<ParentCategoryClass,List<ChildCategoryClass>> childList;
     private LinearLayout lnIconText;
     static ListView lvMission;
     static List<MissionClass> listMission;
@@ -71,7 +84,9 @@ public class CategoryFragment extends Fragment {
     private HashMap<String,List<String>> MissionChildList;
     private ExpandableListView elvMissionFinish;
     //private FloatingActionButton btnMoveToAddScheduleActivityDaily;
-
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference userRef;
+    private DatabaseReference CategoryRef;
     private ImageButton ibAddFatherCate, ibAddChildCate;
 
     public CategoryFragment() {
@@ -127,7 +142,7 @@ public class CategoryFragment extends Fragment {
         adapter = new CategoryAdapter(getContext(),parentList,childList);
         exListview.setAdapter(adapter);
 
-       //Mặc định sổ ra cái list
+//       Mặc định sổ ra cái list
         for(int i=0; i < adapter.getGroupCount(); i++)
             exListview.expandGroup(i);
         adapter.notifyDataSetChanged();
@@ -241,23 +256,36 @@ public class CategoryFragment extends Fragment {
     }
     private void showList() {
         parentList = new ArrayList<>();
-        childList = new HashMap<String,List<String>>();
-        parentList.add("Hoc van 1");
-        parentList.add("Hoc van 2");
+        childList = new HashMap<ParentCategoryClass,List<ChildCategoryClass>>();
+        initFirebase();
 
 
-        List<String> child = new ArrayList<>();
-        child.add("123");
-        child.add("456");
-        child.add("678");
-        List<String> child1 = new ArrayList<>();
-        child1.add("123");
-        child1.add("4256");
-        child1.add("678");
+        parentList.add(new ParentCategoryClass(
+                "1",
+                "Nhan",
+                R.drawable.ic_baseline_folder_24,
+                123123,
+                new ArrayList<ChildCategoryClass>(),
+                new ArrayList<MissionClass>(),
+                new ArrayList<ScheduleClass>()
+        ));
+
+
+        List<ChildCategoryClass> child = new ArrayList<>();
+        ChildCategoryClass c = new ChildCategoryClass("",
+                "213",
+                R.drawable.ic_baseline_folder_24,
+                123, new ArrayList<MissionClass>()
+                , new ArrayList<ScheduleClass>());
+        child.add(c);
+
+
 
         childList.put(parentList.get(0),child);
-        childList.put(parentList.get(1),child1);
+
     }
+
+
     private void showListMission() {
 
         MissionParentList = new ArrayList<>();
@@ -271,5 +299,51 @@ public class CategoryFragment extends Fragment {
 
         MissionChildList.put(MissionParentList.get(0),child);
 
+    }
+
+
+    public void initFirebase(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = "";
+        if (user != null) {
+            uid = user.getUid();
+        }
+        if(!(uid).isEmpty()) {
+            userRef = database.getReference(uid);
+            CategoryRef = userRef.child("Category");
+            CategoryRef.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    ParentCategoryClass p =snapshot.getValue(ParentCategoryClass.class);
+                    if (p != null) {
+                        parentList.add(p);
+//                      String key = snapshot.getKey();
+//                       mKeys.add(key);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
     }
 }

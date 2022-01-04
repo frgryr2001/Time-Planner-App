@@ -131,6 +131,7 @@ public class AddChildCategoryActivity extends AppCompatActivity {
             lstNameParentCate = new ArrayList<>();
 
             CategoryRef.addValueEventListener(new ValueEventListener() {
+
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     /*if(lstParentCate!=null || !lstParentCate.isEmpty())

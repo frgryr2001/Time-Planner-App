@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ChildCategoryClass {
     private String id;
+    private String idParent;
     private String name;
     private int icon;
     private int color;
@@ -68,5 +69,13 @@ public class ChildCategoryClass {
 
     public void setActivities(ArrayList<ScheduleClass> activities) {
         this.activities = activities;
+    }
+
+    public String getIdParent() {
+        return idParent;
+    }
+
+    public void setIdParent(String idParent) {
+        this.idParent = idParent;
     }
 }
