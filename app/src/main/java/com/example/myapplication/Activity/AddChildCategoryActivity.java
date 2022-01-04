@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.MissionClass;
@@ -42,8 +44,11 @@ public class AddChildCategoryActivity extends AppCompatActivity {
     private DatabaseReference CategoryChildRef;
 
     ArrayAdapter<ParentCategoryClass> adapter_cate_parent;
-    List<ParentCategoryClass> lstParentCate;
+    ArrayList<ChildCategoryClass> lstParentCate;
     List<String> lstNameParentCate;
+
+
+    String nameSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,18 @@ public class AddChildCategoryActivity extends AppCompatActivity {
             }
         });
 
+        spinnerFatherCate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                nameSpinner = String.valueOf(spinnerFatherCate.getItemAtPosition(i));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,34 +92,65 @@ public class AddChildCategoryActivity extends AppCompatActivity {
                 }
                 if (!(uid).isEmpty()) {
                     userRef = database.getReference(uid);
-                    ArrayList<ChildCategoryClass> ChildCategoryClass1
-                            = new ArrayList<ChildCategoryClass>();
+                    CategoryRef = userRef.child("Category");
 
-//                    ChildCategoryClass c = new ChildCategoryClass(
-//                            "1",
-//                            "test",
-//                            R.drawable.ic_baseline_folder_24,
-//                            colorPick,new ArrayList<MissionClass>(),
-//                            new ArrayList<ActivityClass>());
-//                    ChildCategoryClass c1 = new ChildCategoryClass(
-//                            "2",
-//                            "test",
-//                            R.drawable.ic_baseline_folder_24,
-//                            colorPick,new ArrayList<MissionClass>(),
-//                            new ArrayList<ActivityClass>());
-//                    ChildCategoryClass1.add(c);
-//                    ChildCategoryClass1.add(c1);
-//                    ChildCategoryClass c = new ChildCategoryClass("",
-//                            etCate.getText().toString().trim(),
-//                            R.drawable.ic_baseline_folder_24,
-//                            colorPick, new ArrayList<MissionClass>()
-//                            , new ArrayList<ActivityClass>());
+                    CategoryRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(lstNameParentCate!=null || !lstNameParentCate.isEmpty())
+                                lstNameParentCate.clear();
+                            for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
-//                    CategoryChildRef = userRef.child("CategoryChild");
-//                    String id = CategoryChildRef.push().getKey();
-//                    c.setId(id);
-//                    CategoryChildRef.child(id).setValue(c);
-//                    userRef.child("CategoryChild").child(c.getId()).setValue(c);
+                                String nameParentCate = dataSnapshot.child("name").getValue(String.class).toString();
+                                ArrayList<ChildCategoryClass> lstParentCateTemp ;
+                                if(nameParentCate.equals(nameSpinner)){
+                                    ParentCategoryClass parentCate =dataSnapshot.getValue(ParentCategoryClass.class);
+
+                                    ChildCategoryClass childCate = new ChildCategoryClass(
+                                            //String.valueOf(size),
+                                            "1",
+                                            etCate.getText().toString().trim(),
+                                            R.drawable.ic_baseline_folder_24,
+                                            colorPick,new ArrayList<MissionClass>()
+                                            ,new ArrayList<ScheduleClass>());
+
+
+                                    lstParentCateTemp = new ArrayList<>();
+                                    if(parentCate.getChildCategories() == null){
+                                        lstParentCateTemp.add(childCate);
+                                        parentCate.setChildCategories(lstParentCateTemp);
+                                        CategoryRef.child(parentCate.getId()).setValue(parentCate);
+                                        finish();
+                                    }else {
+                                        lstParentCateTemp = parentCate.getChildCategories();
+                                        lstParentCateTemp.add(childCate);
+                                        CategoryRef.child(parentCate.getId()).setValue(parentCate);
+                                        finish();
+                                    }
+
+                                    // số lượng phần tử trong mảng tương đương với id -> xóa thì chịu
+                                   // int size = parentCate.getChildCategories().size();
+
+
+                                    /*lstParentCateTemp = parentCate.getChildCategories();
+                                    lstParentCateTemp.add(childCate);
+                                    parentCate.setChildCategories(lstParentCate);
+
+                                    CategoryRef.child(parentCate.getId()).setValue(parentCate);*/
+
+
+                                }
+
+                            }
+
+                                //ChildCategoryClass childCate = new ChildCategoryClass("");
+
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
         });
