@@ -82,6 +82,9 @@ public class AddFatherCategoryActivity extends AppCompatActivity {
                             new ArrayList<ScheduleClass>());
                     ChildCategoryClass1.add(c);
                     ChildCategoryClass1.add(c1);
+
+                    /*ArrayList<MissionClass> lstM =
+                    MissionClass m = new*/
                     ParentCategoryClass p = new ParentCategoryClass("",
                             etCate.getText().toString().trim(),
                             R.drawable.ic_baseline_folder_24,

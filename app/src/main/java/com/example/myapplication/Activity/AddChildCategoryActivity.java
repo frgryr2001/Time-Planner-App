@@ -1,5 +1,6 @@
 package com.example.myapplication.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -13,11 +14,15 @@ import android.widget.Spinner;
 import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.Object.ParentCategoryClass;
+import com.example.myapplication.Object.ScheduleClass;
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +38,20 @@ public class AddChildCategoryActivity extends AppCompatActivity {
     int colorPick = 0;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference userRef;
+    private DatabaseReference CategoryRef;
     private DatabaseReference CategoryChildRef;
-    ArrayAdapter<ParentCategoryClass> adapterParent;
-    private List<ParentCategoryClass> listParentCategoryClass;
+
+    ArrayAdapter<ParentCategoryClass> adapter_cate_parent;
+    List<ParentCategoryClass> lstParentCate;
+    List<String> lstNameParentCate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child_category);
 
         init();
-
+        initFirebase();
         btnColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +115,49 @@ public class AddChildCategoryActivity extends AppCompatActivity {
         ibSave = findViewById(R.id.ibSave);
         spinnerFatherCate = findViewById(R.id.spinnerFatherCate);
 
+    }
+
+    public void initFirebase(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = "";
+        if (user != null) {
+            uid = user.getUid();
+        }
+        if(!(uid).isEmpty()) {
+            userRef = database.getReference(uid);
+            CategoryRef = userRef.child("Category");
+
+            lstParentCate = new ArrayList<>();
+            lstNameParentCate = new ArrayList<>();
+
+            CategoryRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    /*if(lstParentCate!=null || !lstParentCate.isEmpty())
+                        lstParentCate.clear();
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        ParentCategoryClass c =dataSnapshot.getValue(ParentCategoryClass.class);
+                        lstParentCate.add(c);
+                    }*/
+                    if(lstNameParentCate!=null || !lstNameParentCate.isEmpty())
+                        lstNameParentCate.clear();
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        ParentCategoryClass c =dataSnapshot.getValue(ParentCategoryClass.class);
+                        lstNameParentCate.add(c.getName());
+                    }
+                    adapter_cate_parent.notifyDataSetChanged();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            //adapter_cate_parent = new ArrayAdapter(this,android.R.layout.simple_spinner_item,lstParentCate);
+            adapter_cate_parent = new ArrayAdapter(this,android.R.layout.simple_spinner_item,lstNameParentCate);
+            adapter_cate_parent.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+            spinnerFatherCate.setAdapter(adapter_cate_parent);
+
+        }
     }
 
     public void chooseColor() {
