@@ -2,6 +2,7 @@ package com.example.myapplication.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -72,8 +73,10 @@ public class CategoryFragment extends Fragment {
     DrawerLayout drawerLayout;
     CategoryAdapter adapter;
     private ExpandableListView exListview;
-    private List<ParentCategoryClass> parentList;
-    private HashMap<ParentCategoryClass,List<ChildCategoryClass>> childList;
+    private List<ParentCategoryClass> parentList = new ArrayList<>();
+    private HashMap<ParentCategoryClass,List<ChildCategoryClass>> childList
+            = new HashMap<ParentCategoryClass,List<ChildCategoryClass>>();
+    List<String> mKeys = new ArrayList<String>();
     private LinearLayout lnIconText;
     static ListView lvMission;
     static List<MissionClass> listMission;
@@ -137,14 +140,16 @@ public class CategoryFragment extends Fragment {
             ((AppCompatActivity)getActivity()).setTitle("Các danh mục");
         }
        // Data ExpandableListView
-        showList();
+//        showList();
+
+        initFirebase();
 
         adapter = new CategoryAdapter(getContext(),parentList,childList);
+
         exListview.setAdapter(adapter);
 
 //       Mặc định sổ ra cái list
-        for(int i=0; i < adapter.getGroupCount(); i++)
-            exListview.expandGroup(i);
+
         adapter.notifyDataSetChanged();
 
        // Mở slide bar khi click
@@ -254,36 +259,38 @@ public class CategoryFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
 
     }
-    private void showList() {
-        parentList = new ArrayList<>();
-        childList = new HashMap<ParentCategoryClass,List<ChildCategoryClass>>();
-        initFirebase();
-
-
-        parentList.add(new ParentCategoryClass(
-                "1",
-                "Nhan",
-                R.drawable.ic_baseline_folder_24,
-                123123,
-                new ArrayList<ChildCategoryClass>(),
-                new ArrayList<MissionClass>(),
-                new ArrayList<ScheduleClass>()
-        ));
-
-
-        List<ChildCategoryClass> child = new ArrayList<>();
-        ChildCategoryClass c = new ChildCategoryClass("",
-                "213",
-                R.drawable.ic_baseline_folder_24,
-                123, new ArrayList<MissionClass>()
-                , new ArrayList<ScheduleClass>());
-        child.add(c);
-
-
-
-        childList.put(parentList.get(0),child);
-
-    }
+//    private void showList() {
+//        parentList = new ArrayList<>();
+//
+//        initFirebase();
+//
+//
+////        parentList.add(new ParentCategoryClass(
+////                "1",
+////                "Nhan",
+////                R.drawable.ic_baseline_folder_24,
+////                123123,
+////                new ArrayList<ChildCategoryClass>(),
+////                new ArrayList<MissionClass>(),
+////                new ArrayList<ScheduleClass>()
+////        ));
+////
+////
+////        List<ChildCategoryClass> child = new ArrayList<>();
+////        ChildCategoryClass c = new ChildCategoryClass("",
+////                "213",
+////                R.drawable.ic_baseline_folder_24,
+////                123, new ArrayList<MissionClass>()
+////                , new ArrayList<ScheduleClass>());
+////        child.add(c);
+//
+//        Toast.makeText(getContext(), "parentList"+parentList, Toast.LENGTH_SHORT).show();
+//        parentList.forEach((element) -> {
+//            childList.put(element,element.getChildCategories());
+//        });
+//
+//
+//    }
 
 
     private void showListMission() {
@@ -317,20 +324,40 @@ public class CategoryFragment extends Fragment {
                     ParentCategoryClass p =snapshot.getValue(ParentCategoryClass.class);
                     if (p != null) {
                         parentList.add(p);
-//                      String key = snapshot.getKey();
-//                       mKeys.add(key);
+                        childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
+                        String key = snapshot.getKey();
+                        mKeys.add(key);
+                        for(int i=0; i < adapter.getGroupCount(); i++)
+                            exListview.expandGroup(i);
                         adapter.notifyDataSetChanged();
                     }
                 }
 
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                    ParentCategoryClass p =snapshot.getValue(ParentCategoryClass.class);
+                    if (p == null || parentList == null || parentList.isEmpty() ) {
+                        return;
+                    }
+                    String key = snapshot.getKey();
+                    int index = mKeys.indexOf(key);
+                    parentList.set(index, p);
+                    adapter.notifyDataSetChanged();
                 }
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                    ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
+                    if (p == null || parentList == null || parentList.isEmpty() ) {
+                        return;
+                    }
+                    String key = snapshot.getKey();
+                    int index = mKeys.indexOf(key);
+                    if (index != -1) {
+                        parentList.remove(index);
+                        mKeys.remove(index);
+                    }
+                    adapter.notifyDataSetChanged();
                 }
 
                 @Override

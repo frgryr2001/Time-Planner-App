@@ -78,12 +78,17 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 //
         ImageButton ivGroupIndicator = view.findViewById(R.id.ivGroupIndicator);
 //       Sự kiện Click mở rộng danh mục
+
         ivGroupIndicator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(b) ((ExpandableListView) viewGroup).collapseGroup(i);
-                else ((ExpandableListView) viewGroup).expandGroup(i, true);
-            }
+                @Override
+                public void onClick(View view) {
+                    if(b) {
+                        ((ExpandableListView) viewGroup).collapseGroup(i);
+                    }else {
+                        ((ExpandableListView) viewGroup).expandGroup(i, true);
+                    }
+
+                }
         });
         ivGroupIndicator.setFocusable(false);
         // Hiệu ứng select lên xuống của arrow

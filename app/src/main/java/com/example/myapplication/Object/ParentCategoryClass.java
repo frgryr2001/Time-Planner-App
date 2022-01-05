@@ -10,7 +10,7 @@ public class ParentCategoryClass {
     private String name;
     private int icon;
     private int color;
-    private ArrayList<ChildCategoryClass> childCategories;
+    private ArrayList<ChildCategoryClass> childCategories = new ArrayList<>();
     private ArrayList<MissionClass> missions;
     private ArrayList<ScheduleClass> activities;
 
