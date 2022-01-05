@@ -112,16 +112,16 @@
             android:id="@+id/lnCategoryMission"
             android:layout_width="match_parent"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tvNameCate"
+            <Spinner
+                android:id="@+id/spinnerCate"
                 android:layout_width="0dp"
-                android:text="Học vấn"
-                android:gravity="center_vertical"
-                android:paddingLeft="10sp"
-                android:textSize="18sp"
+                android:layout_height="60dp"
                 android:layout_weight="5"
-                android:textColor="@color/text_dark"
-                android:layout_height="60dp" />
+                android:layout_span="3"
+                android:dropDownWidth="wrap_content"
+                android:spinnerMode="dropdown"
+                android:paddingEnd="0dp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             <ImageView
                 android:id="@+id/ivIconCate"
                 android:layout_width="0dp"
