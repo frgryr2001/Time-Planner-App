@@ -1,13 +1,16 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.ParentCategoryClass;
@@ -96,7 +99,18 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         // View nameCategory cha
         TextView tvNameCategory = view.findViewById(R.id.tvNameCategory);
         tvNameCategory.setText(p.getName());
-        tvNameCategory.setTextColor(p.getColor());
+        if(p.getColor() == 0){
+            tvNameCategory.setTextColor(Color.BLACK);
+        }else{
+            tvNameCategory.setTextColor(p.getColor());
+        }
+        LinearLayout layout_item = view.findViewById(R.id.layout_item);
+//        layout_item.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(mContext, ""+p.getName(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
         return view;
     }
 
@@ -114,7 +128,12 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 
         TextView tvNameCategoryChild = view.findViewById(R.id.tvNameCategoryChild);
         tvNameCategoryChild.setText(c.getName());
-        tvNameCategoryChild.setTextColor(c.getColor());
+        if(c.getColor() == 0){
+            tvNameCategoryChild.setTextColor(Color.BLACK);
+        }else{
+            tvNameCategoryChild.setTextColor(c.getColor());
+        }
+
         return view;
     }
 

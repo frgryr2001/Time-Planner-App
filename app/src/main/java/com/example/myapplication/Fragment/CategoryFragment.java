@@ -244,6 +244,8 @@ public class CategoryFragment extends Fragment {
         exListview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+                ParentCategoryClass p = (ParentCategoryClass)adapter.getGroup(i);
+                Toast.makeText(getContext(), ""+p.getChildCategories(), Toast.LENGTH_SHORT).show();
                 drawerLayout.openDrawer(GravityCompat.END);
                 return true;
             }
