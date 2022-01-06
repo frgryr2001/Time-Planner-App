@@ -243,6 +243,7 @@ public class AddChildCategoryActivity extends AppCompatActivity {
                 .setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
                     @Override
                     public void onChooseColor(int position, int color) {
+                        colorPick = color;
                         etCate.setTextColor(color);
                         btnColor.setBackgroundColor(color);
                     }

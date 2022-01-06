@@ -96,7 +96,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         // View nameCategory cha
         TextView tvNameCategory = view.findViewById(R.id.tvNameCategory);
         tvNameCategory.setText(p.getName());
-
+        tvNameCategory.setTextColor(p.getColor());
         return view;
     }
 
@@ -114,7 +114,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 
         TextView tvNameCategoryChild = view.findViewById(R.id.tvNameCategoryChild);
         tvNameCategoryChild.setText(c.getName());
-
+        tvNameCategoryChild.setTextColor(c.getColor());
         return view;
     }
 

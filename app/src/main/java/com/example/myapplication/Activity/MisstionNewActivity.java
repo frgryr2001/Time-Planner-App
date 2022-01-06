@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,7 +48,7 @@ public class MisstionNewActivity extends AppCompatActivity {
     ArrayAdapter<ParentCategoryClass> adapter_category;
     List<String> listSpinParentCate ;
     String userId = MainActivity.userId;
-
+    String nameSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,12 @@ public class MisstionNewActivity extends AppCompatActivity {
         });
 
         initFirebase();
-        Log.e(""+listSpinParentCate, "onCreate: " );
+        spinnerCate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                nameSpinner= String.valueOf(spinnerCate.getItemAtPosition(i));
+            }
+        });
 
 
     }
@@ -87,9 +93,9 @@ public class MisstionNewActivity extends AppCompatActivity {
                     if(p!=null){
                         listSpinParentCate.add(p.getName());
 
-//                        p.getChildCategories().forEach((element -> {
-//                            listChild.add(element.getName());
-//                        }));
+                        p.getChildCategories().forEach((element -> {
+                            listSpinParentCate.add(element.getName());
+                        }));
                         adapter_category.notifyDataSetChanged();
                     }
 
@@ -115,7 +121,7 @@ public class MisstionNewActivity extends AppCompatActivity {
 
                 }
             });
-        listSpinParentCate.addAll(listChild);
+
         adapter_category = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listSpinParentCate);
         adapter_category.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spinnerCate.setAdapter(adapter_category);
