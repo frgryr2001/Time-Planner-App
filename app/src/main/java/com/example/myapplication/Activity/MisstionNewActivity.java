@@ -66,12 +66,12 @@ public class MisstionNewActivity extends AppCompatActivity {
         });
 
         initFirebase();
-        spinnerCate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                nameSpinner= String.valueOf(spinnerCate.getItemAtPosition(i));
-            }
-        });
+//        spinnerCate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                nameSpinner= String.valueOf(spinnerCate.getItemAtPosition(i));
+//            }
+//        });
 
 
     }
@@ -163,12 +163,12 @@ public class MisstionNewActivity extends AppCompatActivity {
                 }
                 if(!(uid).isEmpty()) {
                     userRef = database.getReference(uid);
-                    MissionNewRef = userRef.child("MissionNew");
+                    MissionNewRef = userRef.child("Category");
                     MissionClass m = new MissionClass("","Đi học",false,1);
                     String id = MissionNewRef.push().getKey();
                     m.setId(id);
                     MissionNewRef.child(id).setValue(m);
-                    userRef.child("MissionNew").child(m.getId()).setValue(m);
+                    MissionNewRef.child("-MsVnL4wAX4haJrFYJOb").child("MissionNew").child(m.getId()).setValue(m);
                 }
             }
         });

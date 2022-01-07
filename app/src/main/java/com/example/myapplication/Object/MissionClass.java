@@ -8,6 +8,23 @@ public class MissionClass {
     private String name;
     private boolean status = false; // Trạng thái
     private int priority;   // Độ ưu tiên: 1(xanh), 2(vàng), 3(đỏ)
+    private String note;
+
+    public MissionClass(String id, String name, boolean status, int priority, String note) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.priority = priority;
+        this.note = note;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     public MissionClass() {
     }

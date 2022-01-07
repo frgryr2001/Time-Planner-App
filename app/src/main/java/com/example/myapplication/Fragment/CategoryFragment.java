@@ -79,7 +79,7 @@ public class CategoryFragment extends Fragment {
     List<String> mKeys = new ArrayList<String>();
     private LinearLayout lnIconText;
     static ListView lvMission;
-    static List<MissionClass> listMission;
+    static List<MissionClass> listMission = new ArrayList<>();
     static MissionAdapter adapterMission;
 
     MissionFinishedAdapter adapterMissonFinished;
@@ -188,11 +188,11 @@ public class CategoryFragment extends Fragment {
             }
         });
         // Lấy dữ liệu class Mission
-        getDataMission();
+//        getDataMission();
         // Adapter của Listview
         adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
         lvMission.setAdapter(adapterMission);
-
+        adapterMission.notifyDataSetChanged();
         //Danh sách nhiệm vụ hoàn thành
         showListMission();
         adapterMissonFinished = new MissionFinishedAdapter(getContext(),MissionParentList,MissionChildList);
@@ -245,7 +245,12 @@ public class CategoryFragment extends Fragment {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
                 ParentCategoryClass p = (ParentCategoryClass)adapter.getGroup(i);
-                Toast.makeText(getContext(), ""+p.getChildCategories(), Toast.LENGTH_SHORT).show();
+
+//                p.getMissions().forEach((element) -> {
+//                    listMission.add(element);
+//                });
+//                adapterMission.notifyDataSetChanged();
+                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
                 drawerLayout.openDrawer(GravityCompat.END);
                 return true;
             }

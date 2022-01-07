@@ -11,8 +11,8 @@ public class ParentCategoryClass {
     private int icon;
     private int color;
     private ArrayList<ChildCategoryClass> childCategories = new ArrayList<>();
-    private ArrayList<MissionClass> missions;
-    private ArrayList<ScheduleClass> activities;
+    private ArrayList<MissionClass> missions = new ArrayList<>();
+    private ArrayList<ScheduleClass> activities = new ArrayList<>();
 
     public ParentCategoryClass() {
     }
