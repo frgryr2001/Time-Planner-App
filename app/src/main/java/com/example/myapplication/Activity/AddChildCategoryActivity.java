@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -120,12 +121,13 @@ public class AddChildCategoryActivity extends AppCompatActivity {
                                         lstParentCateTemp.add(childCate);
                                         parentCate.setChildCategories(lstParentCateTemp);
                                         CategoryRef.child(parentCate.getId()).setValue(parentCate);
-                                        finish();
+//                                        finish();
                                     }else {
                                         lstParentCateTemp = parentCate.getChildCategories();
                                         lstParentCateTemp.add(childCate);
+                                        Log.d("Error lstParentCateTemp: ---------->"+ lstParentCateTemp, "onDataChange: ");
                                         CategoryRef.child(parentCate.getId()).setValue(parentCate);
-                                        finish();
+//                                        finish();
                                     }
 
                                     // số lượng phần tử trong mảng tương đương với id -> xóa thì chịu

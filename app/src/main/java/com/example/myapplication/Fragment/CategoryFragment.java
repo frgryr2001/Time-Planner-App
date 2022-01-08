@@ -328,10 +328,12 @@ public class CategoryFragment extends Fragment {
             CategoryRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    ParentCategoryClass p =snapshot.getValue(ParentCategoryClass.class);
+                    ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
                     if (p != null) {
                         parentList.add(p);
                         childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
+
+
                         String key = snapshot.getKey();
                         mKeys.add(key);
                         for(int i=0; i < adapter.getGroupCount(); i++)
@@ -343,9 +345,11 @@ public class CategoryFragment extends Fragment {
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     ParentCategoryClass p =snapshot.getValue(ParentCategoryClass.class);
+
                     if (p == null || parentList == null || parentList.isEmpty() ) {
                         return;
                     }
+                    Toast.makeText(getContext(), ""+parentList, Toast.LENGTH_SHORT).show();
                     String key = snapshot.getKey();
                     int index = mKeys.indexOf(key);
                     parentList.set(index, p);
