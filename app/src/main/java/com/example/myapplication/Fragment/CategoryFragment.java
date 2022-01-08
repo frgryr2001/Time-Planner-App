@@ -250,7 +250,7 @@ public class CategoryFragment extends Fragment {
 //                    listMission.add(element);
 //                });
 //                adapterMission.notifyDataSetChanged();
-                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), ""+p, Toast.LENGTH_SHORT).show();
                 drawerLayout.openDrawer(GravityCompat.END);
                 return true;
             }
@@ -332,8 +332,6 @@ public class CategoryFragment extends Fragment {
                     if (p != null) {
                         parentList.add(p);
                         childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
-
-
                         String key = snapshot.getKey();
                         mKeys.add(key);
                         for(int i=0; i < adapter.getGroupCount(); i++)
@@ -349,10 +347,11 @@ public class CategoryFragment extends Fragment {
                     if (p == null || parentList == null || parentList.isEmpty() ) {
                         return;
                     }
-                    Toast.makeText(getContext(), ""+parentList, Toast.LENGTH_SHORT).show();
+
                     String key = snapshot.getKey();
                     int index = mKeys.indexOf(key);
                     parentList.set(index, p);
+                    childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
                     adapter.notifyDataSetChanged();
                 }
 
