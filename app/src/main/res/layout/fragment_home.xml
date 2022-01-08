@@ -7,13 +7,15 @@
     android:background="#fff"
     tools:context=".Fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Home Fragment"
-        android:textSize="30sp" />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
 
     <com.github.clans.fab.FloatingActionMenu
         android:layout_width="wrap_content"
@@ -31,10 +33,18 @@
         app:menu_labels_textSize="14sp">
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/ibMoveToAddEventPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_event_note_24"
+            app:fab_colorNormal="@color/white"
+            app:fab_label="Thêm sự kiện" />
+
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/ibMoveToAddReminderPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_search_24"
+            android:src="@drawable/reminder_icon"
             app:fab_colorNormal="@color/white"
             app:fab_label="Thêm nhắc nhở" />
 
@@ -42,7 +52,7 @@
             android:id="@+id/ibMoveToAddShedulePage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_event_note_24"
+            android:src="@drawable/schedule"
             app:fab_colorNormal="@color/white"
             app:fab_label="Thêm hoạt động lịch trình" />
 

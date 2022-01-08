@@ -1,6 +1,7 @@
 package com.example.myapplication.Object;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ScheduleClass {
     private String id, name, date, timeStart, timeEnd, note;
@@ -63,5 +64,17 @@ public class ScheduleClass {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public static ArrayList<ScheduleClass> init() {
+        ArrayList<ScheduleClass> list = new ArrayList<ScheduleClass>();
+        for (int i = 0; i < 5; i++) {
+            ScheduleClass s = new ScheduleClass();
+            s.setName("Test");
+            s.setTimeStart("9:30");
+            s.setTimeEnd("10:30");
+            list.add(s);
+        }
+        return list;
     }
 }

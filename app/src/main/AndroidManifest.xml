@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Activity.AddEventActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.AddScheduleActivity"
             android:exported="true" />
         <activity
@@ -68,8 +71,10 @@
         </activity>
 
         <receiver android:name=".Class.AlarmReceiver" />
-        <service android:name=".Class.AlarmSound"
-            android:enabled="true"/>
+
+        <service
+            android:name=".Class.AlarmSound"
+            android:enabled="true" />
     </application>
 
 </manifest>

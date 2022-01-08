@@ -1,21 +1,29 @@
 package com.example.myapplication.Fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.example.myapplication.Activity.AddEventActivity;
 import com.example.myapplication.Activity.AddReminderActivity;
 import com.example.myapplication.Activity.AddScheduleActivity;
-import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Activity.MisstionNewActivity;
+import com.example.myapplication.Adapter.ScheduleBubbleAdapter;
+import com.example.myapplication.Object.ScheduleClass;
 import com.example.myapplication.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +40,16 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ImageButton ibMoveToAddShedulePage,ibMoveToAddReminderPage,ibMoveToAddMissionPage;
+    private ImageButton ibMoveToAddShedulePage,ibMoveToAddReminderPage,ibMoveToAddMissionPage, ibMoveToAddEventPage;
+    private ProgressBar pbTest;
+    private View view;
+    private int progress = 0;
+    private CountDownTimer myCountDownTimer;
+    private boolean mTimerRunning;
+    private static final long START_TIME_IN_MILLIS = 600000;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private RecyclerView rvListSchedule;
+    private ScheduleBubbleAdapter scheduleBubbleAdapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -70,6 +87,11 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ibMoveToAddReminderPage = view.findViewById(R.id.ibMoveToAddReminderPage);
+        ibMoveToAddShedulePage = view.findViewById(R.id.ibMoveToAddShedulePage);
+        ibMoveToAddMissionPage = view.findViewById(R.id.ibMoveToAddMissionPage);
+        ibMoveToAddEventPage = view.findViewById(R.id.ibMoveToAddEventPage);
+        pbTest = view.findViewById(R.id.pbScheduleBallonItem);
+
         ibMoveToAddReminderPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +99,7 @@ public class HomeFragment extends Fragment {
                 startActivity(i);
             }
         });
-        ibMoveToAddShedulePage = view.findViewById(R.id.ibMoveToAddShedulePage);
+
         ibMoveToAddShedulePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +107,7 @@ public class HomeFragment extends Fragment {
                 startActivity(i);
             }
         });
-        ibMoveToAddMissionPage = view.findViewById(R.id.ibMoveToAddMissionPage);
+
         ibMoveToAddMissionPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +115,93 @@ public class HomeFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+        ibMoveToAddEventPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(view.getContext(), AddEventActivity.class);
+                startActivity(i);
+            }
+        });
+
+//        myCountDownTimer = new CountDownTimer(50000, 1000) {
+//            public void onTick(long millisUntilFinished) {
+//                // Used for formatting digit to be in 2 digits only
+////                NumberFormat f = new DecimalFormat("00");
+////                long hour = (millisUntilFinished / 3600000) % 24;
+////                long min = (millisUntilFinished / 60000) % 60;
+////                long sec = (millisUntilFinished / 1000) % 60;
+////                pbTest.setProgress((50 - (int) sec) * 2);
+////                        textView.setText(f.format(hour) + ":" + f.format(min) + ":" + f.format(sec));
+//
+//
+//            }
+//            // When the task is over it will print 00:00:00 there
+//            public void onFinish() {
+////                        textView.setText("00:00:00");
+//                Toast.makeText(view.getContext(), "Finished", Toast.LENGTH_SHORT).show();
+//            }
+//        };
+
+//        pbTest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mTimerRunning) {
+//                    Toast.makeText(view.getContext(), "Pause", Toast.LENGTH_SHORT).show();
+//                    pauseTimer();
+//                } else {
+//                    Toast.makeText(view.getContext(), "Start", Toast.LENGTH_SHORT).show();
+//                    startTimer();
+//                }
+//            }
+//        });
+
+        rvListSchedule = view.findViewById(R.id.rvListSchedule);
+        ArrayList<ScheduleClass> list = ScheduleClass.init();
+
+        rvListSchedule.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        rvListSchedule.setHasFixedSize(true);
+
+        scheduleBubbleAdapter = new ScheduleBubbleAdapter(view.getContext(), list);
+        rvListSchedule.setAdapter(scheduleBubbleAdapter);
+
         return view;
     }
+
+    private void startTimer() {
+        myCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+//                updateCountDownText();
+                updateProgressBar();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+//                mButtonStartPause.setText("Start");
+//                mButtonStartPause.setVisibility(View.INVISIBLE);
+//                mButtonReset.setVisibility(View.VISIBLE);
+            }
+        }.start();
+
+        mTimerRunning = true;
+//        mButtonStartPause.setText("pause");
+//        mButtonReset.setVisibility(View.INVISIBLE);
+    }
+
+    private void updateProgressBar() {
+        long sec = (mTimeLeftInMillis / 1000) % 60;
+        pbTest.setProgress((60 - (int) sec) * 100 / 60);
+
+    }
+
+    private void pauseTimer() {
+        myCountDownTimer.cancel();
+        mTimerRunning = false;
+//        mButtonStartPause.setText("Start");
+//        mButtonReset.setVisibility(View.VISIBLE);
+    }
+
 }
