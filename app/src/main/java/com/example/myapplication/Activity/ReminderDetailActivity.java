@@ -206,16 +206,16 @@ public class ReminderDetailActivity extends AppCompatActivity {
     //    Delete dialog
     private void showDeleteDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Xoa nhac nho")
-                .setMessage("Ban muon xoa nhac nho nay?")
-                .setPositiveButton("Xoa", new DialogInterface.OnClickListener() {
+                .setTitle("XÓA NHẮC NHỞ")
+                .setMessage("BẠN MUỐN XÓA NHẮC NHỞ NÀY?")
+                .setPositiveButton("ĐỒNG Ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         deleteReminder();
                         finish();
                     }
                 })
-                .setNegativeButton("Huy",null)
+                .setNegativeButton("HỦY BỎ",null)
                 .show();
     }
 }

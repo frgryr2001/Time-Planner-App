@@ -66,6 +66,10 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".Class.AlarmReceiver" />
+        <service android:name=".Class.AlarmSound"
+            android:enabled="true"/>
     </application>
 
 </manifest>

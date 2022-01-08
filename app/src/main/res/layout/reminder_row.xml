@@ -44,7 +44,8 @@
             android:textColor="@color/text_dark"/>
         <Switch
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:checked="true"/>
     </LinearLayout>
 
 </LinearLayout>

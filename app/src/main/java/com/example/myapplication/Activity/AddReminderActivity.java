@@ -3,7 +3,9 @@ package com.example.myapplication.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ReminderDurationSpinnerAdapter;
 import com.example.myapplication.Adapter.ReminderLoopSpinnerAdapter;
+import com.example.myapplication.Class.AlarmReceiver;
 import com.example.myapplication.Fragment.ReminderFragment;
 import com.example.myapplication.Object.ReminderClass;
 import com.example.myapplication.Object.ReminderDurationClass;
@@ -42,6 +45,9 @@ public class AddReminderActivity extends AppCompatActivity {
     private ImageButton ibBack, ibAddReminderSave;
     private EditText etAddReminderName;
     private Switch swAddReminderCapcha;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
+    private Calendar calendar;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reminderRef;
@@ -77,7 +83,34 @@ public class AddReminderActivity extends AppCompatActivity {
                 } else {
                     r.setCapcha(false);
                 }
+
+                // Thêm nhắc nhở
                 addReminder(r);
+
+                // Tạo âm thanh báo nhắc nhở
+                int notificationId = (int) (Math.random() * 999 + 1);
+                // Get hour and minute
+                int hour = Integer.parseInt(tvAddReminderTime.getText().toString().split(":")[0]);
+                int minute = Integer.parseInt(tvAddReminderTime.getText().toString().split(":")[1]);
+
+                // Set calendar
+                calendar.set(Calendar.HOUR_OF_DAY, hour);
+                calendar.set(Calendar.MINUTE, minute);
+
+                // Intent
+                Intent intent = new Intent(AddReminderActivity.this, AlarmReceiver.class);
+                intent.putExtra("notificationId", notificationId);
+                intent.putExtra("action", "on");
+                intent.putExtra("name", etAddReminderName.getText().toString());
+
+                // PendingIntent
+                pendingIntent = PendingIntent.getBroadcast(
+                        AddReminderActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+                );
+
+                // Set Alarm
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
                 finish();
             }
         });
@@ -92,7 +125,6 @@ public class AddReminderActivity extends AppCompatActivity {
                 selectTime();
             }
         });
-
 
         // Xử lý sự kiện click Date Picker -> chọn date
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
@@ -118,6 +150,8 @@ public class AddReminderActivity extends AppCompatActivity {
         ibAddReminderSave = findViewById(R.id.ibAddReminderSave);
         etAddReminderName = findViewById(R.id.etAddReminderName);
         swAddReminderCapcha = findViewById(R.id.swAddReminderCapcha);
+        calendar = Calendar.getInstance();
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
     }
 
     private void bindDataToSpinner() {
@@ -163,6 +197,7 @@ public class AddReminderActivity extends AppCompatActivity {
                 tvAddReminderTime.setText( selectedHour + ":" + selectedMinute);
             }
         }, hour, minute, true);//Yes 24 hour time
+
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
