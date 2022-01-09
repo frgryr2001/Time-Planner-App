@@ -36,7 +36,7 @@ import java.util.List;
 
 public class MisstionNewActivity extends AppCompatActivity {
     RadioButton rdbtn1,rdbtn2,rdbtn3;
-    TableRow rowNotes;
+    EditText tvNote;
     ImageButton ibSaveMissionNew,ibBackMission;
     EditText etMisssion;
     Spinner spinnerCate;
@@ -49,6 +49,7 @@ public class MisstionNewActivity extends AppCompatActivity {
     List<String> listSpinParentCate ;
     String userId = MainActivity.userId;
     String nameSpinner;
+    int priority = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +57,7 @@ public class MisstionNewActivity extends AppCompatActivity {
 
         init();
         changeTextClick();
-        OpenNoteActivity();
-        addMissionNew();
+
         ibBackMission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,13 +66,18 @@ public class MisstionNewActivity extends AppCompatActivity {
         });
 
         initFirebase();
-//        spinnerCate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                nameSpinner= String.valueOf(spinnerCate.getItemAtPosition(i));
-//            }
-//        });
+        spinnerCate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                nameSpinner= String.valueOf(spinnerCate.getItemAtPosition(i));
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        addMissionNew();
 
     }
 
@@ -131,7 +136,8 @@ public class MisstionNewActivity extends AppCompatActivity {
         rdbtn1 = findViewById(R.id.rdbtn1);
         rdbtn2 = findViewById(R.id.rdbtn2);
         rdbtn3 = findViewById(R.id.rdbtn3);
-        rowNotes = findViewById(R.id.rowNotes);
+        tvNote = findViewById(R.id.tvNote);
+        etMisssion = findViewById(R.id.etMisssion);
         ibSaveMissionNew = findViewById(R.id.ibSaveMissionNew);
         ibBackMission = findViewById(R.id.ibBackMission);
         lnCategoryMission = findViewById(R.id.lnCategoryMission);
@@ -141,34 +147,80 @@ public class MisstionNewActivity extends AppCompatActivity {
         rdbtn1.setTextColor(getResources().getColor(R.color.green));
         rdbtn2.setTextColor(getResources().getColor(R.color.yellow));
         rdbtn3.setTextColor(getResources().getColor(R.color.red));
-    }
-    private void OpenNoteActivity(){
-        rowNotes.setOnClickListener(new View.OnClickListener() {
+        rdbtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MisstionNewActivity.this , NotesActivity.class);
-                startActivity(intent);
+                priority = 1;
+                Toast.makeText(MisstionNewActivity.this, ""+priority, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        rdbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                priority = 2;
+                Toast.makeText(MisstionNewActivity.this, ""+priority, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        rdbtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                priority = 3;
+                Toast.makeText(MisstionNewActivity.this, ""+priority, Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void addMissionNew(){
 
         ibSaveMissionNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = "";
-                if (user != null) {
-                    uid = user.getUid();
-                }
-                if(!(uid).isEmpty()) {
-                    userRef = database.getReference(uid);
-                    MissionNewRef = userRef.child("Category");
-                    MissionClass m = new MissionClass("","Đi học",false,1);
-                    String id = MissionNewRef.push().getKey();
-                    m.setId(id);
-                    MissionNewRef.child(id).setValue(m);
-                    MissionNewRef.child("-MsVnL4wAX4haJrFYJOb").child("MissionNew").child(m.getId()).setValue(m);
+                if(!(userId).isEmpty()) {
+                    userRef = database.getReference(userId);
+                    CategoryRef = userRef.child("Category");
+                    CategoryRef.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
+                            ArrayList<MissionClass> listMiss;
+                            if(p.getName().equals(nameSpinner)){
+                                listMiss = new ArrayList<>();
+                                MissionClass m = new MissionClass(
+                                        "",
+                                        etMisssion.getText().toString().trim(),
+                                        false,
+                                        priority,
+                                        tvNote.getText().toString().trim()
+                                );
+                                listMiss.add(m);
+                                p.setMissions(listMiss);
+                                CategoryRef.child(p.getId()).setValue(p);
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
         });

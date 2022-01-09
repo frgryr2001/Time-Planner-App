@@ -210,14 +210,13 @@
             android:layout_marginRight="12dp"
             app:srcCompat="@drawable/ic_baseline_edit_note_24" />
 
-        <TextView
+        <EditText
             android:id="@+id/tvNote"
             android:layout_width="match_parent"
-            android:text="Thêm ghi chú"
+            android:text=""
             android:gravity="center_vertical"
             android:paddingLeft="10sp"
             android:textSize="18sp"
-
             android:textColor="@color/text_dark"
             android:layout_height="60dp" />
 

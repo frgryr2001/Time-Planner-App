@@ -246,11 +246,11 @@ public class CategoryFragment extends Fragment {
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
                 ParentCategoryClass p = (ParentCategoryClass)adapter.getGroup(i);
 
-//                p.getMissions().forEach((element) -> {
-//                    listMission.add(element);
-//                });
-//                adapterMission.notifyDataSetChanged();
-                Toast.makeText(getContext(), ""+p, Toast.LENGTH_SHORT).show();
+                p.getMissions().forEach((element) -> {
+                    listMission.add(element);
+                });
+                adapterMission.notifyDataSetChanged();
+                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
                 drawerLayout.openDrawer(GravityCompat.END);
                 return true;
             }
