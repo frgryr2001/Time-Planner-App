@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         btnLoginFb.setOnClickListener(view -> {
-            LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email","public_profile"));
+            LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile"));
             LoginManager.getInstance().registerCallback(mCallbackManager,
                     new FacebookCallback<LoginResult>() {
                         @Override
@@ -196,3 +196,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
+
+//https://github.com/stevdza-san/Privacy-Policy-SMS-Prankster-/blob/master/Privacy%20Policy
+//https://www.freeprivacypolicy.com/live/28717270-66c6-4fb1-8fb8-c0a7083c75d8

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottomNav);
         mViewPager = findViewById(R.id.viewPager);
         mViewPager.setPagingEnable(false);
-        btnLogOut = findViewById(R.id.btnLogOut);
+      //  btnLogOut = findViewById(R.id.btnLogOut);
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -80,12 +80,7 @@ public class MainActivity extends AppCompatActivity {
         if(!userId.isEmpty()) {
             userRef = database.getReference(userId);
             reminderRef = userRef.child("Reminders");
-//            userRef.child("Categories").setValue("Hello category");
-//            ReminderClass r = new ReminderClass("0", "r1", "9:30", "1/1/2020", false, 1, 1, false);
-//            String id = reminderRef.push().getKey();
-//            r.setId(id);
-//            reminderRef.child(id).setValue(r);
-//            userRef.child("Reminders").child(r.getId()).setValue(r);
+
         }
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -151,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Đăng xuất
-        btnLogOut.setOnClickListener(view -> {
+        /*btnLogOut.setOnClickListener(view -> {
             mGoogleSignInClient.signOut();
             mAuth.signOut();
             FacebookSdk.sdkInitialize(MainActivity.this);
@@ -160,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
-        });
+        });*/
     }
 
     // Lấy dữ liệu

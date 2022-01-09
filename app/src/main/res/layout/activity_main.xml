@@ -7,19 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
-    <Button
+    <!--<Button
         android:id="@+id/btnLogOut"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:backgroundTint="@color/purple_500"
         android:textColor="#fff"
-        android:text="Đăng xuất" />
+        android:text="Đăng xuất" />-->
 
     <com.example.myapplication.ViewPager.CustomViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNav"/>
+        android:layout_above="@+id/bottomNav"
+        android:layout_marginBottom="1dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

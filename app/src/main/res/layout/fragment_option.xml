@@ -7,19 +7,109 @@
     android:orientation="vertical"
     tools:context=".Fragment.OptionFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textSize="20sp"
-        android:textColor="@color/text_dark"
-        android:gravity="center_vertical"
-        android:text="abc@gmail.com"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textColor="@color/primary"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Tài khoản"/>
+
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_dark"
+            android:gravity="center_vertical"
+            android:text="abc@gmail.com"/>
+
+
+
+        <TextView
+                android:id="@+id/tvUserEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textSize="18sp"
+                android:textColor="@color/text_dark"
+                android:gravity="center_vertical"
+                android:text="abc@gmail.com"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="20dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Thông tin"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/option"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="12dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_dark"
+                android:text="Hướng dẫn"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/option"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="12dp"
+                android:textColor="@color/text_dark"
+                android:gravity="center_vertical"
+                android:text="Về chúng tôi"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -73,23 +163,8 @@
                 android:textColor="@color/text_dark"
                 android:text="Dữ liệu"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/primary"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="Thông tin"/>
-
         <LinearLayout
+            android:id="@+id/lyLogout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -103,30 +178,13 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:layout_marginHorizontal="12dp"
                 android:gravity="center_vertical"
-                android:textColor="@color/text_dark"
-                android:text="Hướng dẫn"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/option"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:layout_marginHorizontal="12dp"
                 android:textColor="@color/text_dark"
-                android:gravity="center_vertical"
-                android:text="Về chúng tôi"/>
+                android:text="Đăng xuất"/>
         </LinearLayout>
     </LinearLayout>
+
+
 
 </LinearLayout>
