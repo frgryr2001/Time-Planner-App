@@ -104,6 +104,7 @@ public class AddChildCategoryActivity extends AppCompatActivity {
                             ArrayList<ChildCategoryClass> lstParentCateTemp;
                             if(p.getName().equals(nameSpinner)){
                                 lstParentCateTemp = new ArrayList<>();
+                                lstParentCateTemp = p.getChildCategories();
                                 ChildCategoryClass childCate = new ChildCategoryClass(
                                         //String.valueOf(size),
                                         "1",
@@ -112,8 +113,10 @@ public class AddChildCategoryActivity extends AppCompatActivity {
                                         colorPick,new ArrayList<MissionClass>()
                                         ,new ArrayList<ScheduleClass>());
                                 lstParentCateTemp.add(childCate);
+
                                 p.setChildCategories(lstParentCateTemp);
                                 CategoryRef.child(p.getId()).setValue(p);
+                                finish();
                             }
                         }
 

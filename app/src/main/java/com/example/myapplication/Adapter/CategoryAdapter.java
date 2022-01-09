@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,6 +81,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         ibtnVert.setFocusable(false);
 //
         ImageButton ivGroupIndicator = view.findViewById(R.id.ivGroupIndicator);
+        ImageView ivIcon = view.findViewById(R.id.ivIcon);
 //       Sự kiện Click mở rộng danh mục
 
         ivGroupIndicator.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +103,10 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         tvNameCategory.setText(p.getName());
         if(p.getColor() == 0){
             tvNameCategory.setTextColor(Color.BLACK);
+            ivIcon.setColorFilter(Color.BLACK);
         }else{
             tvNameCategory.setTextColor(p.getColor());
+            ivIcon.setColorFilter(p.getColor());
         }
         LinearLayout layout_item = view.findViewById(R.id.layout_item);
 //        layout_item.setOnClickListener(new View.OnClickListener() {
@@ -125,13 +129,15 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         }
         ImageButton ibtnVertChild = view.findViewById(R.id.ibtnVertChild);
         ibtnVertChild.setFocusable(false);
-
+        ImageView ivIconChild = view.findViewById(R.id.ivIconChild);
         TextView tvNameCategoryChild = view.findViewById(R.id.tvNameCategoryChild);
         tvNameCategoryChild.setText(c.getName());
         if(c.getColor() == 0){
             tvNameCategoryChild.setTextColor(Color.BLACK);
+            ivIconChild.setColorFilter(Color.BLACK);
         }else{
             tvNameCategoryChild.setTextColor(c.getColor());
+            ivIconChild.setColorFilter(c.getColor());
         }
 
         return view;

@@ -96,6 +96,7 @@ public class AddFatherCategoryActivity extends AppCompatActivity {
                     p.setId(id);
                     CategoryRef.child(id).setValue(p);
                     userRef.child("Category").child(p.getId()).setValue(p);
+                    finish();
                 }
             }
         });
