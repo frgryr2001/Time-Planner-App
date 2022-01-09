@@ -180,9 +180,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-//                mButtonStartPause.setText("Start");
-//                mButtonStartPause.setVisibility(View.INVISIBLE);
-//                mButtonReset.setVisibility(View.VISIBLE);
             }
         }.start();
 
