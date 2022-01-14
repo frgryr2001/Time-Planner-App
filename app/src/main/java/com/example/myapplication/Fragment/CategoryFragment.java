@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -135,7 +136,7 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_category, container, false);
         init();
-
+        setHasOptionsMenu(true); // tạo option
         // Tạo ra toolbar
         ((AppCompatActivity)getActivity()).setSupportActionBar(CategoryToolbar);
         if (((AppCompatActivity)getActivity()).getSupportActionBar() != null) {
@@ -281,7 +282,30 @@ public class CategoryFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
 
     }
-//    private void showList() {
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int count = adapter.getGroupCount();
+        switch (item.getItemId()) {
+            case R.id.openCate:
+
+                for (int i = 0; i < count; i++) {
+                    exListview.expandGroup(i);
+                }
+                break;
+            case R.id.closeCate:
+
+                for (int i = 0; i < count; i++) {
+                    exListview.collapseGroup(i);
+                }
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //    private void showList() {
 //        parentList = new ArrayList<>();
 //
 //        initFirebase();
@@ -367,7 +391,7 @@ public class CategoryFragment extends Fragment {
                     parentList.set(index, p);
                     childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
                     adapter.notifyDataSetChanged();
-
+                  //  adapterMission.notifyDataSetChanged();
 
                 }
 
@@ -400,4 +424,6 @@ public class CategoryFragment extends Fragment {
 
         }
     }
+
+
 }

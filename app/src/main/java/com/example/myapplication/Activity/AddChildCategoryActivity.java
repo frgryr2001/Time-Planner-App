@@ -107,7 +107,7 @@ public class AddChildCategoryActivity extends AppCompatActivity {
                                 lstParentCateTemp = p.getChildCategories();
                                 ChildCategoryClass childCate = new ChildCategoryClass(
                                         //String.valueOf(size),
-                                        "1",
+                                        String.valueOf((p.getChildCategories()).size()),
                                         etCate.getText().toString().trim(),
                                         R.drawable.ic_baseline_folder_24,
                                         colorPick,new ArrayList<MissionClass>()
