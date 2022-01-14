@@ -95,6 +95,7 @@ public class CategoryFragment extends Fragment {
     private ImageButton ibAddFatherCate, ibAddChildCate;
     static String userId = MainActivity.userId;
     static ParentCategoryClass parent;
+    static ChildCategoryClass childCa;
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -142,7 +143,7 @@ public class CategoryFragment extends Fragment {
         if (((AppCompatActivity)getActivity()).getSupportActionBar() != null) {
             ((AppCompatActivity)getActivity()).setTitle("Các danh mục");
         }
-       // Data ExpandableListView
+        // Data ExpandableListView
 //        showList();
 
         initFirebase();
@@ -155,7 +156,7 @@ public class CategoryFragment extends Fragment {
 
         adapter.notifyDataSetChanged();
 
-       // Mở slide bar khi click
+        // Mở slide bar khi click
         openNavClickParent();
         openNavClickChild();
 
@@ -216,13 +217,14 @@ public class CategoryFragment extends Fragment {
         userRef = database.getReference(userId);
         CategoryRef = userRef.child("Category");
 //        CategoryRef.child(parent.getId()).child();
-        CategoryRef.child(parent.getId()).child("missions").child(s.getId()).removeValue();
+        s.setStatus(true);
+        CategoryRef.child(parent.getId()).child("missions").child(s.getId()).setValue(s);
         listMission.remove(listMission.indexOf(s));
         adapterMission.notifyDataSetChanged();
 //        Dang o day ----------------------------------------------------------------------------------
-        CategoryRef.child(parent.getId()).child("missionsFinish").child(s.getId()).setValue(s);
-        child.add(s);
-        adapterMissonFinished.notifyDataSetChanged();
+//        CategoryRef.child(parent.getId()).child("missionsFinish").child(s.getId()).setValue(s);
+//        child.add(s);
+//        adapterMissonFinished.notifyDataSetChanged();
 
     }
 
@@ -248,8 +250,17 @@ public class CategoryFragment extends Fragment {
         exListview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+//                childCa = (ChildCategoryClass)adapter.getChild(i,i1);
+//                listMission = childCa.getMissions();
+//                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
+//                while (listMission.remove(null)) {
+//                }
+//                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
+//                adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
+//                lvMission.setAdapter(adapterMission);
+//                adapterMission.notifyDataSetChanged();
                 drawerLayout.openDrawer(GravityCompat.END);
-                return false;
+                return true;
             }
         });
     }
@@ -306,13 +317,49 @@ public class CategoryFragment extends Fragment {
     }
 
 
+
     private void showListMission() {
 
         MissionParentList = new ArrayList<>();
         MissionChildList = new HashMap<String,List<MissionClass>>();
 
         MissionParentList.add("Đã hoàn thành1");
+        userRef = database.getReference(userId);
+        CategoryRef = userRef.child("Category");
+        CategoryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
+                p.getMissions().forEach(e -> {
+                    if(e.isStatus()){
+                        child.add(e);
+                        adapterMissonFinished.notifyDataSetChanged();
+                    }
+                });
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        Toast.makeText(getContext(), ""+child, Toast.LENGTH_SHORT).show();
         MissionChildList.put(MissionParentList.get(0),child);
 
     }
@@ -358,7 +405,7 @@ public class CategoryFragment extends Fragment {
                     parentList.set(index, p);
                     childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
                     adapter.notifyDataSetChanged();
-                  //  adapterMission.notifyDataSetChanged();
+                    //  adapterMission.notifyDataSetChanged();
 
                 }
 
