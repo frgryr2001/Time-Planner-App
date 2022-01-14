@@ -305,39 +305,6 @@ public class CategoryFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    //    private void showList() {
-//        parentList = new ArrayList<>();
-//
-//        initFirebase();
-//
-//
-////        parentList.add(new ParentCategoryClass(
-////                "1",
-////                "Nhan",
-////                R.drawable.ic_baseline_folder_24,
-////                123123,
-////                new ArrayList<ChildCategoryClass>(),
-////                new ArrayList<MissionClass>(),
-////                new ArrayList<ScheduleClass>()
-////        ));
-////
-////
-////        List<ChildCategoryClass> child = new ArrayList<>();
-////        ChildCategoryClass c = new ChildCategoryClass("",
-////                "213",
-////                R.drawable.ic_baseline_folder_24,
-////                123, new ArrayList<MissionClass>()
-////                , new ArrayList<ScheduleClass>());
-////        child.add(c);
-//
-//        Toast.makeText(getContext(), "parentList"+parentList, Toast.LENGTH_SHORT).show();
-//        parentList.forEach((element) -> {
-//            childList.put(element,element.getChildCategories());
-//        });
-//
-//
-//    }
-
 
     private void showListMission() {
 

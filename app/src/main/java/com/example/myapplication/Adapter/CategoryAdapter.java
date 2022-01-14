@@ -227,8 +227,12 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     // xóa danh mục con
     private void removeChildCate(ParentCategoryClass p, ChildCategoryClass c){
 
-        p.getChildCategories().remove(Integer.parseInt(c.getId()));
-
+       // p.getChildCategories().remove(Integer.parseInt(c.getId()));
+        for(int i = 0; i<p.getChildCategories().size(); i++){
+            if(p.getChildCategories().get(i).getId().equals(c.getId())){
+                p.getChildCategories().remove(i);
+            }
+        }
         userRef = database.getReference(userId);
         CategoryRef = userRef.child("Category");
         CategoryRef.child(p.getId()).setValue(p);
