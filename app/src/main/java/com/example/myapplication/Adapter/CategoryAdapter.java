@@ -217,9 +217,6 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     }
 
 
-
-
- 
     // Xóa danh mục cha
     private void removeParentCate(ParentCategoryClass p){
         userRef = database.getReference(userId);
@@ -237,4 +234,8 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         CategoryRef.child(p.getId()).setValue(p);
         Toast.makeText(mContext, "Xóa danh mục " + c.getName().toString() + " thành công!", Toast.LENGTH_SHORT).show();
     }
+
+
+
+
 }
