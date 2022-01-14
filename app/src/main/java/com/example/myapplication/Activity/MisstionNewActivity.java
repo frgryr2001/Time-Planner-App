@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 //import com.example.myapplication.Fragment.BottomSheetDialog;
+import com.example.myapplication.Object.ChildCategoryClass;
 import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.Object.ParentCategoryClass;
 import com.example.myapplication.R;
@@ -50,6 +51,8 @@ public class MisstionNewActivity extends AppCompatActivity {
     String userId = MainActivity.userId;
     String nameSpinner;
     int priority = 0;
+    ArrayList<MissionClass> listMiss = new ArrayList<>();;
+    MissionClass m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,21 +187,44 @@ public class MisstionNewActivity extends AppCompatActivity {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                             ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
-                            ArrayList<MissionClass> listMiss;
+
+
+                            m = new MissionClass(
+                                    String.valueOf((p.getMissions()).size()),
+                                    etMisssion.getText().toString().trim(),
+                                    false,
+                                    priority,
+                                    tvNote.getText().toString().trim()
+                            );
                             if(p.getName().equals(nameSpinner)){
-                                listMiss = new ArrayList<>();
-                                MissionClass m = new MissionClass(
-                                        "",
-                                        etMisssion.getText().toString().trim(),
-                                        false,
-                                        priority,
-                                        tvNote.getText().toString().trim()
-                                );
+                                listMiss = p.getMissions();
                                 listMiss.add(m);
                                 p.setMissions(listMiss);
                                 CategoryRef.child(p.getId()).setValue(p);
-                                finish();
+                            }else{
+
+//                                p.getChildCategories().forEach(element -> {
+//                                    if(element.getName().equals(nameSpinner)){
+//                                        listMiss.add(m);
+//                                        element.setMissions(listMiss);
+//                                        CategoryRef.child(p.getId()).child("childCategories")
+//                                                .child(element.getId()).setValue(element);
+//
+//                                    }
+//
+//                                });
+                                for(int i = 0 ; i < p.getChildCategories().size();i++){
+                                    ChildCategoryClass c = p.getChildCategories().get(i);
+                                    if(c.getName().equals(nameSpinner)){
+                                        listMiss.add(m);
+                                        c.setMissions(listMiss);
+                                        CategoryRef.child(p.getId()).child("childCategories")
+                                                .child(c.getId()).setValue(c);
+                                        break;
+                                    }
+                                }
                             }
+
                         }
 
                         @Override
@@ -222,8 +248,11 @@ public class MisstionNewActivity extends AppCompatActivity {
                         }
                     });
                 }
+                onBackPressed();
             }
-        });
+        }
 
+        );
+//
     }
 }

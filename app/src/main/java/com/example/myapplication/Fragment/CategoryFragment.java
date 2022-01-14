@@ -26,6 +26,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Activity.MisstionNewActivity;
 import com.example.myapplication.Activity.AddChildCategoryActivity;
 import com.example.myapplication.Activity.AddFatherCategoryActivity;
@@ -72,7 +73,7 @@ public class CategoryFragment extends Fragment {
     private Toolbar CategoryToolbar;
     DrawerLayout drawerLayout;
     CategoryAdapter adapter;
-    private ExpandableListView exListview;
+    static private ExpandableListView exListview;
     private List<ParentCategoryClass> parentList = new ArrayList<>();
     private HashMap<ParentCategoryClass,List<ChildCategoryClass>> childList
             = new HashMap<ParentCategoryClass,List<ChildCategoryClass>>();
@@ -87,11 +88,12 @@ public class CategoryFragment extends Fragment {
     private HashMap<String,List<String>> MissionChildList;
     private ExpandableListView elvMissionFinish;
     //private FloatingActionButton btnMoveToAddScheduleActivityDaily;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference userRef;
-    private DatabaseReference CategoryRef;
+    static private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    static private DatabaseReference userRef;
+    static private DatabaseReference CategoryRef;
     private ImageButton ibAddFatherCate, ibAddChildCate;
-
+    static String userId = MainActivity.userId;
+    static ParentCategoryClass parent;
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -184,15 +186,16 @@ public class CategoryFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MisstionNewActivity.class);
                 startActivity(intent);
+                drawerLayout.closeDrawers();
 
             }
         });
         // Lấy dữ liệu class Mission
 //        getDataMission();
         // Adapter của Listview
-        adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
-        lvMission.setAdapter(adapterMission);
-        adapterMission.notifyDataSetChanged();
+//        adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
+//        lvMission.setAdapter(adapterMission);
+//        adapterMission.notifyDataSetChanged();
         //Danh sách nhiệm vụ hoàn thành
         showListMission();
         adapterMissonFinished = new MissionFinishedAdapter(getContext(),MissionParentList,MissionChildList);
@@ -202,13 +205,19 @@ public class CategoryFragment extends Fragment {
         elvMissionFinish.expandGroup(0);
         adapterMissonFinished.notifyDataSetChanged();
         // end
+
         return mView;
     }
 
 
 
-    public static void removeMission(int position) {
-        listMission.remove(position);
+    public static void removeMission(MissionClass s) {
+        userRef = database.getReference(userId);
+        CategoryRef = userRef.child("Category");
+//        CategoryRef.child(parent.getId()).child();
+        Toast.makeText(adapterMission.getContext(), ""+parent, Toast.LENGTH_SHORT).show();
+        CategoryRef.child(parent.getId()).child("missions").child(s.getId()).removeValue();
+        listMission.remove(listMission.indexOf(s));
         adapterMission.notifyDataSetChanged();
     }
 
@@ -244,18 +253,20 @@ public class CategoryFragment extends Fragment {
         exListview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
-                ParentCategoryClass p = (ParentCategoryClass)adapter.getGroup(i);
-
-                p.getMissions().forEach((element) -> {
-                    listMission.add(element);
-                });
+                parent = (ParentCategoryClass)adapter.getGroup(i);
+                listMission = parent.getMissions();
+                while (listMission.remove(null)) {
+                }
+//                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
+                adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
+                lvMission.setAdapter(adapterMission);
                 adapterMission.notifyDataSetChanged();
-                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
                 drawerLayout.openDrawer(GravityCompat.END);
                 return true;
             }
         });
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -332,11 +343,14 @@ public class CategoryFragment extends Fragment {
                     if (p != null) {
                         parentList.add(p);
                         childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
+
                         String key = snapshot.getKey();
                         mKeys.add(key);
                         for(int i=0; i < adapter.getGroupCount(); i++)
                             exListview.expandGroup(i);
                         adapter.notifyDataSetChanged();
+
+
                     }
                 }
 
@@ -353,6 +367,8 @@ public class CategoryFragment extends Fragment {
                     parentList.set(index, p);
                     childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
                     adapter.notifyDataSetChanged();
+                    adapterMission.notifyDataSetChanged();
+
                 }
 
                 @Override
@@ -368,6 +384,7 @@ public class CategoryFragment extends Fragment {
                         mKeys.remove(index);
                     }
                     adapter.notifyDataSetChanged();
+
                 }
 
                 @Override

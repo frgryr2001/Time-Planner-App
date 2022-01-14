@@ -45,15 +45,18 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.rbtnMission.setChecked(m.isStatus());
-        viewHolder.tvMission.setText(m.getName());
-        viewHolder.rbtnMission.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CategoryFragment.removeMission(position);
-                m.setStatus(!m.isStatus());
-            }
-        });
+        if((m != null)){
+            viewHolder.rbtnMission.setChecked(m.isStatus());
+            viewHolder.tvMission.setText(m.getName());
+            viewHolder.rbtnMission.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CategoryFragment.removeMission(m);
+                    m.setStatus(!m.isStatus());
+                }
+            });
+        }
+
         return convertView;
     }
     private static class ViewHolder{
