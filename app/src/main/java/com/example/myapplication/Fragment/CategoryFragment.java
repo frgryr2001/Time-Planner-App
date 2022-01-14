@@ -270,7 +270,9 @@ public class CategoryFragment extends Fragment {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
                 parent = (ParentCategoryClass)adapter.getGroup(i);
-                listMission = parent.getMissions();
+                parent.getMissions().forEach(e -> {
+                    listMission.add(e);
+                });
                 while (listMission.remove(null)) {
                 }
 //                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();

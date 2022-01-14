@@ -47,7 +47,7 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         if((m != null)){
-            viewHolder.rbtnMission.setChecked(m.isStatus());
+            viewHolder.rbtnMission.setChecked(false);
             if(m.getPriority() == 1){
                 viewHolder.tvMission.setText("* "+m.getName());
                 viewHolder.tvMission.setTextColor(Color.GREEN);
