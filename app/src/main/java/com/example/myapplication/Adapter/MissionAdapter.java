@@ -1,6 +1,7 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +48,20 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
         }
         if((m != null)){
             viewHolder.rbtnMission.setChecked(m.isStatus());
-            viewHolder.tvMission.setText(m.getName());
+            if(m.getPriority() == 1){
+                viewHolder.tvMission.setText("* "+m.getName());
+                viewHolder.tvMission.setTextColor(Color.GREEN);
+            }else if (m.getPriority() == 2){
+                viewHolder.tvMission.setText("! "+m.getName());
+                viewHolder.tvMission.setTextColor(Color.YELLOW);
+            }else{
+                viewHolder.tvMission.setText("!! "+m.getName());
+                viewHolder.tvMission.setTextColor(Color.RED);
+            }
+
             viewHolder.rbtnMission.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    m.setStatus(true);
                     CategoryFragment.removeMission(m);
                 }
             });
