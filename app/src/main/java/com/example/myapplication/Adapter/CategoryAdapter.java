@@ -3,6 +3,7 @@ package com.example.myapplication.Adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -10,12 +11,17 @@ import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Object.ChildCategoryClass;
+import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.Object.ParentCategoryClass;
 import com.example.myapplication.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +30,12 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     private Context mContext;
     private List<ParentCategoryClass> listCategory;
     private HashMap<ParentCategoryClass,List<ChildCategoryClass>> listChildCategory;
+
+    static private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    static private DatabaseReference userRef;
+    static private DatabaseReference CategoryRef;
+    static String userId = MainActivity.userId;
+
     public CategoryAdapter(Context mContext, List<ParentCategoryClass> listCategory, HashMap<ParentCategoryClass, List<ChildCategoryClass>> listChildCategory) {
         this.mContext = mContext;
         this.listCategory = listCategory;
@@ -79,6 +91,12 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         // Tắt sự kiện click focus row của image button
         ImageButton ibtnVert = view.findViewById(R.id.ibtnVert);
         ibtnVert.setFocusable(false);
+        ibtnVert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPickMenuParent(view,p);
+            }
+        });
 //
         ImageButton ivGroupIndicator = view.findViewById(R.id.ivGroupIndicator);
         ImageView ivIcon = view.findViewById(R.id.ivIcon);
@@ -121,6 +139,8 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         ChildCategoryClass c =(ChildCategoryClass) getChild(i,i1);
+        // cha của thằng con
+        ParentCategoryClass p = (ParentCategoryClass) getGroup(i);
         if (view == null){
             LayoutInflater inflater = (LayoutInflater)this.mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -129,6 +149,12 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         }
         ImageButton ibtnVertChild = view.findViewById(R.id.ibtnVertChild);
         ibtnVertChild.setFocusable(false);
+        ibtnVertChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPickMenuChild(view, p, c);
+            }
+        });
         ImageView ivIconChild = view.findViewById(R.id.ivIconChild);
         TextView tvNameCategoryChild = view.findViewById(R.id.tvNameCategoryChild);
         tvNameCategoryChild.setText(c.getName());
@@ -146,5 +172,69 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+
+
+    // mở menu của parent
+    private void showPickMenuParent(View anchor, ParentCategoryClass  p) {
+        PopupMenu popupMenu = new PopupMenu(mContext, anchor);
+        popupMenu.inflate(R.menu.category_option);
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.deleteCate:
+                       // Toast.makeText(mContext, p.getName().toString(), Toast.LENGTH_SHORT).show();
+                        removeParentCate(p);
+                        break;
+
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+    // mở menu của child
+    private void showPickMenuChild(View anchor, ParentCategoryClass p, ChildCategoryClass c) {
+        PopupMenu popupMenu = new PopupMenu(mContext, anchor);
+        popupMenu.inflate(R.menu.category_option);
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.deleteCate:
+                       // Toast.makeText(mContext, p.getName().toString() + " " +c.getName().toString(), Toast.LENGTH_SHORT).show();
+                        removeChildCate(p,c);
+                        break;
+
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
+
+
+
+ 
+    // Xóa danh mục cha
+    private void removeParentCate(ParentCategoryClass p){
+        userRef = database.getReference(userId);
+        CategoryRef = userRef.child("Category");
+        CategoryRef.child(p.getId()).removeValue();
+        Toast.makeText(mContext, "Xóa danh mục " + p.getName().toString() + " thành công!", Toast.LENGTH_SHORT).show();
+    }
+    // xóa danh mục con
+    private void removeChildCate(ParentCategoryClass p, ChildCategoryClass c){
+
+        p.getChildCategories().remove(Integer.parseInt(c.getId()));
+
+        userRef = database.getReference(userId);
+        CategoryRef = userRef.child("Category");
+        CategoryRef.child(p.getId()).setValue(p);
+        Toast.makeText(mContext, "Xóa danh mục " + c.getName().toString() + " thành công!", Toast.LENGTH_SHORT).show();
     }
 }

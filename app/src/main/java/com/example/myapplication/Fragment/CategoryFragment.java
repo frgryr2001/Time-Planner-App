@@ -135,7 +135,7 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_category, container, false);
         init();
-
+        setHasOptionsMenu(true); // tạo option
         // Tạo ra toolbar
         ((AppCompatActivity)getActivity()).setSupportActionBar(CategoryToolbar);
         if (((AppCompatActivity)getActivity()).getSupportActionBar() != null) {
@@ -367,7 +367,7 @@ public class CategoryFragment extends Fragment {
                     parentList.set(index, p);
                     childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
                     adapter.notifyDataSetChanged();
-                    adapterMission.notifyDataSetChanged();
+                  //  adapterMission.notifyDataSetChanged();
 
                 }
 
@@ -400,4 +400,6 @@ public class CategoryFragment extends Fragment {
 
         }
     }
+
+
 }
