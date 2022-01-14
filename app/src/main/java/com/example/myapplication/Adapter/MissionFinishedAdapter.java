@@ -20,9 +20,9 @@ import java.util.List;
 public class MissionFinishedAdapter extends BaseExpandableListAdapter {
     private Context mContext;
     private List<String> lstMissionFinish;
-    private HashMap<String,List<String>> lstMissionFinishChild;
+    private HashMap<String,List<MissionClass>> lstMissionFinishChild;
 
-    public MissionFinishedAdapter(Context mContext, List<String> lstMissionFinish, HashMap<String, List<String>> lstMissionFinishChild) {
+    public MissionFinishedAdapter(Context mContext, List<String> lstMissionFinish, HashMap<String, List<MissionClass>> lstMissionFinishChild) {
         this.mContext = mContext;
         this.lstMissionFinish = lstMissionFinish;
         this.lstMissionFinishChild = lstMissionFinishChild;
@@ -91,7 +91,7 @@ public class MissionFinishedAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        String title =(String) getChild(i,i1);
+        MissionClass m =(MissionClass) getChild(i,i1);
 
         if (view == null){
             LayoutInflater inflater = (LayoutInflater)this.mContext
@@ -100,7 +100,7 @@ public class MissionFinishedAdapter extends BaseExpandableListAdapter {
         }
         RadioButton rbtnMissionChild = view.findViewById(R.id.rbtnMissionChild);
         TextView tvMissionChild = view.findViewById(R.id.tvMissionChild);
-        tvMissionChild.setText(title);
+        tvMissionChild.setText(m.getName());
         return view;
     }
 

@@ -82,10 +82,10 @@ public class CategoryFragment extends Fragment {
     static ListView lvMission;
     static List<MissionClass> listMission = new ArrayList<>();
     static MissionAdapter adapterMission;
-
-    MissionFinishedAdapter adapterMissonFinished;
+    static List<MissionClass> child = new ArrayList<>();
+    static MissionFinishedAdapter adapterMissonFinished;
     private List<String> MissionParentList;
-    private HashMap<String,List<String>> MissionChildList;
+    private HashMap<String,List<MissionClass>> MissionChildList;
     private ExpandableListView elvMissionFinish;
     //private FloatingActionButton btnMoveToAddScheduleActivityDaily;
     static private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -215,10 +215,14 @@ public class CategoryFragment extends Fragment {
         userRef = database.getReference(userId);
         CategoryRef = userRef.child("Category");
 //        CategoryRef.child(parent.getId()).child();
-        Toast.makeText(adapterMission.getContext(), ""+parent, Toast.LENGTH_SHORT).show();
         CategoryRef.child(parent.getId()).child("missions").child(s.getId()).removeValue();
         listMission.remove(listMission.indexOf(s));
         adapterMission.notifyDataSetChanged();
+//        Dang o day ----------------------------------------------------------------------------------
+        CategoryRef.child(parent.getId()).child("missionsFinish").child(s.getId()).setValue(s);
+        child.add(s);
+        adapterMissonFinished.notifyDataSetChanged();
+
     }
 
     private void init(){
@@ -314,13 +318,9 @@ public class CategoryFragment extends Fragment {
     private void showListMission() {
 
         MissionParentList = new ArrayList<>();
-        MissionChildList = new HashMap<String,List<String>>();
+        MissionChildList = new HashMap<String,List<MissionClass>>();
 
         MissionParentList.add("Đã hoàn thành1");
-        List<String> child = new ArrayList<>();
-        child.add("Đi học1");
-        child.add("Đi chơi1");
-        child.add("Đi đá banh1");
 
         MissionChildList.put(MissionParentList.get(0),child);
 
@@ -367,7 +367,7 @@ public class CategoryFragment extends Fragment {
                     parentList.set(index, p);
                     childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
                     adapter.notifyDataSetChanged();
-                    adapterMission.notifyDataSetChanged();
+
 
                 }
 

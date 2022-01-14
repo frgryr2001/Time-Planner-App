@@ -51,8 +51,8 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
             viewHolder.rbtnMission.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    m.setStatus(true);
                     CategoryFragment.removeMission(m);
-                    m.setStatus(!m.isStatus());
                 }
             });
         }
