@@ -260,7 +260,7 @@ public class CategoryFragment extends Fragment {
                 flag =false;
                 listMission = new ArrayList<>();
                 listMission = childCa.getMissions();
-                Toast.makeText(getContext(), ""+childCa.getMissions(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), ""+childCa.getMissions(), Toast.LENGTH_SHORT).show();
                 while (listMission.remove(null)) {
                 }
 //                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
@@ -340,7 +340,7 @@ public class CategoryFragment extends Fragment {
         MissionParentList.add("Đã hoàn thành1");
         userRef = database.getReference(userId);
         CategoryRef = userRef.child("Category");
-        Toast.makeText(getContext(), ""+child, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), ""+child, Toast.LENGTH_SHORT).show();
         MissionChildList.put(MissionParentList.get(0),child);
 
     }
@@ -372,8 +372,8 @@ public class CategoryFragment extends Fragment {
 
                         String key = snapshot.getKey();
                         mKeys.add(key);
-                        for(int i=0; i < adapter.getGroupCount(); i++)
-                            exListview.expandGroup(i);
+//                        for(int i=0; i < adapter.getGroupCount(); i++)
+//                            exListview.expandGroup(i);
                         adapter.notifyDataSetChanged();
 
 
