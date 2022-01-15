@@ -102,12 +102,19 @@ public class AddChildCategoryActivity extends AppCompatActivity {
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                             ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
                             ArrayList<ChildCategoryClass> lstParentCateTemp;
+
+                            int stt = 0;
+                            int size = p.getChildCategories().size();
+                            if(p.getChildCategories().size() !=0){
+                                stt = Integer.parseInt(p.getChildCategories().get(size - 1).getId()) +1;
+                            }
                             if(p.getName().equals(nameSpinner)){
                                 lstParentCateTemp = new ArrayList<>();
                                 lstParentCateTemp = p.getChildCategories();
                                 ChildCategoryClass childCate = new ChildCategoryClass(
                                         //String.valueOf(size),
-                                        "1",
+                                        //String.valueOf((p.getChildCategories()).size())
+                                        String.valueOf(stt),
                                         etCate.getText().toString().trim(),
                                         R.drawable.ic_baseline_folder_24,
                                         colorPick,new ArrayList<MissionClass>()

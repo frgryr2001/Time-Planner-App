@@ -8,7 +8,7 @@ public class ChildCategoryClass {
     private String name;
     private int icon;
     private int color;
-    private ArrayList<MissionClass> missions;
+    private ArrayList<MissionClass> missions = new ArrayList<>();
     private ArrayList<ScheduleClass> activities;
 
     public ChildCategoryClass() {

@@ -14,6 +14,16 @@ public class ParentCategoryClass {
     private ArrayList<MissionClass> missions = new ArrayList<>();
     private ArrayList<ScheduleClass> activities = new ArrayList<>();
 
+    public ArrayList<MissionClass> getMissionsFinish() {
+        return missionsFinish;
+    }
+
+    public void setMissionsFinish(ArrayList<MissionClass> missionsFinish) {
+        this.missionsFinish = missionsFinish;
+    }
+
+    private ArrayList<MissionClass> missionsFinish = new ArrayList<>();
+
     public ParentCategoryClass() {
     }
     public ParentCategoryClass(String id, String name, int icon, int color){
@@ -22,7 +32,8 @@ public class ParentCategoryClass {
         this.icon = icon;
         this.color = color;
     }
-    public ParentCategoryClass(String id, String name, int icon, int color, ArrayList<ChildCategoryClass> childCategories, ArrayList<MissionClass> missions, ArrayList<ScheduleClass> activities) {
+    public ParentCategoryClass(String id, String name, int icon, int color, ArrayList<ChildCategoryClass> childCategories, ArrayList<MissionClass> missions, ArrayList<ScheduleClass> activities,
+                               ArrayList<MissionClass> missionsFinish) {
         this.id = id;
         this.name = name;
         this.icon = icon;

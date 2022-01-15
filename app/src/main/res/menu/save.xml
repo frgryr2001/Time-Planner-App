@@ -8,9 +8,9 @@
         android:icon="@drawable/ic_baseline_search_24"
         ></item>
     <item android:title="Mở rộng tất cả"
-        android:id="@+id/option"
+        android:id="@+id/openCate"
         ></item>
     <item android:title="Thu gọn tất cả"
-        android:id="@+id/option1"
+        android:id="@+id/closeCate"
         ></item>
 </menu>
