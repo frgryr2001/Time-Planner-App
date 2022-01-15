@@ -8,8 +8,8 @@
 
     <RelativeLayout
         android:id="@+id/scheduleItemLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="200px"
+        android:layout_height="200px">
         <ProgressBar
             android:id="@+id/pbScheduleBallonItem"
             style="?android:attr/progressBarStyleHorizontal"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="Test"
             android:textColor="@color/text_dark"
