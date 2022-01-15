@@ -1,7 +1,9 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.Activity.MainActivity;
+import com.example.myapplication.Activity.MisstionNewActivity;
 import com.example.myapplication.Fragment.CategoryFragment;
 import com.example.myapplication.Object.MissionClass;
 import com.example.myapplication.R;
@@ -58,7 +61,12 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
                 viewHolder.tvMission.setText("!! "+m.getName());
                 viewHolder.tvMission.setTextColor(Color.RED);
             }
-
+            viewHolder.tvMission.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickDetail(m);
+                }
+            });
             viewHolder.rbtnMission.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -68,6 +76,13 @@ public class MissionAdapter extends ArrayAdapter<MissionClass> {
         }
 
         return convertView;
+    }
+    private void onClickDetail(MissionClass m){
+        Intent i = new Intent(context, MisstionNewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_mission", m);
+        i.putExtras(bundle);
+        context.startActivity(i);
     }
     private static class ViewHolder{
         RadioButton rbtnMission;

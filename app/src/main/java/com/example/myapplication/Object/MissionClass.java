@@ -1,9 +1,10 @@
 package com.example.myapplication.Object;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MissionClass {
+public class MissionClass implements Serializable {
     private String id;
     private String name;
     private boolean status = false; // Trạng thái

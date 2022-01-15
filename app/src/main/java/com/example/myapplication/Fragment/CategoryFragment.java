@@ -96,6 +96,7 @@ public class CategoryFragment extends Fragment {
     static String userId = MainActivity.userId;
     static ParentCategoryClass parent;
     static ChildCategoryClass childCa;
+    static boolean flag;
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -218,13 +219,18 @@ public class CategoryFragment extends Fragment {
         CategoryRef = userRef.child("Category");
 //        CategoryRef.child(parent.getId()).child();
         s.setStatus(true);
-        CategoryRef.child(parent.getId()).child("missions").child(s.getId()).setValue(s);
+        if(flag){
+            CategoryRef.child(parent.getId()).child("missions").child(s.getId()).setValue(s);
+        }else{
+            CategoryRef.child(parent.getId()).child("childCategories").child(childCa.getId()).child("missions").child(s.getId()).setValue(s);
+        }
+
         listMission.remove(listMission.indexOf(s));
         adapterMission.notifyDataSetChanged();
 //        Dang o day ----------------------------------------------------------------------------------
 //        CategoryRef.child(parent.getId()).child("missionsFinish").child(s.getId()).setValue(s);
-//        child.add(s);
-//        adapterMissonFinished.notifyDataSetChanged();
+        child.add(s);
+        adapterMissonFinished.notifyDataSetChanged();
 
     }
 
@@ -250,15 +256,17 @@ public class CategoryFragment extends Fragment {
         exListview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-//                childCa = (ChildCategoryClass)adapter.getChild(i,i1);
-//                listMission = childCa.getMissions();
+                childCa = (ChildCategoryClass)adapter.getChild(i,i1);
+                flag =false;
+                listMission = new ArrayList<>();
+                listMission = childCa.getMissions();
+                Toast.makeText(getContext(), ""+childCa.getMissions(), Toast.LENGTH_SHORT).show();
+                while (listMission.remove(null)) {
+                }
 //                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
-//                while (listMission.remove(null)) {
-//                }
-//                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
-//                adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
-//                lvMission.setAdapter(adapterMission);
-//                adapterMission.notifyDataSetChanged();
+                adapterMission = new MissionAdapter(getContext(),R.layout.misson_row,listMission);
+                lvMission.setAdapter(adapterMission);
+                adapterMission.notifyDataSetChanged();
                 drawerLayout.openDrawer(GravityCompat.END);
                 return true;
             }
@@ -270,6 +278,10 @@ public class CategoryFragment extends Fragment {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
                 parent = (ParentCategoryClass)adapter.getGroup(i);
+                flag = true;
+
+
+                listMission = new ArrayList<>();
                 parent.getMissions().forEach(e -> {
                     listMission.add(e);
                 });
@@ -328,39 +340,6 @@ public class CategoryFragment extends Fragment {
         MissionParentList.add("Đã hoàn thành1");
         userRef = database.getReference(userId);
         CategoryRef = userRef.child("Category");
-        CategoryRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
-                p.getMissions().forEach(e -> {
-                    if(e.isStatus()){
-                        child.add(e);
-                        adapterMissonFinished.notifyDataSetChanged();
-                    }
-                });
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         Toast.makeText(getContext(), ""+child, Toast.LENGTH_SHORT).show();
         MissionChildList.put(MissionParentList.get(0),child);
 
@@ -382,7 +361,14 @@ public class CategoryFragment extends Fragment {
                     ParentCategoryClass p = snapshot.getValue(ParentCategoryClass.class);
                     if (p != null) {
                         parentList.add(p);
-                        childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
+                        List<ChildCategoryClass> t = new ArrayList<>();
+                        p.getChildCategories().forEach(e -> {
+                            t.add(e);
+                        });
+                        while (t.remove(null)){
+
+                        }
+                        childList.put(parentList.get(parentList.indexOf(p)),t);
 
                         String key = snapshot.getKey();
                         mKeys.add(key);
@@ -405,8 +391,15 @@ public class CategoryFragment extends Fragment {
                     String key = snapshot.getKey();
                     int index = mKeys.indexOf(key);
                     parentList.set(index, p);
-                    childList.put(parentList.get(parentList.indexOf(p)),p.getChildCategories());
-                    adapter.notifyDataSetChanged();
+
+                    List<ChildCategoryClass> t = new ArrayList<>();
+                    p.getChildCategories().forEach(e -> {
+                        t.add(e);
+                    });
+                    while (t.remove(null)){
+
+                    }
+                    childList.put(parentList.get(parentList.indexOf(p)),t);                    adapter.notifyDataSetChanged();
                     //  adapterMission.notifyDataSetChanged();
 
                 }

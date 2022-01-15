@@ -52,7 +52,7 @@ public class MisstionNewActivity extends AppCompatActivity {
     String nameSpinner;
     int priority = 0;
     ArrayList<MissionClass> listMiss = new ArrayList<>();;
-    MissionClass m;
+    MissionClass m,m1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,20 @@ public class MisstionNewActivity extends AppCompatActivity {
         init();
         changeTextClick();
 
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            m1 = (MissionClass) bundle.get("object_mission");
+
+            etMisssion.setText(m1.getName());
+            if(m1.getPriority() == 1){
+                rdbtn1.setChecked(true);
+            }else if(m1.getPriority() == 2){
+                rdbtn2.setChecked(true);
+            }else{
+                rdbtn3.setChecked(true);
+            }
+        }
         ibBackMission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +95,10 @@ public class MisstionNewActivity extends AppCompatActivity {
             }
         });
         addMissionNew();
+
+    }
+
+    private void getData() {
 
     }
 
