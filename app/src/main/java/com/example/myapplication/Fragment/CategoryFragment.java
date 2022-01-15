@@ -261,6 +261,7 @@ public class CategoryFragment extends Fragment {
                 listMission = new ArrayList<>();
                 listMission = childCa.getMissions();
 //                Toast.makeText(getContext(), ""+childCa.getMissions(), Toast.LENGTH_SHORT).show();
+
                 while (listMission.remove(null)) {
                 }
 //                Toast.makeText(getContext(), ""+listMission, Toast.LENGTH_SHORT).show();
@@ -283,7 +284,10 @@ public class CategoryFragment extends Fragment {
 
                 listMission = new ArrayList<>();
                 parent.getMissions().forEach(e -> {
-                    listMission.add(e);
+                    if(!e.isStatus()){
+                        listMission.add(e);
+                    }
+
                 });
                 while (listMission.remove(null)) {
                 }
